@@ -45,6 +45,246 @@ include_local_figure <- function(data_source) {
 
 Ondřej Mottl
 
+# Fossil pollen
+
+```{r}
+#| label: pollen-micor
+knitr::include_graphics("https://scied.ucar.edu/sites/default/files/media/images/pollen-wikipedia.jpg")
+```
+
+::: footer
+[Pollen: More Than Just an Allergen](https://scied.ucar.edu/learning-zone/how-climate-works/pollen-more-just-allergen)
+:::
+
+# [Palaeoecology]{.bold .r-fit-text} {.title}
+
+## A window to the past
+
+```{r}
+#| label: lake-to-vegetation
+include_local_figure("Lake to vegetation rate.jpg")
+```
+
+::: footer
+[Art by Milan TvM](https://x.com/MilanaTvM)
+:::
+
+## A window to the past
+
+```{r}
+#| label: coring
+include_local_figure("Coring map.jpg")
+```
+
+::: footer
+Photos by John W. Williams (a,b,r); Steffen Wolters (c,d,f,g); Thomas Giesecke (e); Henry H. Hooghiemstra (h,l,n,o,q); Geoff Hope (i); Feli Hopf (j); Eric Colhoun (k), Sarah Ivory (m), Luciane Fontana (p).
+:::
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+What is your experience with fossil pollen data?
+:::
+
+`r countdown(minutes = 3)`
+
+# [Neotoma]{.bold .r-fit-text} {.title}
+
+## Neotoma Paleoecology Database
+
+```{r}
+#| label: neotoma
+knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/neotoma-og-04-2022.jpg")
+```
+
+::: footer
+[Neotoma Paleoecology Database](https://www.neotomadb.org/)
+:::
+
+## What does Neotoma store?
+
+::: {.incremental}
+* **'Raw' Observations** on a variety of different proxies (vertebrates, diatoms, [pollen]{.text-color-highlight-primary}, plant macrofossils, testate amoebae, ostracodes, etc.)
+  * [number of identified specimens]{.text-color-highlight-secondary}, minimum number of individuals, presence/absence
+  * information about individual specimens, such as elements, specimen ID, or isotopic values
+* **Taxon names**
+* [**Dates**]{.text-color-highlight-tertiary} (14C, 210Pb, etc.)
+* **Age inferences**
+* [Derived Variables (e.g July mean temperature, species richness)]{.strike}
+* [Image files]{.strike}
+:::
+
+## Notoma - spatio-temporal scale
+
+```{r}
+#| label: neotoma-spatio-temporal
+knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_1280xAUTO_fit_center-center_80_none/map-snapshot.png")
+```
+
+::: footer
+[Neotoma Paleoecology Database](https://www.neotomadb.org/)
+:::
+
+## Neotoma - data access
+
+```{r}
+#| label: neotoma-data-access
+knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_1280xAUTO_fit_center-center_80_none/neotoma-software-stack.png")
+```
+
+::: footer
+[Neotoma Paleoecology Database](https://www.neotomadb.org/)
+:::
+
+## Neotoma - data access
+
+Three main ways to access data:
+
+:::: {.columns}
+
+::: {.column width="30%" .fragment}
+[Neotoma Explorer](https://www.neotomadb.org/apps/explorer)
+
+```{r}
+#| label: neotoma-explorer
+knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_480x320_crop_center-center_80_none/preview-explorer.jpg")
+```
+:::
+
+::: {.column width="30%" .fragment}
+[Neotoma API](https://www.neotomadb.org/apps/api)
+
+```{r}
+#| label: neotoma-api
+knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_480x320_crop_center-center_80_none/preview-interact.jpg")
+```
+:::
+
+::: {.column width="30%" .fragment}
+[{neotoma2}](https://open.neotomadb.org/neotoma2/)
+
+```{r}
+#| label: neotoma2
+knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_480x320_crop_center-center_80_none/preview-r.jpg")
+```
+:::
+
+::::
+
+::: footer
+[Neotoma Paleoecology Database](https://www.neotomadb.org/)
+:::
+
+## [Neotoma Explorer]{.r-fit-text} {.subtitle .textcenter}
+
+## Neotoma Explorer
+
+GUI for searching and downloading data.
+
+```{r}
+#| label: neotoma-explorer-screen
+include_local_figure("neotoma_viewer.png")
+```
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+GOAL: Download a pollen record from Neotoma Explorer.
+:::
+
+::: {.textcenter}
+[Neotoma explorer](https://apps.neotomadb.org/explorer/)
+:::
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+* Go to [Neotoma explorer](https://apps.neotomadb.org/explorer/)
+* Dowload a pollen record from a site of your choice
+:::
+
+`r countdown(minutes = 3)`
+
+## [Neotoma API]{.r-fit-text} {.subtitle .textcenter}
+
+## Neotoma API
+
+Notoma REST [API]{.text-color-highlight-primary} allows to directly send [SQL]{.text-color-highlight-secondary} queries from the Neotoma server.
+
+**SQL** (server) = **S**tructured **Q**uery **L**anguage 
+
+**API** = **A**pplication **P**rogramming **I**nterface
+
+```{r}
+#| label: neotoma-api-screen
+knitr::include_graphics("https://images.ctfassets.net/vwq10xzbe6iz/5sBH4Agl614xM7exeLsTo7/9e84dce01735f155911e611c42c9793f/rest-api.png")
+```
+
+::: footer
+[REST APIs Explained](https://mannhowie.com/rest-api)
+:::
+
+## Database structure
+
+```{r}
+#| label: neotoma-database-structure-1
+knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/neotomaUML_as.svg")
+```
+
+::: footer
+[The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
+:::
+
+## Database structure
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Our interest is [Dataset]{.text-color-highlight-primary} and [Samples]{.text-color-highlight-secondary}.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: neotoma-database-structure-2
+knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/understanding_S4_structure.svg")
+```
+:::
+
+::::
+
+::: footer
+[The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
+:::
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+GOAL: Get information about a pollen record using Neotoma API.
+:::
+
+::: {.textcenter}
+[Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+
+Use `/v2.0/data/datasets/{datasetid}` endpoint.
+:::
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+* get a `datasetid` from a pollen record of your choice from Neotoma Explorer
+* Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+* Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
+:::
+
+`r countdown(minutes = 3)`
+
+
+# [Fossil pollen data in R]{.bold .r-fit-text} {.title}
+
+## [Age-depth model]{.r-fit-text} {.subtitle .textcenter}
+
+# [Past Vegetation through time]{.bold .italic .r-fit-text} {.title}
+
 # [Outro]{.bold .r-fit-text} {.title}
 
 ## About me
