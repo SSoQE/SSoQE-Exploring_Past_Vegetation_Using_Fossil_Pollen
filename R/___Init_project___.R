@@ -1,12 +1,12 @@
 #----------------------------------------------------------#
 #
 #
-#                     Project name
+#        Exploring Past Vegetation Using Fossil Pollen
 #
 #                     Project setup
 #
 #
-#                O. Mottl, Author name
+#                      O. Mottl
 #                         2024
 #
 #----------------------------------------------------------#
