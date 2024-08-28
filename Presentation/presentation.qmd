@@ -278,8 +278,22 @@ Use `/v2.0/data/datasets/{datasetid}` endpoint.
 
 `r countdown(minutes = 3)`
 
-
 # [Fossil pollen data in R]{.bold .r-fit-text} {.title}
+
+## [Practical Exercise]{.r-fit-text .textcenter} {.exercise}
+
+:::{.r-fit-text .textcenter}
+GOAL: Get familiar with {neotoma2} R package.
+:::
+
+<br>
+
+::: {.r-fit-text}
+### Matetials:
+
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/01_neotoma2_basics.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/01_neotoma2_basics.html.md)
+:::
 
 ## [Age-depth model]{.r-fit-text} {.subtitle .textcenter}
 
