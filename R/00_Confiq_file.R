@@ -51,17 +51,20 @@ if (
 package_list <-
   c(
     "fs",
+    "geojsonsf",
     "here",
     "httpgd",
     "janitor",
     "jsonlite",
     "knitr",
     "languageserver",
+    "neotoma2",
     "quarto",
     "renv",
     "remotes",
     "rlang",
     "tidyverse",
+    "tinytable",
     "usethis",
     "utils"
   )
@@ -121,7 +124,7 @@ if (
 ## examples
 # set ggplot output
 ggplot2::theme_set(
-  ggplot2::theme_classic()
+  ggplot2::theme_bw()
 )
 
 # define general

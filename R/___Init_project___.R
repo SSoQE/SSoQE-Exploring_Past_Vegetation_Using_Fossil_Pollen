@@ -86,17 +86,20 @@ if (
 sapply(
   c(
     "fs",
+    "geojsonsf",
     "here",
     "httpgd",
     "janitor",
     "jsonlite",
     "knitr",
     "languageserver",
+    "neotoma2",
     "quarto",
     "renv",
     "remotes",
     "rlang",
     "tidyverse",
+    "tinytable",
     "usethis",
     "utils"
   ),
@@ -121,4 +124,3 @@ renv::snapshot(
 )
 
 cat("Set up completed. You can continute to run the project", "\n")
-
