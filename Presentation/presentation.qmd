@@ -262,7 +262,7 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/und
 GOAL: Get information about a pollen record using Neotoma API.
 :::
 
-::: {.textcenter}
+:::{.textcenter}
 [Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
 
 Use `/v2.0/data/datasets/{datasetid}` endpoint.
@@ -271,9 +271,11 @@ Use `/v2.0/data/datasets/{datasetid}` endpoint.
 ## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
 
 :::{.r-fit-text}
+
 * get a `datasetid` from a pollen record of your choice from Neotoma Explorer
 * Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
 * Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
+
 :::
 
 `r countdown(minutes = 3)`
@@ -288,14 +290,126 @@ GOAL: Get familiar with {neotoma2} R package.
 
 <br>
 
+### Materials:
+
 ::: {.r-fit-text}
-### Matetials:
 
 * [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/01_neotoma2_basics.qmd)
 * [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/01_neotoma2_basics.html.md)
+
 :::
 
 ## [Age-depth model]{.r-fit-text} {.subtitle .textcenter}
+
+
+## Age-depth modeling - Why?
+
+```{r}
+#| label: core-age-depth
+knitr::include_graphics("https://www.mdpi.com/applsci/applsci-12-00177/article_deploy/html/images/applsci-12-00177-g002.png")
+```
+
+::: footer
+[Evolution of Depositional Environments in Response to the Holocene Sea-Level Change in the Lower Delta Plain of Nakdong River Delta, Korea](https://doi.org/10.3390/app12010177)
+:::
+
+## Age-depth modeling - Why?
+
+To assign [**age**]{.text-color-highlight-primary} to each [**depth**]{.text-color-highlight-secondary} in a [**core**]{.text-color-highlight-tertiary}.
+
+```{r}
+#| label: core-age-depth-2
+knitr::include_graphics("https://www.researchgate.net/profile/Gusztav-Jakab/publication/331020517/figure/fig4/AS:731309924155401@1551369281642/The-age-depth-model_W640.jpg")
+```
+
+::: footer
+[Relict Anthropogenic Ecosystem from the Middle Ages: History of a Salt Marsh from Transylvania](http://dx.doi.org/10.1080/14614103.2019.1578547)
+:::
+
+## Age-depth modeling - How?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| label: core-age-depth-3a
+knitr::include_graphics("https://i0.wp.com/eos.org/wp-content/uploads/2021/01/Close-up-of-tree-rings.jpg")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: core-age-depth-3b
+knitr::include_graphics("https://blogs.egu.eu/network/geojenga/files/2014/12/Radioactivedecay1.jpg")
+```
+:::
+
+::::
+
+::: footer
+Stock.com/Ja’Crispy | Ascough, SUERC
+:::
+
+## Age-depth modeling - How
+
+```{r}
+#| label: core-age-depth-gif
+knitr::include_graphics("https://14chrono.org/site/wp-content/uploads/2019/11/sequence.gif")
+```
+
+::: footer
+[Chrono14](https://14chrono.org/radiocarbon-dating/age-depth-modelling/)
+:::
+
+## Radiocarbon dates - not a real age
+
+```{r}
+#| label: radiocarbon-dates
+knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron_files/figure-html/unnamed-chunk-9-1.png")
+```
+
+::: footer
+[Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
+:::
+
+## Age depth model - example
+
+```{r}
+#| label: age-depth-model-example
+knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron_files/figure-html/unnamed-chunk-51-1.png")
+```
+
+::: footer
+[Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
+:::
+
+## Age-depth modeling - example
+
+```{r}
+#| label: core-age-depth-gif-2
+knitr::include_graphics("https://14chrono.org/site/wp-content/uploads/2019/11/Bayes.gif")
+```
+
+::: footer
+[Chrono14](https://14chrono.org/radiocarbon-dating/age-depth-modelling/)
+:::
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+GOAL: Create an age-depth model using {Bchron} package.
+:::
+
+<br>
+
+### Materials:
+
+::: {.r-fit-text}
+
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/02_age_depth_model.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/02_age_depth_model.html.md)
+
+:::
 
 # [Past Vegetation through time]{.bold .italic .r-fit-text} {.title}
 
