@@ -22,12 +22,13 @@ Simple example of woking with pollen data using the [{neotoma2} package](https:/
 #| output: false
 
 # load libraries
-library(tidyverse) # general data wrangling and visualisation
-library(neotoma2) # obtain data from the Neotoma database
-library(tinytable) # nice tables
-library(janitor) # string cleaning
-library(geojsonsf) # geojson data
-library(here) # file paths
+library(tidyverse) # general data wrangling and visualisation ✨
+library(neotoma2) # # access to the Neotoma database 🌿
+library(pander) # nice tables 😍
+library(here) # for working directory 🗺️
+library(janitor) # string cleaning 🧹
+library(geojsonsf) # geojson spatial data 🌐
+library(here) # for working directory 🗺️
 
 # set the working directory
 here::i_am("R/Exercises/01_neotoma2_basics.qmd")
@@ -41,39 +42,11 @@ source(
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
   fig.width = 7,
-  fig.height = 5,
+  fig.height = 7,
   fig.align = "center",
   out.width = "100%",
   echo = TRUE
 )
-
-# Helper function to plot tables
-plot_table <- function(data_source, head = FALSE) {
-  data_frame <-
-    data_source %>%
-    as.data.frame()
-
-  if (
-    "description" %in% colnames(data_frame) |
-      "notes" %in% colnames(data_frame)
-  ) {
-    data_frame <-
-      data_frame %>%
-      dplyr::select(
-        !dplyr::any_of(c("description", "notes"))
-      )
-  }
-
-  if (
-    isTRUE(head)
-  ) {
-    data_frame <-
-      head(data_frame)
-  }
-
-  data_frame %>%
-    tinytable::tt()
-}
 ```
 
 ## Sites
@@ -146,7 +119,7 @@ neotoma2::get_sites(
 ### Search by IDs
 
 ```{r}
-#| label: 3.1
+#| label: 3.1.
 neotoma2::get_datasets(
   c(5, 10, 15, 20)
 ) %>% 
@@ -155,7 +128,7 @@ neotoma2::get_datasets(
 
 ### Search by type
 ```{r}
-#| label: 3.2
+#| label: 3.2.
 neotoma2::get_datasets(
   all_data = FALSE, # running with `all_data = TRUE` is heavy on the server
   datasettype = "pollen"
@@ -180,46 +153,7 @@ For example:
             "geometry": {
               "coordinates": [
                 [
-                  [
-                    8.885566596626347,
-                    49.771446037909755
-                  ],
-                  [
-                    10.222591262669596,
-                    48.31793402541106
-                  ],
-                  [
-                    12.353498585013057,
-                    47.56711633708565
-                  ],
-                  [
-                    16.327096438141012,
-                    48.350003278892444
-                  ],
-                  [
-                    16.435889807717132,
-                    49.83389459390426
-                  ],
-                  [
-                    16.022485237853516,
-                    51.17135995959822
-                  ],
-                  [
-                    14.214447964984942,
-                    51.55099235084026
-                  ],
-                  [
-                    10.091782211463311,
-                    50.45895941972614
-                  ],
-                  [
-                    9.223835080442456,
-                    50.26942261795418
-                  ],
-                  [
-                    8.885566596626347,
-                    49.771446037909755
-                  ]
+                  ...
                 ]
               ],
               "type": "Polygon"
@@ -394,7 +328,7 @@ data_selected_samples <-
     datasetid_sampleid = paste0(datasetid, "_", sampleid)
   )
 
-plot_table(data_selected_samples, head = TRUE)
+plot_table(data_selected_samples[1:5, 1:5])
 ```
 
 ### Get pollen counts
@@ -431,7 +365,7 @@ data_sample_pollen_counts <-
   # clean names
   janitor::clean_names()
 
-plot_table(data_sample_pollen_counts, head = TRUE) 
+plot_table(data_sample_pollen_counts[1:5, 1:5]) 
 ```
 
 ### Getting the age information 
