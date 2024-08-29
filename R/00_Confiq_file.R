@@ -90,7 +90,7 @@ current_dir <- here::here()
 # get vector of general functions
 fun_list <-
   list.files(
-    path = "R/Functions/",
+    path = here::here("R/Functions/"),
     pattern = "*.R",
     recursive = TRUE
   )
@@ -99,10 +99,10 @@ fun_list <-
 if (
   length(fun_list) > 0
 ) {
-  sapply(
-    paste0("R/Functions/", fun_list, sep = ""),
-    source
-  )
+  here::here("R/Functions", fun_list) %>%
+    purrr::walk(
+      .f = source
+    )
 }
 
 
