@@ -30,12 +30,6 @@ quarto::quarto_render(
 
 # Move the rendered file to the `docs` directory. -----
 
-fs::dir_copy(
-  path = here::here("Presentation/presentation_files"),
-  new_path = here::here("docs/presentation_files"),
-  overwrite = TRUE
-)
-
 fs::file_copy(
   path = here::here("Presentation/index.html"),
   new_path = here::here("docs/index.html"),
@@ -43,8 +37,6 @@ fs::file_copy(
 )
 
 # Clean up -----
-c(
-  here::here("Presentation/presentation_files"),
+fs::file_delete(
   here::here("Presentation/index.html")
-) %>%
-  fs::file_delete()
+)
