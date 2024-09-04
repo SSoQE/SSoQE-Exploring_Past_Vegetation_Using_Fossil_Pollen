@@ -293,8 +293,8 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/01_neotoma2_basics.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/01_neotoma2_basics.html.md)
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_neotoma2_basics.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_neotoma2_basics.html.md)
 
 :::
 
@@ -405,8 +405,8 @@ GOAL: Create an age-depth model using {Bchron} package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/02_age_depth_model.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/tree/neotoma/R/Exercises/02_age_depth_model.html.md)
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_age_depth_model.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_age_depth_model.html.md)
 
 :::
 
@@ -455,6 +455,3 @@ Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
 
 [🖥️ Slides](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
 :::
-
-
-
