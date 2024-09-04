@@ -3,8 +3,7 @@ format:
   revealjs:
     slide-number: true
     theme: [default, custom_theme.scss]
-    chalkboard:
-      buttons: false
+    embed-resources: true
     preview-links: auto
     output-file: "index"
     output-ext: "html"
