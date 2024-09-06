@@ -236,17 +236,24 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/neo
 
 ## Database structure
 
+
+Our interest is [Dataset]{.text-color-highlight-primary} and [Samples]{.text-color-highlight-secondary}.
+
 :::: {.columns}
 
-::: {.column width="50%"}
-Our interest is [Dataset]{.text-color-highlight-primary} and [Samples]{.text-color-highlight-secondary}.
+::: {.column width="25%"}
 :::
 
 ::: {.column width="50%"}
+
 ```{r}
 #| label: neotoma-database-structure-2
 knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/understanding_S4_structure.svg")
 ```
+
+:::
+
+::: {.column width="25%"}
 :::
 
 ::::
@@ -412,7 +419,29 @@ GOAL: Create an age-depth model using {Bchron} package.
 
 # [Past Vegetation through time]{.bold .italic .r-fit-text} {.title}
 
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+Goal: Look at a temporal change of presence of selected taxon.
+
+Work in groups and choose a taxon and region of your interest.
+
+:::{.r-fit-text}
+[💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Project/PastVegetationTroughTime.R)
+:::
+
+`r countdown(minutes = 20)`
+
 # [Outro]{.bold .r-fit-text} {.title}
+
+## [This presentation]{.bold .r-fit-text} {.title}
+
+::: {.r-fit-text}
+[😸 Code on GitHub](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen)
+
+[🖥️ Slides](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
+
+[![](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+:::
 
 ## About me
 
@@ -447,11 +476,3 @@ Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
 :::
 
 ::::
-
-## [This presentation]{.bold .r-fit-text} {.title}
-
-::: {.r-fit-text}
-[😸 Code on GitHub](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen)
-
-[🖥️ Slides](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
-:::
