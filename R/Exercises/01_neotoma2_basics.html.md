@@ -54,6 +54,16 @@ knitr::opts_chunk$set(
 
 ## Sites
 
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+# check the documentation
+?neotoma2::get_sites()
+```
+:::
+
+
 ### Search by IDs
 
 Search for site by a single numeric ID:
@@ -264,6 +274,18 @@ neotoma2::get_sites(
 
 
 ## Datasets
+
+You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyounger`, `ageolder`).
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+# check the documentation
+?neotoma2::get_datasets()
+```
+:::
+
 
 ### Search by IDs
 
@@ -481,8 +503,16 @@ neotoma2::get_datasets(
 
 ### Filter
 
-You can additionaly filter the compilation based on `lat`, `long`, `altitude`, `datasettype`, `age_range_young`, and/or `age_range_old`
+You can additionaly filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
 
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+# check the documentation
+?neotoma2::filter()
+```
+:::
 
 ::: {.cell layout-align="center"}
 
@@ -667,6 +697,14 @@ data_selected_downloads <-
 :::
 :::
 
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+# check the documentation
+?neotoma2::samples()
+```
+:::
+
 
 Extraxt Sample information
 
@@ -714,6 +752,16 @@ plot_table(data_selected_samples[1:5, 1:5])
 
 
 ### Get pollen counts
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+# check the documentation
+?neotoma2::taxa()
+```
+:::
+
 
 Get vector of all "pollen" taxa
 

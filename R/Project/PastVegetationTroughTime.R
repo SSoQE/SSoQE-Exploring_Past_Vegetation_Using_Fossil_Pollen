@@ -1,0 +1,41 @@
+#----------------------------------------------------------#
+#
+#
+#        Exploring Past Vegetation Using Fossil Pollen
+#
+#              Past Vegetation through time
+#
+#
+#                    O. Mottl, <Your name>
+#                         2024
+#
+#----------------------------------------------------------#
+
+# Get data for a selected Taxon in a selected region/continent
+#  by {neotoma2} package and plot its presence through time
+
+# Hint: `variablename` is the name of the Taxon in `Samples` data frame
+
+
+#----------------------------------------------------------#
+# 0. Setup -----
+#----------------------------------------------------------#
+
+# load libraries
+library(tidyverse) # general data wrangling and visualisation ✨
+library(neotoma2) # # access to the Neotoma database 🌿
+library(here) # for working directory 🗺️
+library(janitor) # string cleaning 🧹
+
+# source the config file
+source(
+  here::here("R/00_Confiq_file.R")
+)
+
+#----------------------------------------------------------#
+# 1. ... -----
+#----------------------------------------------------------#
+
+#----------------------------------------------------------#
+# X. ... -----
+#----------------------------------------------------------#
