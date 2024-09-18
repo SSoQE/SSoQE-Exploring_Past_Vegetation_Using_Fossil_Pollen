@@ -29,7 +29,6 @@ library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
 library(janitor) # string cleaning 🧹
 library(geojsonsf) # geojson spatial data 🌐
-library(here) # for working directory 🗺️
 
 # set the working directory
 here::i_am("R/Exercises/01_neotoma2_basics.qmd")

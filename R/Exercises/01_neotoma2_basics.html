@@ -1069,25 +1069,24 @@ function nexttick(func) {
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(here) <span class="co"># for working directory 🗺️</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(janitor) <span class="co"># string cleaning 🧹</span></span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(geojsonsf) <span class="co"># geojson spatial data 🌐</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(here) <span class="co"># for working directory 🗺️</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># set the working directory</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">&quot;R/Exercises/01_neotoma2_basics.qmd&quot;</span>)</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># source the config file</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">source</span>(</span>
-<span id="cb1-15"><a href="#cb1-15"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;R/00_Confiq_file.R&quot;</span>)</span>
-<span id="cb1-16"><a href="#cb1-16"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># quarto render options</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="fu">options</span>(<span class="at">htmltools.dir.version =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-20"><a href="#cb1-20"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb1-21"><a href="#cb1-21"></a>  <span class="at">fig.width =</span> <span class="dv">7</span>,</span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="at">fig.height =</span> <span class="dv">7</span>,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>  <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb1-24"><a href="#cb1-24"></a>  <span class="at">out.width =</span> <span class="st">&quot;100%&quot;</span>,</span>
-<span id="cb1-25"><a href="#cb1-25"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># set the working directory</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">&quot;R/Exercises/01_neotoma2_basics.qmd&quot;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># source the config file</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">source</span>(</span>
+<span id="cb1-14"><a href="#cb1-14"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;R/00_Confiq_file.R&quot;</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># quarto render options</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="fu">options</span>(<span class="at">htmltools.dir.version =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="at">fig.width =</span> <span class="dv">7</span>,</span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="at">fig.height =</span> <span class="dv">7</span>,</span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="at">out.width =</span> <span class="st">&quot;100%&quot;</span>,</span>
+<span id="cb1-24"><a href="#cb1-24"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="sites" class="level2"><h2 class="anchored" data-anchor-id="sites">Sites</h2>
 <div class="cell" data-layout-align="center">

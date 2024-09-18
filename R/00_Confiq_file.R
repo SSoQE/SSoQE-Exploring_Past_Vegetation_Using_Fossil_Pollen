@@ -50,6 +50,8 @@ if (
 # Define packages
 package_list <-
   c(
+    "Bchron",
+    "countdown",
     "fs",
     "geojsonsf",
     "here",
@@ -59,6 +61,7 @@ package_list <-
     "knitr",
     "languageserver",
     "neotoma2",
+    "pander",
     "quarto",
     "renv",
     "remotes",
