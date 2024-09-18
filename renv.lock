@@ -1185,6 +1185,24 @@
       ],
       "Hash": "c62edf62de70cadf40553e10c739049d"
     },
+    "pander": {
+      "Package": "pander",
+      "Version": "0.6.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "digest",
+        "grDevices",
+        "graphics",
+        "methods",
+        "stats",
+        "tools",
+        "utils"
+      ],
+      "Hash": "737924139a1e4fc96356ff377c754c35"
+    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.9.0",
@@ -1472,6 +1490,16 @@
         "withr"
       ],
       "Hash": "97b1d5361a24d9fb588db7afe3e5bcbf"
+    },
+    "rjson": {
+      "Package": "rjson",
+      "Version": "0.2.22",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "ff387cabd34002e7e50d2becacb0be76"
     },
     "rlang": {
       "Package": "rlang",

@@ -85,6 +85,8 @@ if (
 # install all packages in the lst from CRAN
 sapply(
   c(
+    "Bchron",
+    "countdown",
     "fs",
     "geojsonsf",
     "here",
@@ -94,6 +96,7 @@ sapply(
     "knitr",
     "languageserver",
     "neotoma2",
+    "pander",
     "quarto",
     "renv",
     "remotes",
