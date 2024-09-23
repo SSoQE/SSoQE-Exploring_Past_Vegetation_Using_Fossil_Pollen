@@ -238,15 +238,13 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/neo
 
 ## Database structure
 
-
-Our interest is [Dataset]{.text-color-highlight-primary} and [Samples]{.text-color-highlight-secondary}.
-
 :::: {.columns}
 
 ::: {.column width="25%"}
+Our interest is [Dataset]{.text-color-highlight-primary} and [Samples]{.text-color-highlight-secondary}.
 :::
 
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 ```{r}
 #| label: neotoma-database-structure-2
@@ -255,7 +253,7 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/und
 
 :::
 
-::: {.column width="25%"}
+::: {.column width="29%"}
 :::
 
 ::::
@@ -432,6 +430,43 @@ Work in groups and choose a taxon and region of your interest.
 :::
 
 `r countdown(minutes = 20)`
+
+## Note of multi-record analysis
+
+```{r}
+#| label: FOSSILPOL
+include_local_figure("Workflow complete - 600ppi.png")
+```
+
+::: footer
+art by [Milan TvM](https://x.com/MilanaTvM)
+:::
+
+## Note of multi-record analysis
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: FOSSILPOL-logo
+include_local_figure("Logo FOSSILPOL regular - 600ppi.png")
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| label: FOSSILPOL-qr
+include_local_figure("qr-fossilpol.png")
+```
+:::
+
+::::
+
+::: footer
+[FOSSILPOL](bit.ly/FOSSILPOL)
+:::
 
 # [Outro]{.bold .r-fit-text} {.title}
 

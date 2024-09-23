@@ -36,6 +36,12 @@ fs::file_copy(
   overwrite = TRUE
 )
 
+fs::file_copy(
+  path = here::here("Presentation/index.html"),
+  new_path = here::here("Presentation/presentation.html"),
+  overwrite = TRUE
+)
+
 # Clean up -----
 fs::file_delete(
   here::here("Presentation/index.html")
