@@ -12,19 +12,21 @@ format:
 
 
 
+
 # Age Depth Modeling in R
 
-To estimate the age of individual levels based on their depth, a chronology or age-depth model needs to be constructed. An age-depth model provides age estimates of each individual level and the full age range of the record. Most datasets in Neotoma have chronologies available and the ages of individual levels are given, but these chronologies often need updating to match current best practices in age-depth modelling . Generally, age-depth models are constructed using `chronology control points`  with known depth, estimated age and associated age uncertainties. The chronology control points for each record are saved in the `chronology control table`.
+To estimate the age of individual levels based on their depth, a chronology or age-depth model needs to be constructed. An age-depth model provides age estimates of each individual level and the full age range of the record. Most datasets in Neotoma have chronologies available and the ages of individual levels are given, but these chronologies often need updating to match current best practices in age-depth modelling . Generally, age-depth models are constructed using `chronology control points` with known depth, estimated age and associated age uncertainties. The chronology control points for each record are saved in the `chronology control table`.
 
 ## Key palaeoecological terms
 
-- **Chronology**: a series of estimated ages and associated uncertainty estimates for levels in a stratigraphic record. Such estimates usually derive from an age-depth model and its associated age controls.
-- **Chronology control point(s)**: an estimate of absolute age, often with a specified uncertainty, for a level within a core or stratigraphic profile that is used to constrain an age model for that core or profile. Also called `age control`.
-- **Chronology control table**: a table that contains all the chronology control points. Includes depth, uncalibrated age of radiocarbon date and age error. Clam and Bacon require additional columns related to the reservoir effect or calibration curve used. See clam and Bacon manuals.
-- **Calibration curve**: is used to convert uncalibrated radiocarbon years (uncalibrated 14C BP) to calendar years (calibrated years before present, cal yr BP or cal yr B2K (2000 CE)). Depending on the location of the record and if the locality is marine or not, it is important to use the appropriate calibration curve. The radiocarbon calibration curve is empirically derived and is regularly updated as new observations are collected. At this time, IntCal21 is the standard calibration curve, replacing the previous IntCal13.
-- **Bayesian age model**: an age model that provides fully probabilistic estimates of the uncertainties in sample ages via the application of Bayes' theorem. Bayesian models rely upon prior assumptions about e.g. sediment accumulation rates, stratigraphic superposition and thus monotonicity of ages. Programmes that implement Bayesian age models include `Bacon`, `OxCal` and `Bchron`. Age controls may be `uncalibrated radiocarbon years` or calendar ages with uncertainties. These age models produce calibrated or calendar ages, and they can automatically deal with most cases of outlying dates.
+-   **Chronology**: a series of estimated ages and associated uncertainty estimates for levels in a stratigraphic record. Such estimates usually derive from an age-depth model and its associated age controls.
+-   **Chronology control point(s)**: an estimate of absolute age, often with a specified uncertainty, for a level within a core or stratigraphic profile that is used to constrain an age model for that core or profile. Also called `age control`.
+-   **Chronology control table**: a table that contains all the chronology control points. Includes depth, uncalibrated age of radiocarbon date and age error. Clam and Bacon require additional columns related to the reservoir effect or calibration curve used. See clam and Bacon manuals.
+-   **Calibration curve**: is used to convert uncalibrated radiocarbon years (uncalibrated 14C BP) to calendar years (calibrated years before present, cal yr BP or cal yr B2K (2000 CE)). Depending on the location of the record and if the locality is marine or not, it is important to use the appropriate calibration curve. The radiocarbon calibration curve is empirically derived and is regularly updated as new observations are collected. At this time, IntCal21 is the standard calibration curve, replacing the previous IntCal13.
+-   **Bayesian age model**: an age model that provides fully probabilistic estimates of the uncertainties in sample ages via the application of Bayes' theorem. Bayesian models rely upon prior assumptions about e.g. sediment accumulation rates, stratigraphic superposition and thus monotonicity of ages. Programmes that implement Bayesian age models include `Bacon`, `OxCal` and `Bchron`. Age controls may be `uncalibrated radiocarbon years` or calendar ages with uncertainties. These age models produce calibrated or calendar ages, and they can automatically deal with most cases of outlying dates.
 
 ## Setup
+
 
 
 ::: {.cell}
@@ -40,9 +42,11 @@ library(here) # for working directory 🗺️
 # set the working directory
 here::i_am("R/Exercises/02_age_depth_model.qmd")
 
-# source the config file
+# source the plot_table() function
 source(
-  here::here("R/00_Confiq_file.R")
+  here::here(
+    "R/Functions/plot_table.R"
+  )
 )
 
 # quarto render options
@@ -64,6 +68,7 @@ knitr::opts_chunk$set(
 Here we have selected the **Chickaree Lake** record (ID = 47613) by Higuera, Philip E. and Dunnette, Paul V.
 
 Reference paper: Dunnette, P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, and M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain subalpine watershed. New Phytologist 203(3):900-912. DOI: 10.1111/nph.12828
+
 
 
 ::: {.cell layout-align="center"}
@@ -119,12 +124,15 @@ plot_table(data_samples, head = TRUE)
 :::
 
 
+
 ## Age-depth modelling
 
-We will recalculate the age-depth model 'de novo' using the [{Bchron} package](http://andrewcparnell.github.io/Bchron/). 
+We will recalculate the age-depth model 'de novo' using the [{Bchron} package](http://andrewcparnell.github.io/Bchron/).
 
 ### Prepare chron.control table and run Bchron
+
 The chronology control table contains all the dates (mostly radiocarbon) to create the age-depth model.
+
 
 
 ::: {.cell layout-align="center"}
@@ -182,7 +190,9 @@ Table: Table continues below
 :::
 
 
+
 There could be seberal chronologies in the dataset. Here we will select the chronology table with higher values with the assumtion that it is newer.
+
 
 
 ::: {.cell layout-align="center"}
@@ -200,7 +210,9 @@ vec_chronologyid <-
 :::
 
 
+
 Here we only present a few of the important steps of preparation of the chronology control table. There are many more potential issues, but solving those is not the focus of this workflow.
+
 
 
 ::: {.cell layout-align="center"}
@@ -262,7 +274,10 @@ plot_table(data_chron_control_table, head = TRUE)
 :::
 
 
+
 As this is just a toy example, we will use only the iteration multiplier (`i_multiplier`) of `0.1` to reduce the computation time. However, we strongly recommend increasing it to 5 for any normal age-depth model construction.
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -295,7 +310,9 @@ sel_bchron <-
 :::
 
 
+
 Visually check the age-depth models
+
 
 
 ::: {.cell layout-align="center"}
@@ -321,9 +338,11 @@ Bchron:::plot.BchronologyRun(sel_bchron) + # or just simple plot(sel_bchron)
 :::
 
 
+
 ### Predict ages
 
-Let's first extract posterior ages (i.e. possible ages) from the age-depth model.  
+Let's first extract posterior ages (i.e. possible ages) from the age-depth model.
+
 
 
 ::: {.cell layout-align="center"}
@@ -338,7 +357,9 @@ age_position <-
 :::
 
 
+
 Wrangle the data and add `sampleid`.
+
 
 
 ::: {.cell layout-align="center"}
@@ -362,21 +383,21 @@ plot_table(age_uncertainties[1:8, 1:8])
 -----------------------------------------------------------------------
  439811   439812   439813   439814   439815   439816   439817   439818 
 -------- -------- -------- -------- -------- -------- -------- --------
-  -58      -50      -49      -38      -29      -24      -12       -6   
+  -60      -52      -44      -40      -27      -18      -11       -5   
 
-  -58      -53      -44      -37      -27      -22      -12       -4   
+  -60      -51      -45      -40      -26      -19      -12       -5   
 
-  -58      -54      -44      -37      -27      -22      -12       -7   
+  -60      -54      -45      -38      -26      -19      -14       -5   
 
-  -60      -53      -42      -37      -27      -22      -11       -6   
+  -60      -51      -47      -40      -27      -19      -12       -3   
 
-  -60      -52      -43      -35      -28      -21      -12       -4   
+  -60      -50      -45      -37      -25      -19      -15       0    
 
-  -60      -50      -45      -38      -27      -21      -11       -3   
+  -60      -52      -45      -37      -30      -20      -12       -7   
 
-  -60      -55      -45      -36      -27      -21      -17       2    
+  -60      -52      -45      -39      -27      -20      -12       -8   
 
-  -60      -54      -45      -37      -27      -21      -19       -2   
+  -60      -54      -45      -38      -27      -21      -12       -5   
 -----------------------------------------------------------------------
 ```
 
@@ -385,9 +406,11 @@ plot_table(age_uncertainties[1:8, 1:8])
 :::
 
 
+
 Here we see samples (e.g., 439811, 439812, 439813,...) and their possible ages (age sequence) with each model iteration (posterior). Each age-sequence is similar but there are differences of tens or hundreds of years. We will call this *the uncertainty matrix*.
 
 We can visualize these "possible ages" (age-sequence) of each iteration.
+
 
 
 ::: {.cell layout-align="center"}
@@ -411,7 +434,9 @@ data_age_uncertainties <-
 :::
 
 
+
 Each line is a single potential age-depth model iteration (age-sequence). Green points represent the radiocarbon dates. Horizontal lines are the depths of our samples.
+
 
 
 ::: {.cell layout-align="center"}
@@ -463,7 +488,9 @@ Each line is a single potential age-depth model iteration (age-sequence). Green 
 :::
 
 
+
 We can visualize all age-depth "possible ages" together as the range of values. Here, each line represents one sampled depth in our record.
+
 
 
 ::: {.cell layout-align="center"}
@@ -500,7 +527,9 @@ data_age_uncertainties %>%
 :::
 
 
+
 Let's take the median age of all possible ages (i.e. the estimated age from each age-depth model run) as our default.
+
 
 
 ::: {.cell layout-align="center"}
@@ -528,9 +557,9 @@ plot_table(data_levels_predicted, head = TRUE)
 ---------- ------- -----
   439811     0.8    -60 
 
-  439812     2.9    -54 
+  439812     2.9    -53 
 
-  439813     5.1    -44 
+  439813     5.1    -45 
 
   439814     7.8    -37 
 
@@ -545,7 +574,9 @@ plot_table(data_levels_predicted, head = TRUE)
 :::
 
 
+
 We can visualize the median age by drawing a red line. This age is the age that is often reported in publications but in essence, it represents multiple age-depth model runs with smaller or larger age uncertainties throughout the record.
+
 
 
 ::: {.cell layout-align="center"}
