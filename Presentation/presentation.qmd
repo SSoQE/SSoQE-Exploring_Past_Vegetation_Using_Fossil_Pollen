@@ -307,25 +307,13 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ## [Age-depth model]{.r-fit-text} {.subtitle .textcenter}
 
-
-## Age-depth modeling - Why?
-
-```{r}
-#| label: core-age-depth
-knitr::include_graphics("https://www.mdpi.com/applsci/applsci-12-00177/article_deploy/html/images/applsci-12-00177-g002.png")
-```
-
-::: footer
-[Evolution of Depositional Environments in Response to the Holocene Sea-Level Change in the Lower Delta Plain of Nakdong River Delta, Korea](https://doi.org/10.3390/app12010177)
-:::
-
 ## Age-depth modeling - Why?
 
 To assign [**age**]{.text-color-highlight-primary} to each [**depth**]{.text-color-highlight-secondary} in a [**core**]{.text-color-highlight-tertiary}.
 
 ```{r}
-#| label: core-age-depth-2
-knitr::include_graphics("https://www.researchgate.net/profile/Gusztav-Jakab/publication/331020517/figure/fig4/AS:731309924155401@1551369281642/The-age-depth-model_W640.jpg")
+#| label: core-age-depth
+include_local_figure("yenv_a_1578547_f0004_oc.jpg")
 ```
 
 ::: footer
