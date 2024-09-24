@@ -2,7 +2,6 @@
 plot_table <- function(data_source, head = FALSE) {
   require(magrittr, quietly = TRUE, warn.conflicts = FALSE)
   require(dplyr, quietly = TRUE, warn.conflicts = FALSE)
-  require(tinytable, quietly = TRUE, warn.conflicts = FALSE)
 
   data_frame <-
     data_source %>%

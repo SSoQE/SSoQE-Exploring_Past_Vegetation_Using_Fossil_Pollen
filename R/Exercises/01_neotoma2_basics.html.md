@@ -12,11 +12,13 @@ format:
 
 
 
+
 # Basic functions of neotoma2 : Working with pollen data
 
 Simple example of woking with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
 
 ## Setup
+
 
 
 ::: {.cell}
@@ -33,9 +35,11 @@ library(geojsonsf) # geojson spatial data 🌐
 # set the working directory
 here::i_am("R/Exercises/01_neotoma2_basics.qmd")
 
-# source the config file
+# source the plot_table() function
 source(
-  here::here("R/00_Confiq_file.R")
+  here::here(
+    "R/Functions/plot_table.R"
+  )
 )
 
 # quarto render options
@@ -51,7 +55,9 @@ knitr::opts_chunk$set(
 :::
 
 
+
 ## Sites
+
 
 
 ::: {.cell layout-align="center"}
@@ -63,9 +69,12 @@ knitr::opts_chunk$set(
 :::
 
 
+
 ### Search by IDs
 
 Search for site by a single numeric ID:
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -90,7 +99,10 @@ neotoma2::get_sites(15799) %>%
 :::
 
 
+
 Search for sites with multiple IDs:
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -119,7 +131,9 @@ neotoma2::get_sites(
 :::
 
 
-Searching for Sites by Name. Notet that  `%` is a wildcard character:
+
+Searching for Sites by Name. Notet that `%` is a wildcard character:
+
 
 
 ::: {.cell layout-align="center"}
@@ -151,9 +165,11 @@ neotoma2::get_sites(sitename = "Alex%") %>%
 :::
 
 
+
 ### Searching for Sites by Age
 
 Record span at least 8200 years:
+
 
 
 ::: {.cell layout-align="center"}
@@ -192,7 +208,9 @@ neotoma2::get_sites(
 :::
 
 
+
 Record must PARTLY span the age range
+
 
 
 ::: {.cell layout-align="center"}
@@ -232,7 +250,9 @@ neotoma2::get_sites(
 :::
 
 
+
 Record must COMPLETELY span the age range
+
 
 
 ::: {.cell layout-align="center"}
@@ -272,9 +292,11 @@ neotoma2::get_sites(
 :::
 
 
+
 ## Datasets
 
 You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyounger`, `ageolder`).
+
 
 
 ::: {.cell layout-align="center"}
@@ -286,7 +308,9 @@ You can search by all the same age properties as for sites (`ageof`, `minage`, `
 :::
 
 
+
 ### Search by IDs
+
 
 
 ::: {.cell layout-align="center"}
@@ -320,7 +344,10 @@ neotoma2::get_datasets(
 :::
 
 
+
 ### Search by type
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -358,11 +385,14 @@ neotoma2::get_datasets(
 :::
 
 
+
 ### Search by geo location
 
 Go to [geojson.io](https://geojson.io/) and get the coordinates of a polygon.
 
 For example:
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -388,7 +418,9 @@ For example:
 :::
 
 
+
 Now, we can use the coordinates to search for datasets:
+
 
 
 ::: {.cell layout-align="center"}
@@ -500,9 +532,11 @@ neotoma2::get_datasets(
 :::
 
 
+
 ### Filter
 
 You can additionaly filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
+
 
 
 ::: {.cell layout-align="center"}
@@ -545,11 +579,13 @@ neotoma2::get_datasets(
 :::
 
 
+
 ## Downloading data
 
 ### Download individual record
 
 Let's download a record with `datasetid` 24279
+
 
 
 ::: {.cell layout-align="center"}
@@ -575,9 +611,11 @@ neotoma2::get_downloads(24279) %>%
 :::
 
 
+
 ### Download multiple records
 
 Download all records by sites
+
 
 
 ::: {.cell layout-align="center"}
@@ -624,7 +662,9 @@ Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in
 :::
 
 
+
 Download all records by datasets
+
 
 
 ::: {.cell layout-align="center"}
@@ -663,11 +703,14 @@ neotoma2::get_datasets(
 :::
 
 
+
 ## Working with pollen counts
 
 ### Get samples
 
 download all records by datasets
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -705,7 +748,10 @@ data_selected_downloads <-
 :::
 
 
-Extraxt Sample information
+
+Extract Sample information
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -750,7 +796,9 @@ plot_table(data_selected_samples[1:5, 1:5])
 :::
 
 
+
 ### Get pollen counts
+
 
 
 ::: {.cell layout-align="center"}
@@ -762,7 +810,10 @@ plot_table(data_selected_samples[1:5, 1:5])
 :::
 
 
+
 Get vector of all "pollen" taxa
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -788,7 +839,10 @@ head(vec_taxa_pollen)
 :::
 
 
+
 Get pollen counts
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -837,7 +891,9 @@ plot_table(data_sample_pollen_counts[1:5, 1:5])
 :::
 
 
-### Getting the age information 
+
+### Getting the age information
+
 
 
 ::: {.cell layout-align="center"}
@@ -877,9 +933,12 @@ plot_table(data_sample_age, head = TRUE)
 :::
 
 
+
 ### Plotting pollen diagram
 
 Data wrangling
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -948,7 +1007,10 @@ plot_table(data_to_plot, head = TRUE)
 :::
 
 
+
 Get the most common taxa
+
+
 
 ::: {.cell layout-align="center"}
 
