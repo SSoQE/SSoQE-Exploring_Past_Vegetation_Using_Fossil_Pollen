@@ -27,10 +27,6 @@ library(neotoma2) # # access to the Neotoma database 🌿
 library(here) # for working directory 🗺️
 library(janitor) # string cleaning 🧹
 
-# source the config file
-source(
-  here::here("R/00_Confiq_file.R")
-)
 
 #----------------------------------------------------------#
 # 1. ... -----

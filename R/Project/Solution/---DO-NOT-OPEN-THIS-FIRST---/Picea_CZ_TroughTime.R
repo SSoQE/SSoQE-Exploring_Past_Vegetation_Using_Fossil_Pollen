@@ -28,11 +28,6 @@ library(here) # for working directory 🗺️
 library(janitor) # string cleaning 🧹
 library(rjson) # JSON parser 📦
 
-# source the config file
-source(
-  here::here("R/00_Confiq_file.R")
-)
-
 
 #----------------------------------------------------------#
 # 1. Get data -----

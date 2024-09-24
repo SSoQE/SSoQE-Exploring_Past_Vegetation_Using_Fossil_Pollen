@@ -32,9 +32,11 @@ library(geojsonsf) # geojson spatial data 🌐
 # set the working directory
 here::i_am("R/Exercises/01_neotoma2_basics.qmd")
 
-# source the config file
+# source the plot_table() function
 source(
-  here::here("R/00_Confiq_file.R")
+  here::here(
+    "R/Functions/plot_table.R"
+  )
 )
 
 # quarto render options
@@ -61,6 +63,7 @@ knitr::opts_chunk$set(
 ### Search by IDs
 
 Search for site by a single numeric ID:
+
 ```{r}
 #| label: 2.1.1
 neotoma2::get_sites(15799) %>% 
@@ -68,6 +71,7 @@ neotoma2::get_sites(15799) %>%
 ```
 
 Search for sites with multiple IDs:
+
 ```{r}
 #| label: 2.1.2
 neotoma2::get_sites(
@@ -76,7 +80,7 @@ neotoma2::get_sites(
   plot_table()
 ```
 
-Searching for Sites by Name. Notet that  `%` is a wildcard character:
+Searching for Sites by Name. Notet that `%` is a wildcard character:
 
 ```{r}
 #| label: 2.1.3
@@ -144,6 +148,7 @@ neotoma2::get_datasets(
 ```
 
 ### Search by type
+
 ```{r}
 #| label: 3.2.
 neotoma2::get_datasets(
@@ -158,6 +163,7 @@ neotoma2::get_datasets(
 Go to [geojson.io](https://geojson.io/) and get the coordinates of a polygon.
 
 For example:
+
 ```{r}
 #| label: JSON example
 #| eval: false
@@ -326,6 +332,7 @@ neotoma2::get_datasets(
 ### Get samples
 
 download all records by datasets
+
 ```{r}
 #| label: 5.1.1
 data_selected_downloads <-
@@ -350,7 +357,8 @@ data_selected_downloads <-
 ?neotoma2::samples()
 ```
 
-Extraxt Sample information
+Extract Sample information
+
 ```{r}
 #| label: 5.1.2
 data_selected_samples <-
@@ -375,6 +383,7 @@ plot_table(data_selected_samples[1:5, 1:5])
 ```
 
 Get vector of all "pollen" taxa
+
 ```{r}
 #| label: 5.2.
 vec_taxa_pollen <-
@@ -387,6 +396,7 @@ head(vec_taxa_pollen)
 ```
 
 Get pollen counts
+
 ```{r}
 #| label: 5.3.
 data_sample_pollen_counts <-
@@ -409,7 +419,7 @@ data_sample_pollen_counts <-
 plot_table(data_sample_pollen_counts[1:5, 1:5]) 
 ```
 
-### Getting the age information 
+### Getting the age information
 
 ```{r}
 #| label: 6.1.
@@ -424,6 +434,7 @@ plot_table(data_sample_age, head = TRUE)
 ### Plotting pollen diagram
 
 Data wrangling
+
 ```{r}
 #| label: 7.1.
 data_to_plot <-
@@ -465,6 +476,7 @@ plot_table(data_to_plot, head = TRUE)
 ```
 
 Get the most common taxa
+
 ```{r}
 #| label: 7.2.
 vec_common_taxa <-
