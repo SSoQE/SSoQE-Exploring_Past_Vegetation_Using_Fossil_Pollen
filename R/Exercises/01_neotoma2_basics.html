@@ -1214,35 +1214,35 @@ function nexttick(func) {
 <p>Record must COMPLETELY span the age range</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="at">ageyounger =</span> <span class="dv">5000</span>,</span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="at">ageolder =</span> <span class="dv">8000</span>,</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="at">ageyoung =</span> <span class="dv">5000</span>,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="at">ageold =</span> <span class="dv">8000</span>,</span>
 <span id="cb13-4"><a href="#cb13-4"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span> <span class="co"># this will only show 25 records</span></span>
 <span id="cb13-5"><a href="#cb13-5"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-6"><a href="#cb13-6"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
---------------------------------------------------
- siteid   sitename    lat     long    area   elev 
--------- ---------- ------- -------- ------ ------
-   1        15/1     55.09   -75.25    NA    244  
+-----------------------------------------------------------------------
+ siteid             sitename              lat      long    area   elev 
+-------- ------------------------------ -------- -------- ------ ------
+   11     Konus Exposure, Adycha River   67.75    135.6     NA    137  
 
-   2        15/2     55.83   -75.02    NA    261  
+   12            Ageröds Mosse           55.93    13.43     NA     47  
 
-   3        16/1     55.41   -75.07    NA    290  
+   15               Aguilar              -23.83   -65.75    NA    3828 
 
-   4        17/1     55.07   -75.7     NA    235  
+   19       Akulinin Exposure P1282      47.12    138.6     NA    367  
 
-   5        17/2     55.25   -74.93    NA    300  
+   20               Akuvaara             69.12    27.67     NA    159  
 
-   6        17/3     55.12   -75.95    NA    278  
---------------------------------------------------</code></pre>
+   25             Alexis Lake            52.52    -57.03    NA    193  
+-----------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </section>
 </section>
 <section id="datasets" class="level2">
 <h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
-<p>You can search by all the same age properties as for sites (<code>ageof</code>, <code>minage</code>, <code>maxage</code>, <code>ageyounger</code>, <code>ageolder</code>).</p>
+<p>You can search by all the same age properties as for sites (<code>ageof</code>, <code>minage</code>, <code>maxage</code>, <code>ageyoung</code>, <code>ageold</code>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># check the documentation</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>?neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1423,7 +1423,7 @@ function nexttick(func) {
 </section>
 <section id="filter" class="level3">
 <h3 class="anchored" data-anchor-id="filter">Filter</h3>
-<p>You can additionaly filter the compilation based on <code>lat</code>, <code>long</code>, <code>altitude</code>, <code>age_range_young</code>, and/or <code>age_range_old</code></p>
+<p>You can additionally filter the compilation based on <code>lat</code>, <code>long</code>, <code>altitude</code>, <code>age_range_young</code>, and/or <code>age_range_old</code></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># check the documentation</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a>?neotoma2<span class="sc">::</span><span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1457,15 +1457,38 @@ function nexttick(func) {
 <h3 class="anchored" data-anchor-id="download-individual-record">Download individual record</h3>
 <p>Let’s download a record with <code>datasetid</code> 24279</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>(<span class="dv">24279</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="#cb26-2"></a> <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>dataset_24279 <span class="ot">&lt;-</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>(<span class="dv">24279</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>.
-----------------------------------------------------
- siteid    sitename      lat    long    area   elev 
--------- ------------- ------- ------- ------ ------
- 15799    Kulzer Moos   49.39   12.45    NA    466  
-----------------------------------------------------</code></pre>
+<pre><code>.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">plot_table</span>(</span>
+<span id="cb28-2"><a href="#cb28-2"></a>  dataset_24279<span class="sc">@</span>sites[[<span class="dv">1</span>]]<span class="sc">@</span>collunits[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+-------------------------------------------------------------------------------
+ collectionunitid    handle    colldate   location   waterdepth   collunittype 
+------------------ ---------- ---------- ---------- ------------ --------------
+      17790         KULZERMO      NA         NA          NA            NA      
+-------------------------------------------------------------------------------
+
+Table: Table continues below
+
+ 
+---------------------------------------------------------------
+   collectiondevice     defaultchronology   collectionunitname 
+---------------------- ------------------- --------------------
+ Russian peat sampler         14609                 NA         
+---------------------------------------------------------------
+
+Table: Table continues below
+
+ 
+-------------------------
+ depositionalenvironment 
+-------------------------
+           Fen           
+-------------------------</code></pre>
 </div>
 </div>
 </section>
@@ -1473,13 +1496,13 @@ function nexttick(func) {
 <h3 class="anchored" data-anchor-id="download-multiple-records">Download multiple records</h3>
 <p>Download all records by sites</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># get sites information</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">&quot;Alex%&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>  <span class="co"># get datasets information</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a>  neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>  <span class="co"># get downloads</span></span>
-<span id="cb28-6"><a href="#cb28-6"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-7"><a href="#cb28-7"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># get sites information</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">&quot;Alex%&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="co"># get datasets information</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>  neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a>  <span class="co"># get downloads</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb30-7"><a href="#cb30-7"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in the Neotoma DB yet or it has been removed. 
                         It will be removed from your search.</code></pre>
@@ -1501,19 +1524,19 @@ function nexttick(func) {
 </div>
 <p>Download all records by datasets</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># get datasets information</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
-<span id="cb31-3"><a href="#cb31-3"></a>  <span class="at">loc =</span> sel_polygon</span>
-<span id="cb31-4"><a href="#cb31-4"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-5"><a href="#cb31-5"></a>  <span class="co"># filter datasets</span></span>
-<span id="cb31-6"><a href="#cb31-6"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb31-7"><a href="#cb31-7"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb31-8"><a href="#cb31-8"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
-<span id="cb31-9"><a href="#cb31-9"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
-<span id="cb31-10"><a href="#cb31-10"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb31-11"><a href="#cb31-11"></a>  <span class="co"># get downloads</span></span>
-<span id="cb31-12"><a href="#cb31-12"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb31-13"><a href="#cb31-13"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># get datasets information</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="at">loc =</span> sel_polygon</span>
+<span id="cb33-4"><a href="#cb33-4"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="co"># filter datasets</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb33-7"><a href="#cb33-7"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb33-8"><a href="#cb33-8"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
+<span id="cb33-9"><a href="#cb33-9"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb33-11"><a href="#cb33-11"></a>  <span class="co"># get downloads</span></span>
+<span id="cb33-12"><a href="#cb33-12"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb33-13"><a href="#cb33-13"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>..
 --------------------------------------------------
@@ -1533,75 +1556,71 @@ function nexttick(func) {
 <h3 class="anchored" data-anchor-id="get-samples">Get samples</h3>
 <p>download all records by datasets</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>data_selected_downloads <span class="ot">&lt;-</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>  neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
-<span id="cb33-3"><a href="#cb33-3"></a>    <span class="at">loc =</span> sel_polygon</span>
-<span id="cb33-4"><a href="#cb33-4"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a>  <span class="co"># filter datasets</span></span>
-<span id="cb33-6"><a href="#cb33-6"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb33-7"><a href="#cb33-7"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb33-8"><a href="#cb33-8"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
-<span id="cb33-9"><a href="#cb33-9"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
-<span id="cb33-10"><a href="#cb33-10"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb33-11"><a href="#cb33-11"></a>  <span class="co"># get downloads</span></span>
-<span id="cb33-12"><a href="#cb33-12"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>data_selected_downloads <span class="ot">&lt;-</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>  neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="at">loc =</span> sel_polygon</span>
+<span id="cb35-4"><a href="#cb35-4"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="co"># filter datasets</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb35-7"><a href="#cb35-7"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
+<span id="cb35-10"><a href="#cb35-10"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>  <span class="co"># get downloads</span></span>
+<span id="cb35-12"><a href="#cb35-12"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>..</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># check the documentation</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>?neotoma2<span class="sc">::</span><span class="fu">samples</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># check the documentation</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>?neotoma2<span class="sc">::</span><span class="fu">samples</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Extract Sample information</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>data_selected_samples <span class="ot">&lt;-</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>  neotoma2<span class="sc">::</span><span class="fu">samples</span>(data_selected_downloads) <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb36-6"><a href="#cb36-6"></a>    <span class="at">datasetid_sampleid =</span> <span class="fu">paste0</span>(datasetid, <span class="st">&quot;_&quot;</span>, sampleid)</span>
-<span id="cb36-7"><a href="#cb36-7"></a>  )</span>
-<span id="cb36-8"><a href="#cb36-8"></a></span>
-<span id="cb36-9"><a href="#cb36-9"></a><span class="fu">plot_table</span>(data_selected_samples[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>data_selected_samples <span class="ot">&lt;-</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>  neotoma2<span class="sc">::</span><span class="fu">samples</span>(data_selected_downloads) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb38-6"><a href="#cb38-6"></a>    <span class="at">datasetid_sampleid =</span> <span class="fu">paste0</span>(datasetid, <span class="st">&quot;_&quot;</span>, sampleid)</span>
+<span id="cb38-7"><a href="#cb38-7"></a>  )</span>
+<span id="cb38-8"><a href="#cb38-8"></a></span>
+<span id="cb38-9"><a href="#cb38-9"></a><span class="fu">plot_table</span>(</span>
+<span id="cb38-10"><a href="#cb38-10"></a>  data_selected_samples[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>,<span class="st">&quot;variablename&quot;</span>, <span class="st">&quot;value&quot;</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
----------------------------------------------------------------------------
- age             agetype              ageolder   ageyounger   chronologyid 
------ ------------------------------ ---------- ------------ --------------
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+--------------------------------
+ age     variablename     value 
+----- ------------------ -------
+ 236   Scrophulariaceae     1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+ 236       Apiaceae         1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+ 236    Ranunculaceae       1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+ 236   Carpinus betulus     1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
----------------------------------------------------------------------------</code></pre>
+ 236    Barbarea-type       1   
+--------------------------------</code></pre>
 </div>
 </div>
 </section>
 <section id="get-pollen-counts" class="level3">
 <h3 class="anchored" data-anchor-id="get-pollen-counts">Get pollen counts</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># check the documentation</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a>?neotoma2<span class="sc">::</span><span class="fu">taxa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># check the documentation</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>?neotoma2<span class="sc">::</span><span class="fu">taxa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Get vector of all “pollen” taxa</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>vec_taxa_pollen <span class="ot">&lt;-</span></span>
-<span id="cb39-2"><a href="#cb39-2"></a>  neotoma2<span class="sc">::</span><span class="fu">taxa</span>(data_selected_downloads) <span class="sc">%&gt;%</span></span>
-<span id="cb39-3"><a href="#cb39-3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(element <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb39-4"><a href="#cb39-4"></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="st">&quot;variablename&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb39-5"><a href="#cb39-5"></a>  <span class="fu">sort</span>()</span>
-<span id="cb39-6"><a href="#cb39-6"></a></span>
-<span id="cb39-7"><a href="#cb39-7"></a><span class="fu">head</span>(vec_taxa_pollen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>vec_taxa_pollen <span class="ot">&lt;-</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>  neotoma2<span class="sc">::</span><span class="fu">taxa</span>(data_selected_downloads) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(element <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="st">&quot;variablename&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>  <span class="fu">sort</span>()</span>
+<span id="cb41-6"><a href="#cb41-6"></a></span>
+<span id="cb41-7"><a href="#cb41-7"></a><span class="fu">head</span>(vec_taxa_pollen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;Abies alba&quot;    &quot;Acer&quot;          &quot;Achillea-type&quot; &quot;Alisma&quot;       
 [5] &quot;Alnus&quot;         &quot;Amaranthaceae&quot;</code></pre>
@@ -1609,24 +1628,24 @@ function nexttick(func) {
 </div>
 <p>Get pollen counts</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>data_sample_pollen_counts <span class="ot">&lt;-</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>  data_selected_samples <span class="sc">%&gt;%</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&quot;datasetid_sampleid&quot;</span>, <span class="st">&quot;value&quot;</span>, <span class="st">&quot;variablename&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb41-4"><a href="#cb41-4"></a>  <span class="co"># only include selected taxons</span></span>
-<span id="cb41-5"><a href="#cb41-5"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb41-6"><a href="#cb41-6"></a>    variablename <span class="sc">%in%</span> vec_taxa_pollen</span>
-<span id="cb41-7"><a href="#cb41-7"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb41-8"><a href="#cb41-8"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(variablename) <span class="sc">%&gt;%</span></span>
-<span id="cb41-9"><a href="#cb41-9"></a>  <span class="co"># turn into the wider format</span></span>
-<span id="cb41-10"><a href="#cb41-10"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb41-11"><a href="#cb41-11"></a>    <span class="at">names_from =</span> <span class="st">&quot;variablename&quot;</span>,</span>
-<span id="cb41-12"><a href="#cb41-12"></a>    <span class="at">values_from =</span> <span class="st">&quot;value&quot;</span>,</span>
-<span id="cb41-13"><a href="#cb41-13"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
-<span id="cb41-14"><a href="#cb41-14"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb41-15"><a href="#cb41-15"></a>  <span class="co"># clean names</span></span>
-<span id="cb41-16"><a href="#cb41-16"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb41-17"><a href="#cb41-17"></a></span>
-<span id="cb41-18"><a href="#cb41-18"></a><span class="fu">plot_table</span>(data_sample_pollen_counts[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>data_sample_pollen_counts <span class="ot">&lt;-</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>  data_selected_samples <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&quot;datasetid_sampleid&quot;</span>, <span class="st">&quot;value&quot;</span>, <span class="st">&quot;variablename&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>  <span class="co"># only include selected taxons</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb43-6"><a href="#cb43-6"></a>    variablename <span class="sc">%in%</span> vec_taxa_pollen</span>
+<span id="cb43-7"><a href="#cb43-7"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(variablename) <span class="sc">%&gt;%</span></span>
+<span id="cb43-9"><a href="#cb43-9"></a>  <span class="co"># turn into the wider format</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb43-11"><a href="#cb43-11"></a>    <span class="at">names_from =</span> <span class="st">&quot;variablename&quot;</span>,</span>
+<span id="cb43-12"><a href="#cb43-12"></a>    <span class="at">values_from =</span> <span class="st">&quot;value&quot;</span>,</span>
+<span id="cb43-13"><a href="#cb43-13"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb43-14"><a href="#cb43-14"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-15"><a href="#cb43-15"></a>  <span class="co"># clean names</span></span>
+<span id="cb43-16"><a href="#cb43-16"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb43-17"><a href="#cb43-17"></a></span>
+<span id="cb43-18"><a href="#cb43-18"></a><span class="fu">plot_table</span>(data_sample_pollen_counts[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 -----------------------------------------------------------------
@@ -1648,12 +1667,12 @@ function nexttick(func) {
 <section id="getting-the-age-information" class="level3">
 <h3 class="anchored" data-anchor-id="getting-the-age-information">Getting the age information</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>data_sample_age <span class="ot">&lt;-</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a>  data_selected_samples <span class="sc">%&gt;%</span></span>
-<span id="cb43-3"><a href="#cb43-3"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(datasetid_sampleid, depth, age) <span class="sc">%&gt;%</span></span>
-<span id="cb43-4"><a href="#cb43-4"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(datasetid_sampleid, age)</span>
-<span id="cb43-5"><a href="#cb43-5"></a></span>
-<span id="cb43-6"><a href="#cb43-6"></a><span class="fu">plot_table</span>(data_sample_age, <span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>data_sample_age <span class="ot">&lt;-</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>  data_selected_samples <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(datasetid_sampleid, depth, age) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="#cb45-4"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(datasetid_sampleid, age)</span>
+<span id="cb45-5"><a href="#cb45-5"></a></span>
+<span id="cb45-6"><a href="#cb45-6"></a><span class="fu">plot_table</span>(data_sample_age, <span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 -----------------------------------
@@ -1678,42 +1697,42 @@ function nexttick(func) {
 <h3 class="anchored" data-anchor-id="plotting-pollen-diagram">Plotting pollen diagram</h3>
 <p>Data wrangling</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>data_to_plot <span class="ot">&lt;-</span></span>
-<span id="cb45-2"><a href="#cb45-2"></a>  data_sample_pollen_counts <span class="sc">%&gt;%</span></span>
-<span id="cb45-3"><a href="#cb45-3"></a>  <span class="co"># we need to turn the pollen counts into percentages</span></span>
-<span id="cb45-4"><a href="#cb45-4"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;datasetid_sampleid&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb45-5"><a href="#cb45-5"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb45-6"><a href="#cb45-6"></a>    <span class="at">colsum =</span> <span class="fu">rowSums</span>(.)</span>
-<span id="cb45-7"><a href="#cb45-7"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-8"><a href="#cb45-8"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb45-9"><a href="#cb45-9"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
-<span id="cb45-10"><a href="#cb45-10"></a>      <span class="sc">-</span>(colsum),</span>
-<span id="cb45-11"><a href="#cb45-11"></a>      <span class="sc">~</span> (. <span class="sc">/</span> colsum) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb45-12"><a href="#cb45-12"></a>    )</span>
-<span id="cb45-13"><a href="#cb45-13"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-14"><a href="#cb45-14"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;datasetid_sampleid&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb45-15"><a href="#cb45-15"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>colsum) <span class="sc">%&gt;%</span></span>
-<span id="cb45-16"><a href="#cb45-16"></a>  <span class="co"># turn into the longer format</span></span>
-<span id="cb45-17"><a href="#cb45-17"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb45-18"><a href="#cb45-18"></a>    <span class="at">cols =</span> <span class="sc">-</span>datasetid_sampleid,</span>
-<span id="cb45-19"><a href="#cb45-19"></a>    <span class="at">names_to =</span> <span class="st">&quot;taxon&quot;</span>,</span>
-<span id="cb45-20"><a href="#cb45-20"></a>    <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span></span>
-<span id="cb45-21"><a href="#cb45-21"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-22"><a href="#cb45-22"></a>  <span class="co"># add age information</span></span>
-<span id="cb45-23"><a href="#cb45-23"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
-<span id="cb45-24"><a href="#cb45-24"></a>    data_sample_age,</span>
-<span id="cb45-25"><a href="#cb45-25"></a>    <span class="at">by =</span> <span class="st">&quot;datasetid_sampleid&quot;</span></span>
-<span id="cb45-26"><a href="#cb45-26"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-27"><a href="#cb45-27"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
-<span id="cb45-28"><a href="#cb45-28"></a>    <span class="st">&quot;datasetid_sampleid&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;taxon&quot;</span>, <span class="st">&quot;count&quot;</span></span>
-<span id="cb45-29"><a href="#cb45-29"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-30"><a href="#cb45-30"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(</span>
-<span id="cb45-31"><a href="#cb45-31"></a>    datasetid_sampleid,</span>
-<span id="cb45-32"><a href="#cb45-32"></a>    <span class="fu">c</span>(<span class="st">&quot;datasetid&quot;</span>, <span class="st">&quot;sampleid&quot;</span>),</span>
-<span id="cb45-33"><a href="#cb45-33"></a>    <span class="at">sep =</span> <span class="st">&quot;_&quot;</span></span>
-<span id="cb45-34"><a href="#cb45-34"></a>  )</span>
-<span id="cb45-35"><a href="#cb45-35"></a></span>
-<span id="cb45-36"><a href="#cb45-36"></a><span class="fu">plot_table</span>(data_to_plot, <span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>data_to_plot <span class="ot">&lt;-</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>  data_sample_pollen_counts <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a>  <span class="co"># we need to turn the pollen counts into percentages</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;datasetid_sampleid&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-5"><a href="#cb47-5"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb47-6"><a href="#cb47-6"></a>    <span class="at">colsum =</span> <span class="fu">rowSums</span>(.)</span>
+<span id="cb47-7"><a href="#cb47-7"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-8"><a href="#cb47-8"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb47-9"><a href="#cb47-9"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
+<span id="cb47-10"><a href="#cb47-10"></a>      <span class="sc">-</span>(colsum),</span>
+<span id="cb47-11"><a href="#cb47-11"></a>      <span class="sc">~</span> (. <span class="sc">/</span> colsum) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb47-12"><a href="#cb47-12"></a>    )</span>
+<span id="cb47-13"><a href="#cb47-13"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-14"><a href="#cb47-14"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;datasetid_sampleid&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-15"><a href="#cb47-15"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>colsum) <span class="sc">%&gt;%</span></span>
+<span id="cb47-16"><a href="#cb47-16"></a>  <span class="co"># turn into the longer format</span></span>
+<span id="cb47-17"><a href="#cb47-17"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb47-18"><a href="#cb47-18"></a>    <span class="at">cols =</span> <span class="sc">-</span>datasetid_sampleid,</span>
+<span id="cb47-19"><a href="#cb47-19"></a>    <span class="at">names_to =</span> <span class="st">&quot;taxon&quot;</span>,</span>
+<span id="cb47-20"><a href="#cb47-20"></a>    <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span></span>
+<span id="cb47-21"><a href="#cb47-21"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-22"><a href="#cb47-22"></a>  <span class="co"># add age information</span></span>
+<span id="cb47-23"><a href="#cb47-23"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb47-24"><a href="#cb47-24"></a>    data_sample_age,</span>
+<span id="cb47-25"><a href="#cb47-25"></a>    <span class="at">by =</span> <span class="st">&quot;datasetid_sampleid&quot;</span></span>
+<span id="cb47-26"><a href="#cb47-26"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-27"><a href="#cb47-27"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
+<span id="cb47-28"><a href="#cb47-28"></a>    <span class="st">&quot;datasetid_sampleid&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;taxon&quot;</span>, <span class="st">&quot;count&quot;</span></span>
+<span id="cb47-29"><a href="#cb47-29"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-30"><a href="#cb47-30"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(</span>
+<span id="cb47-31"><a href="#cb47-31"></a>    datasetid_sampleid,</span>
+<span id="cb47-32"><a href="#cb47-32"></a>    <span class="fu">c</span>(<span class="st">&quot;datasetid&quot;</span>, <span class="st">&quot;sampleid&quot;</span>),</span>
+<span id="cb47-33"><a href="#cb47-33"></a>    <span class="at">sep =</span> <span class="st">&quot;_&quot;</span></span>
+<span id="cb47-34"><a href="#cb47-34"></a>  )</span>
+<span id="cb47-35"><a href="#cb47-35"></a></span>
+<span id="cb47-36"><a href="#cb47-36"></a><span class="fu">plot_table</span>(data_to_plot, <span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 -----------------------------------------------------
@@ -1735,69 +1754,69 @@ function nexttick(func) {
 </div>
 <p>Get the most common taxa</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>vec_common_taxa <span class="ot">&lt;-</span></span>
-<span id="cb47-2"><a href="#cb47-2"></a>  data_to_plot <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="#cb47-3"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(datasetid, taxon) <span class="sc">%&gt;%</span></span>
-<span id="cb47-4"><a href="#cb47-4"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb47-5"><a href="#cb47-5"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>,</span>
-<span id="cb47-6"><a href="#cb47-6"></a>    <span class="at">mean_count =</span> <span class="fu">mean</span>(count, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb47-7"><a href="#cb47-7"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb47-8"><a href="#cb47-8"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(datasetid) <span class="sc">%&gt;%</span></span>
-<span id="cb47-9"><a href="#cb47-9"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(</span>
-<span id="cb47-10"><a href="#cb47-10"></a>    dplyr<span class="sc">::</span><span class="fu">desc</span>(mean_count)</span>
-<span id="cb47-11"><a href="#cb47-11"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb47-12"><a href="#cb47-12"></a>  dplyr<span class="sc">::</span><span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb47-13"><a href="#cb47-13"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb47-14"><a href="#cb47-14"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(taxon) <span class="sc">%&gt;%</span></span>
-<span id="cb47-15"><a href="#cb47-15"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>vec_common_taxa <span class="ot">&lt;-</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a>  data_to_plot <span class="sc">%&gt;%</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(datasetid, taxon) <span class="sc">%&gt;%</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb49-5"><a href="#cb49-5"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>,</span>
+<span id="cb49-6"><a href="#cb49-6"></a>    <span class="at">mean_count =</span> <span class="fu">mean</span>(count, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb49-7"><a href="#cb49-7"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb49-8"><a href="#cb49-8"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(datasetid) <span class="sc">%&gt;%</span></span>
+<span id="cb49-9"><a href="#cb49-9"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(</span>
+<span id="cb49-10"><a href="#cb49-10"></a>    dplyr<span class="sc">::</span><span class="fu">desc</span>(mean_count)</span>
+<span id="cb49-11"><a href="#cb49-11"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb49-12"><a href="#cb49-12"></a>  dplyr<span class="sc">::</span><span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-13"><a href="#cb49-13"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb49-14"><a href="#cb49-14"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(taxon) <span class="sc">%&gt;%</span></span>
+<span id="cb49-15"><a href="#cb49-15"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>data_to_plot <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb48-3"><a href="#cb48-3"></a>    taxon <span class="sc">%in%</span> vec_common_taxa</span>
-<span id="cb48-4"><a href="#cb48-4"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb48-5"><a href="#cb48-5"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
-<span id="cb48-6"><a href="#cb48-6"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(</span>
-<span id="cb48-7"><a href="#cb48-7"></a>      <span class="at">x =</span> age,</span>
-<span id="cb48-8"><a href="#cb48-8"></a>      <span class="at">y =</span> count,</span>
-<span id="cb48-9"><a href="#cb48-9"></a>      <span class="at">fill =</span> taxon,</span>
-<span id="cb48-10"><a href="#cb48-10"></a>      <span class="at">col =</span> taxon</span>
-<span id="cb48-11"><a href="#cb48-11"></a>    )</span>
-<span id="cb48-12"><a href="#cb48-12"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-13"><a href="#cb48-13"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
-<span id="cb48-14"><a href="#cb48-14"></a>    <span class="at">x =</span> <span class="st">&quot;Age (cal yr BP)&quot;</span>,</span>
-<span id="cb48-15"><a href="#cb48-15"></a>    <span class="at">y =</span> <span class="st">&quot;Pollen count (%)&quot;</span>,</span>
-<span id="cb48-16"><a href="#cb48-16"></a>    <span class="at">title =</span> <span class="st">&quot;Pollen diagrams - Proportion of pollen taxa over time&quot;</span>,</span>
-<span id="cb48-17"><a href="#cb48-17"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Only 10 most common taxa per record are shown&quot;</span>,</span>
-<span id="cb48-18"><a href="#cb48-18"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
-<span id="cb48-19"><a href="#cb48-19"></a>      <span class="st">&quot;Data from Neotoma database for&quot;</span>,</span>
-<span id="cb48-20"><a href="#cb48-20"></a>      <span class="fu">length</span>(<span class="fu">unique</span>(data_to_plot<span class="sc">$</span>datasetid)),</span>
-<span id="cb48-21"><a href="#cb48-21"></a>      <span class="st">&quot;records&quot;</span></span>
-<span id="cb48-22"><a href="#cb48-22"></a>    )</span>
-<span id="cb48-23"><a href="#cb48-23"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-24"><a href="#cb48-24"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_reverse</span>(</span>
-<span id="cb48-25"><a href="#cb48-25"></a>    <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb48-26"><a href="#cb48-26"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-27"><a href="#cb48-27"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(</span>
-<span id="cb48-28"><a href="#cb48-28"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</span>
-<span id="cb48-29"><a href="#cb48-29"></a>    <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb48-30"><a href="#cb48-30"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-31"><a href="#cb48-31"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
-<span id="cb48-32"><a href="#cb48-32"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
-<span id="cb48-33"><a href="#cb48-33"></a>    <span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb48-34"><a href="#cb48-34"></a>    <span class="at">axis.ticks.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb48-35"><a href="#cb48-35"></a>    <span class="at">panel.grid.minor =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>()</span>
-<span id="cb48-36"><a href="#cb48-36"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-37"><a href="#cb48-37"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_grid</span>(datasetid <span class="sc">~</span> taxon) <span class="sc">+</span></span>
-<span id="cb48-38"><a href="#cb48-38"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb48-39"><a href="#cb48-39"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_ribbon</span>(</span>
-<span id="cb48-40"><a href="#cb48-40"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(</span>
-<span id="cb48-41"><a href="#cb48-41"></a>      <span class="at">ymin =</span> <span class="dv">0</span>,</span>
-<span id="cb48-42"><a href="#cb48-42"></a>      <span class="at">ymax =</span> count</span>
-<span id="cb48-43"><a href="#cb48-43"></a>    ),</span>
-<span id="cb48-44"><a href="#cb48-44"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
-<span id="cb48-45"><a href="#cb48-45"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-46"><a href="#cb48-46"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>data_to_plot <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb50-3"><a href="#cb50-3"></a>    taxon <span class="sc">%in%</span> vec_common_taxa</span>
+<span id="cb50-4"><a href="#cb50-4"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb50-5"><a href="#cb50-5"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb50-6"><a href="#cb50-6"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(</span>
+<span id="cb50-7"><a href="#cb50-7"></a>      <span class="at">x =</span> age,</span>
+<span id="cb50-8"><a href="#cb50-8"></a>      <span class="at">y =</span> count,</span>
+<span id="cb50-9"><a href="#cb50-9"></a>      <span class="at">fill =</span> taxon,</span>
+<span id="cb50-10"><a href="#cb50-10"></a>      <span class="at">col =</span> taxon</span>
+<span id="cb50-11"><a href="#cb50-11"></a>    )</span>
+<span id="cb50-12"><a href="#cb50-12"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-13"><a href="#cb50-13"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb50-14"><a href="#cb50-14"></a>    <span class="at">x =</span> <span class="st">&quot;Age (cal yr BP)&quot;</span>,</span>
+<span id="cb50-15"><a href="#cb50-15"></a>    <span class="at">y =</span> <span class="st">&quot;Pollen count (%)&quot;</span>,</span>
+<span id="cb50-16"><a href="#cb50-16"></a>    <span class="at">title =</span> <span class="st">&quot;Pollen diagrams - Proportion of pollen taxa over time&quot;</span>,</span>
+<span id="cb50-17"><a href="#cb50-17"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Only 10 most common taxa per record are shown&quot;</span>,</span>
+<span id="cb50-18"><a href="#cb50-18"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
+<span id="cb50-19"><a href="#cb50-19"></a>      <span class="st">&quot;Data from Neotoma database for&quot;</span>,</span>
+<span id="cb50-20"><a href="#cb50-20"></a>      <span class="fu">length</span>(<span class="fu">unique</span>(data_to_plot<span class="sc">$</span>datasetid)),</span>
+<span id="cb50-21"><a href="#cb50-21"></a>      <span class="st">&quot;records&quot;</span></span>
+<span id="cb50-22"><a href="#cb50-22"></a>    )</span>
+<span id="cb50-23"><a href="#cb50-23"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-24"><a href="#cb50-24"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_reverse</span>(</span>
+<span id="cb50-25"><a href="#cb50-25"></a>    <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb50-26"><a href="#cb50-26"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-27"><a href="#cb50-27"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(</span>
+<span id="cb50-28"><a href="#cb50-28"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb50-29"><a href="#cb50-29"></a>    <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb50-30"><a href="#cb50-30"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-31"><a href="#cb50-31"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb50-32"><a href="#cb50-32"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb50-33"><a href="#cb50-33"></a>    <span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
+<span id="cb50-34"><a href="#cb50-34"></a>    <span class="at">axis.ticks.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
+<span id="cb50-35"><a href="#cb50-35"></a>    <span class="at">panel.grid.minor =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>()</span>
+<span id="cb50-36"><a href="#cb50-36"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-37"><a href="#cb50-37"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_grid</span>(datasetid <span class="sc">~</span> taxon) <span class="sc">+</span></span>
+<span id="cb50-38"><a href="#cb50-38"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb50-39"><a href="#cb50-39"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_ribbon</span>(</span>
+<span id="cb50-40"><a href="#cb50-40"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(</span>
+<span id="cb50-41"><a href="#cb50-41"></a>      <span class="at">ymin =</span> <span class="dv">0</span>,</span>
+<span id="cb50-42"><a href="#cb50-42"></a>      <span class="at">ymax =</span> count</span>
+<span id="cb50-43"><a href="#cb50-43"></a>    ),</span>
+<span id="cb50-44"><a href="#cb50-44"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb50-45"><a href="#cb50-45"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-46"><a href="#cb50-46"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
