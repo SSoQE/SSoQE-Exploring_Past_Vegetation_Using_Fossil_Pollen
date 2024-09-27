@@ -259,8 +259,8 @@ Record must COMPLETELY span the age range
 
 ```{.r .cell-code}
 neotoma2::get_sites(
-  ageyounger = 5000,
-  ageolder = 8000,
+  ageyoung = 5000,
+  ageold = 8000,
   all_data = FALSE # this will only show 25 records
 ) %>% 
  plot_table(head = TRUE)
@@ -270,21 +270,21 @@ neotoma2::get_sites(
 
 ```
 
---------------------------------------------------
- siteid   sitename    lat     long    area   elev 
--------- ---------- ------- -------- ------ ------
-   1        15/1     55.09   -75.25    NA    244  
+-----------------------------------------------------------------------
+ siteid             sitename              lat      long    area   elev 
+-------- ------------------------------ -------- -------- ------ ------
+   11     Konus Exposure, Adycha River   67.75    135.6     NA    137  
 
-   2        15/2     55.83   -75.02    NA    261  
+   12            Ageröds Mosse           55.93    13.43     NA     47  
 
-   3        16/1     55.41   -75.07    NA    290  
+   15               Aguilar              -23.83   -65.75    NA    3828 
 
-   4        17/1     55.07   -75.7     NA    235  
+   19       Akulinin Exposure P1282      47.12    138.6     NA    367  
 
-   5        17/2     55.25   -74.93    NA    300  
+   20               Akuvaara             69.12    27.67     NA    159  
 
-   6        17/3     55.12   -75.95    NA    278  
---------------------------------------------------
+   25             Alexis Lake            52.52    -57.03    NA    193  
+-----------------------------------------------------------------------
 ```
 
 
@@ -295,7 +295,7 @@ neotoma2::get_sites(
 
 ## Datasets
 
-You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyounger`, `ageolder`).
+You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyoung`, `ageold`).
 
 
 
@@ -535,7 +535,7 @@ neotoma2::get_datasets(
 
 ### Filter
 
-You can additionaly filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
+You can additionally filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
 
 
 
@@ -591,19 +591,51 @@ Let's download a record with `datasetid` 24279
 ::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
-neotoma2::get_downloads(24279) %>% 
- plot_table()
+dataset_24279 <-
+  neotoma2::get_downloads(24279)
 ```
 
 ::: {.cell-output .cell-output-stdout}
 
 ```
 .
-----------------------------------------------------
- siteid    sitename      lat    long    area   elev 
--------- ------------- ------- ------- ------ ------
- 15799    Kulzer Moos   49.39   12.45    NA    466  
-----------------------------------------------------
+```
+
+
+:::
+
+```{.r .cell-code}
+plot_table(
+  dataset_24279@sites[[1]]@collunits[[1]])
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+
+-------------------------------------------------------------------------------
+ collectionunitid    handle    colldate   location   waterdepth   collunittype 
+------------------ ---------- ---------- ---------- ------------ --------------
+      17790         KULZERMO      NA         NA          NA            NA      
+-------------------------------------------------------------------------------
+
+Table: Table continues below
+
+ 
+---------------------------------------------------------------
+   collectiondevice     defaultchronology   collectionunitname 
+---------------------- ------------------- --------------------
+ Russian peat sampler         14609                 NA         
+---------------------------------------------------------------
+
+Table: Table continues below
+
+ 
+-------------------------
+ depositionalenvironment 
+-------------------------
+           Fen           
+-------------------------
 ```
 
 
@@ -764,31 +796,27 @@ data_selected_samples <-
     datasetid_sampleid = paste0(datasetid, "_", sampleid)
   )
 
-plot_table(data_selected_samples[1:5, 1:5])
+plot_table(
+  data_selected_samples[1:5, c("age","variablename", "value")])
 ```
 
 ::: {.cell-output .cell-output-stdout}
 
 ```
 
----------------------------------------------------------------------------
- age             agetype              ageolder   ageyounger   chronologyid 
------ ------------------------------ ---------- ------------ --------------
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+--------------------------------
+ age     variablename     value 
+----- ------------------ -------
+ 236   Scrophulariaceae     1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+ 236       Apiaceae         1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+ 236    Ranunculaceae       1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
+ 236   Carpinus betulus     1   
 
- 236   Calibrated radiocarbon years     687         -56          25602     
-                    BP                                                     
----------------------------------------------------------------------------
+ 236    Barbarea-type       1   
+--------------------------------
 ```
 
 

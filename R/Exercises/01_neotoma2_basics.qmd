@@ -118,8 +118,8 @@ Record must COMPLETELY span the age range
 ```{r}
 #| label: 2.2.3
 neotoma2::get_sites(
-  ageyounger = 5000,
-  ageolder = 8000,
+  ageyoung = 5000,
+  ageold = 8000,
   all_data = FALSE # this will only show 25 records
 ) %>% 
  plot_table(head = TRUE)
@@ -127,7 +127,7 @@ neotoma2::get_sites(
 
 ## Datasets
 
-You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyounger`, `ageolder`).
+You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyoung`, `ageold`).
 
 ```{r}
 #| label: 3.0.
@@ -258,7 +258,7 @@ neotoma2::get_datasets(
 
 ### Filter
 
-You can additionaly filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
+You can additionally filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
 
 ```{r}
 #| label: 3.4.0
@@ -289,8 +289,11 @@ Let's download a record with `datasetid` 24279
 
 ```{r}
 #| label: 4.1.
-neotoma2::get_downloads(24279) %>% 
- plot_table()
+dataset_24279 <-
+  neotoma2::get_downloads(24279)
+
+plot_table(
+  dataset_24279@sites[[1]]@collunits[[1]])
 ```
 
 ### Download multiple records
@@ -369,7 +372,8 @@ data_selected_samples <-
     datasetid_sampleid = paste0(datasetid, "_", sampleid)
   )
 
-plot_table(data_selected_samples[1:5, 1:5])
+plot_table(
+  data_selected_samples[1:5, c("age","variablename", "value")])
 ```
 
 ### Get pollen counts
