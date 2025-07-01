@@ -19,7 +19,7 @@ $largeMargin: 20px;
   padding: $smallMargin;
   border-radius: $smallMargin;
 }
- 
+
 .text-background-black {
   background-color: $black;
   color: $white;
@@ -106,7 +106,6 @@ $backgroundColor: $white;
 
 // Typography
 $mainFont: "Inter", sans-serif !default;
-$mainFontSize: 30px;
 $body-line-height: 1.5;
 
 $headingMargin: 0;
@@ -116,10 +115,19 @@ $headingLetterSpacing: normal;
 $headingTextShadow: none;
 $headingFontWeight: normal;
 
-$heading1Size: 3.77em;
-$heading2Size: 2.11em;
-$heading3Size: 1.55em;
-$heading4Size: 1em;
+$mainFontSize: 30px !default;
+$mainFontSizeDocument: 16pt;
+$mainFontSizePres: 30px;
+
+$heading1SizePres: 3.77em;
+$heading2SizePres: 2.11em;
+$heading3SizePres: 1.55em;
+$heading4SizePres: 1em;
+
+$heading1SizeDocument: 30pt;
+$heading2SizeDocument: 24pt;
+$heading3SizeDocument: 20pt;
+$heading4SizeDocument: 18pt;
 
 .bold {
   font-weight: bold;
@@ -141,7 +149,7 @@ $heading4Size: 1em;
   text-transform: lowercase;
 }
 
-.strike{
+.strike {
   text-decoration: line-through;
 }
 
@@ -171,23 +179,23 @@ $heading4Size: 1em;
 }
 
 .text-size-heading1 {
-  font-size: $heading1Size;
+  font-size: $heading1SizePres;
 }
 
 .text-size-heading2 {
-  font-size: $heading2Size;
+  font-size: $heading2SizePres;
 }
 
 .text-size-heading3 {
-  font-size: $heading3Size;
+  font-size: $heading3SizePres;
 }
 
 .text-size-heading4 {
-  font-size: $heading4Size;
+  font-size: $heading4SizePres;
 }
 
 .text-size-body {
-  font-size: $mainFontSize;
+  font-size: $mainFontSizePres;
 }
 
 // Layout
@@ -196,56 +204,47 @@ $content-max-width: 900px;
 /*-- scss:rules --*/
 
 /* General text styling */
-body {
+body,
+.reveal body {
   font-family: $mainFont;
-  font-size: $mainFontSize;
   line-height: $body-line-height;
   color: $body-color;
   background-color: $backgroundColor;
 }
 
+body {
+  font-size: $mainFontSizeDocument !important;
+}
+
+.reveal body {
+  font-size: $mainFontSizePres !important;
+}
+
 /* Headings */
-h1,
-.reveal h1{
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4 {
   font-family: $headingFont;
-  font-size: $heading1Size;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
   font-weight: $headingFontWeight;
   margin-top: $largeMargin;
-  color: $blue; 
+  color: $blue; // Default color for headings
 }
 
-h2,
-.reveal h2 {
-  font-family: $headingFont;
-  font-size: $heading2Size;
-  line-height: $headingLineHeight;
-  letter-spacing: $headingLetterSpacing;
-  font-weight: $headingFontWeight;
-  margin-top: $largeMargin;
-  color: $blue;
+h1, .h1 { font-size: $heading1SizeDocument; }
+h2, .h2 { font-size: $heading2SizeDocument; }
+h3, .h3 { font-size: $heading3SizeDocument; }
+h4, .h4 { font-size: $heading4SizeDocument; }
+
+.reveal {
+  h1, .h1 { font-size: $heading1SizePres; color: $blue; }
+  h2, .h2 { font-size: $heading2SizePres; color: $blue; }
+  h3, .h3 { font-size: $heading3SizePres; color: $blue; }
+  h4, .h4 { font-size: $heading4SizePres; color: $blue; }
 }
 
-h3,
-.reveal h3 {
-  font-family: $headingFont;
-  font-size: $heading3Size;
-  line-height: $headingLineHeight;
-  letter-spacing: $headingLetterSpacing;
-  font-weight: $headingFontWeight;
-  margin-top: $largeMargin;
-}
-
-h4,
-.reveal h4 {
-  font-family: $headingFont;
-  font-size: $heading4Size;
-  line-height: $headingLineHeight;
-  letter-spacing: $headingLetterSpacing;
-  font-weight: $headingFontWeight;
-  margin-top: $blockMargin;
-}
 
 /* Code */
 .reveal pre,
@@ -283,7 +282,7 @@ h4,
 }
 
 .reveal a,
-.reveal .footer a{
+.reveal .footer a {
   color: $red;
   text-decoration: underline !important;
 
@@ -325,42 +324,42 @@ ul ul {
   box-sizing: border-box;
 }
 
-.reveal .bg-white{
+.reveal .bg-white {
   background-color: $black !important;
   color: $black !important;
 }
 
-.reveal .bg-black{
+.reveal .bg-black {
   background-color: $black !important;
   color: $white !important;
 }
 
-.reveal .bg-blue{
+.reveal .bg-blue {
   background-color: $blue;
   color: $white !important;
 }
 
-.reveal .bg-purple{
+.reveal .bg-purple {
   background-color: $purple !important;
   color: $black !important;
 }
 
-.reveal .bg-red{
+.reveal .bg-red {
   background-color: $red !important;
   color: $white !important;
 }
 
-.reveal .bg-pink{
+.reveal .bg-pink {
   background-color: $pink !important;
   color: $black !important;
 }
 
-.reveal .bg-brown{
+.reveal .bg-brown {
   background-color: $brown !important;
   color: $white !important;
 }
 
-.reveal .bg-yellow{
+.reveal .bg-yellow {
   background-color: $yellow !important;
   color: $black !important;
 }
@@ -372,7 +371,7 @@ ul ul {
   color: $white;
 }
 
-.reveal .exercise a{
+.reveal .exercise a {
   color: $pink !important;
   text-decoration: underline !important;
 
