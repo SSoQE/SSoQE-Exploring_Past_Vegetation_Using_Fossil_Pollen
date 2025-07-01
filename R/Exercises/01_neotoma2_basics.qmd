@@ -2,12 +2,18 @@
 format:
   html:
     author: "Ondřej Mottl"
+    date: 2024/09/23
+    date-format: long
+    date-modified: last-modified
     toc: true
     keep-md: true
-    code-link: true
+    code-link: false
     embed-resources: true
     code-line-numbers: true
-    theme: [default, custom_theme_exercise.scss]
+    theme: [default, ../../Presentation/custom_theme.scss]
+    highlight-style: none
+execute: 
+  cache: true
 ---
 
 # Basic functions of neotoma2 : Working with pollen data
@@ -27,6 +33,7 @@ library(neotoma2) # # access to the Neotoma database 🌿
 library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
 library(janitor) # string cleaning 🧹
+library(jsonlite) # for reading JSON files 📄
 library(geojsonsf) # geojson spatial data 🌐
 
 # set the working directory
@@ -409,6 +416,14 @@ data_sample_pollen_counts <-
   # only include selected taxons
   dplyr::filter(
     variablename %in% vec_taxa_pollen
+  ) %>%
+  # now we need to remove duplicates
+  dplyr::group_by(
+    datasetid_sampleid, variablename
+  ) %>%
+  dplyr::summarise(
+    value = sum(value, na.rm = TRUE),
+    .groups = "drop"
   ) %>%
   dplyr::arrange(variablename) %>%
   # turn into the wider format

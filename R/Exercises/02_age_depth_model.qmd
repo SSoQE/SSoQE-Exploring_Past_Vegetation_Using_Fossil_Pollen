@@ -2,12 +2,18 @@
 format:
   html:
     author: "Ondřej Mottl"
+    date: 2024/09/23
+    date-format: long
+    date-modified: last-modified
     toc: true
     keep-md: true
-    code-link: true
+    code-link: false
     embed-resources: true
     code-line-numbers: true
-    theme: [default, custom_theme_exercise.scss]
+    theme: [default, ../../Presentation/custom_theme.scss]
+    highlight-style: none
+execute: 
+  cache: true
 ---
 
 # Age Depth Modeling in R
@@ -35,6 +41,7 @@ library(neotoma2) # # access to the Neotoma database 🌿
 library(Bchron) # age-depth modelingng 🕰️
 library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
+library(jsonlite) # for reading JSON files 📄
 
 # set the working directory
 here::i_am("R/Exercises/02_age_depth_model.qmd")
@@ -45,6 +52,12 @@ source(
     "R/Functions/plot_table.R"
   )
 )
+
+# set the colors
+colors <-
+  jsonlite::fromJSON(
+    here::here("Presentation/colors.json")
+  )
 
 # quarto render options
 options(htmltools.dir.version = FALSE)
@@ -243,7 +256,7 @@ data_age_uncertainties <-
   )
 ```
 
-Each line is a single potential age-depth model iteration (age-sequence). Green points represent the radiocarbon dates. Horizontal lines are the depths of our samples.
+Each line is a single potential age-depth model iteration (age-sequence). Red points represent the radiocarbon dates. Horizontal lines are the depths of our samples.
 
 ```{r}
 #| label: plot uncertainty matrix
@@ -275,7 +288,7 @@ Each line is a single potential age-depth model iteration (age-sequence). Green 
       mapping = ggplot2::aes(
         x = chroncontrolage
       ),
-      color = "green",
+      color = colors$red,
       shape = 15,
       size = 3
     ) +
@@ -333,19 +346,19 @@ data_levels_predicted <-
 plot_table(data_levels_predicted, head = TRUE)
 ```
 
-We can visualize the median age by drawing a red line. This age is the age that is often reported in publications but in essence, it represents multiple age-depth model runs with smaller or larger age uncertainties throughout the record.
+We can visualize the median age by drawing a blue line. This age is the age that is often reported in publications but in essence, it represents multiple age-depth model runs with smaller or larger age uncertainties throughout the record.
 
 ```{r}
 #| label: plot median age
 fig_age_uncertainties +
   ggplot2::geom_point(
     data = data_levels_predicted,
-    color = "red",
+    color = colors$blue,
     size = 1
   ) +
   ggplot2::geom_line(
     data = data_levels_predicted,
-    color = "red",
+    color = colors$blue,
     linewidth = 0.5
   )
 ```
