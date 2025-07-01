@@ -2,16 +2,19 @@
 format:
   html:
     author: "Ondřej Mottl"
+    date: 2024/09/23
+    date-format: long
+    date-modified: last-modified
     toc: true
     keep-md: true
-    code-link: true
+    code-link: false
     embed-resources: true
     code-line-numbers: true
-    theme: [default, custom_theme_exercise.scss]
+    theme: [default, ../../Presentation/custom_theme.scss]
+    highlight-style: none
+execute: 
+  cache: true
 ---
-
-
-
 
 # Age Depth Modeling in R
 
@@ -28,7 +31,6 @@ To estimate the age of individual levels based on their depth, a chronology or a
 ## Setup
 
 
-
 ::: {.cell}
 
 ```{.r .cell-code}
@@ -38,6 +40,7 @@ library(neotoma2) # # access to the Neotoma database 🌿
 library(Bchron) # age-depth modelingng 🕰️
 library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
+library(jsonlite) # for reading JSON files 📄
 
 # set the working directory
 here::i_am("R/Exercises/02_age_depth_model.qmd")
@@ -48,6 +51,12 @@ source(
     "R/Functions/plot_table.R"
   )
 )
+
+# set the colors
+colors <-
+  jsonlite::fromJSON(
+    here::here("Presentation/colors.json")
+  )
 
 # quarto render options
 options(htmltools.dir.version = FALSE)
@@ -62,7 +71,6 @@ knitr::opts_chunk$set(
 :::
 
 
-
 ## Download a dataset from Neotoma
 
 Here we have selected the **Chickaree Lake** record (ID = 47613) by Higuera, Philip E. and Dunnette, Paul V.
@@ -70,8 +78,7 @@ Here we have selected the **Chickaree Lake** record (ID = 47613) by Higuera, Phi
 Reference paper: Dunnette, P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, and M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain subalpine watershed. New Phytologist 203(3):900-912. DOI: 10.1111/nph.12828
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 sel_dataset_download <-
@@ -124,7 +131,6 @@ plot_table(data_samples, head = TRUE)
 :::
 
 
-
 ## Age-depth modelling
 
 We will recalculate the age-depth model 'de novo' using the [{Bchron} package](http://andrewcparnell.github.io/Bchron/).
@@ -134,8 +140,7 @@ We will recalculate the age-depth model 'de novo' using the [{Bchron} package](h
 The chronology control table contains all the dates (mostly radiocarbon) to create the age-depth model.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # First, get the chronologies and check which we want to use used
@@ -190,12 +195,10 @@ Table: Table continues below
 :::
 
 
-
 There could be seberal chronologies in the dataset. Here we will select the chronology table with higher values with the assumtion that it is newer.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 vec_chronologyid <-
@@ -210,12 +213,10 @@ vec_chronologyid <-
 :::
 
 
-
 Here we only present a few of the important steps of preparation of the chronology control table. There are many more potential issues, but solving those is not the focus of this workflow.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # prepare the table
@@ -274,12 +275,10 @@ plot_table(data_chron_control_table, head = TRUE)
 :::
 
 
-
 As this is just a toy example, we will use only the iteration multiplier (`i_multiplier`) of `0.1` to reduce the computation time. However, we strongly recommend increasing it to 5 for any normal age-depth model construction.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 i_multiplier <- 0.1 # increase to 5
@@ -310,12 +309,10 @@ sel_bchron <-
 :::
 
 
-
 Visually check the age-depth models
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 Bchron:::plot.BchronologyRun(sel_bchron) + # or just simple plot(sel_bchron)
@@ -333,10 +330,9 @@ Bchron:::plot.BchronologyRun(sel_bchron) + # or just simple plot(sel_bchron)
 ```
 
 ::: {.cell-output-display}
-![](02_age_depth_model_files/figure-html/plot Bchron-1.png){fig-align='center' width=100%}
+![](02_age_depth_model_files/figure-html/plot Bchron-1.png){width=672}
 :::
 :::
-
 
 
 ### Predict ages
@@ -344,8 +340,7 @@ Bchron:::plot.BchronologyRun(sel_bchron) + # or just simple plot(sel_bchron)
 Let's first extract posterior ages (i.e. possible ages) from the age-depth model.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 age_position <-
@@ -357,12 +352,10 @@ age_position <-
 :::
 
 
-
 Wrangle the data and add `sampleid`.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 age_uncertainties <-
@@ -383,21 +376,21 @@ plot_table(age_uncertainties[1:8, 1:8])
 -----------------------------------------------------------------------
  439811   439812   439813   439814   439815   439816   439817   439818 
 -------- -------- -------- -------- -------- -------- -------- --------
-  -60      -52      -44      -40      -27      -18      -11       -5   
+  -60      -54      -44      -36      -31      -21      -12       -4   
 
-  -60      -51      -45      -40      -26      -19      -12       -5   
+  -63      -54      -44      -36      -28      -21      -12       -2   
 
-  -60      -54      -45      -38      -26      -19      -14       -5   
+  -63      -54      -43      -37      -28      -21      -13       -5   
 
-  -60      -51      -47      -40      -27      -19      -12       -3   
+  -63      -53      -45      -37      -28      -21      -13       -3   
 
-  -60      -50      -45      -37      -25      -19      -15       0    
+  -63      -53      -45      -36      -27      -21      -17       -5   
 
-  -60      -52      -45      -37      -30      -20      -12       -7   
+  -58      -52      -46      -36      -29      -21      -13       -5   
 
-  -60      -52      -45      -39      -27      -20      -12       -8   
+  -58      -54      -46      -35      -28      -21      -16       -5   
 
-  -60      -54      -45      -38      -27      -21      -12       -5   
+  -58      -55      -45      -38      -29      -25      -14       -5   
 -----------------------------------------------------------------------
 ```
 
@@ -406,14 +399,12 @@ plot_table(age_uncertainties[1:8, 1:8])
 :::
 
 
-
 Here we see samples (e.g., 439811, 439812, 439813,...) and their possible ages (age sequence) with each model iteration (posterior). Each age-sequence is similar but there are differences of tens or hundreds of years. We will call this *the uncertainty matrix*.
 
 We can visualize these "possible ages" (age-sequence) of each iteration.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # create a data.frame for plotting
@@ -434,12 +425,10 @@ data_age_uncertainties <-
 :::
 
 
-
-Each line is a single potential age-depth model iteration (age-sequence). Green points represent the radiocarbon dates. Horizontal lines are the depths of our samples.
-
+Each line is a single potential age-depth model iteration (age-sequence). Red points represent the radiocarbon dates. Horizontal lines are the depths of our samples.
 
 
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 (
@@ -470,7 +459,7 @@ Each line is a single potential age-depth model iteration (age-sequence). Green 
       mapping = ggplot2::aes(
         x = chroncontrolage
       ),
-      color = "green",
+      color = colors$red,
       shape = 15,
       size = 3
     ) +
@@ -483,17 +472,15 @@ Each line is a single potential age-depth model iteration (age-sequence). Green 
 ```
 
 ::: {.cell-output-display}
-![](02_age_depth_model_files/figure-html/plot uncertainty matrix-1.png){fig-align='center' width=100%}
+![](02_age_depth_model_files/figure-html/plot uncertainty matrix-1.png){width=672}
 :::
 :::
-
 
 
 We can visualize all age-depth "possible ages" together as the range of values. Here, each line represents one sampled depth in our record.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 data_age_uncertainties %>%
@@ -522,17 +509,15 @@ data_age_uncertainties %>%
 ```
 
 ::: {.cell-output-display}
-![](02_age_depth_model_files/figure-html/plot uncertainty matrix boxplots-1.png){fig-align='center' width=100%}
+![](02_age_depth_model_files/figure-html/plot uncertainty matrix boxplots-1.png){width=672}
 :::
 :::
-
 
 
 Let's take the median age of all possible ages (i.e. the estimated age from each age-depth model run) as our default.
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 data_levels_predicted <-
@@ -557,7 +542,7 @@ plot_table(data_levels_predicted, head = TRUE)
 ---------- ------- -----
   439811     0.8    -60 
 
-  439812     2.9    -53 
+  439812     2.9    -54 
 
   439813     5.1    -45 
 
@@ -574,28 +559,27 @@ plot_table(data_levels_predicted, head = TRUE)
 :::
 
 
-
-We can visualize the median age by drawing a red line. This age is the age that is often reported in publications but in essence, it represents multiple age-depth model runs with smaller or larger age uncertainties throughout the record.
-
+We can visualize the median age by drawing a blue line. This age is the age that is often reported in publications but in essence, it represents multiple age-depth model runs with smaller or larger age uncertainties throughout the record.
 
 
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 fig_age_uncertainties +
   ggplot2::geom_point(
     data = data_levels_predicted,
-    color = "red",
+    color = colors$blue,
     size = 1
   ) +
   ggplot2::geom_line(
     data = data_levels_predicted,
-    color = "red",
+    color = colors$blue,
     linewidth = 0.5
   )
 ```
 
 ::: {.cell-output-display}
-![](02_age_depth_model_files/figure-html/plot median age-1.png){fig-align='center' width=100%}
+![](02_age_depth_model_files/figure-html/plot median age-1.png){width=672}
 :::
 :::
+

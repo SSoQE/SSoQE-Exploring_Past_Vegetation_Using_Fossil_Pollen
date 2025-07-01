@@ -2,23 +2,25 @@
 format:
   html:
     author: "Ondřej Mottl"
+    date: 2024/09/23
+    date-format: long
+    date-modified: last-modified
     toc: true
     keep-md: true
-    code-link: true
+    code-link: false
     embed-resources: true
     code-line-numbers: true
-    theme: [default, custom_theme_exercise.scss]
+    theme: [default, ../../Presentation/custom_theme.scss]
+    highlight-style: none
+execute: 
+  cache: true
 ---
-
-
-
 
 # Basic functions of neotoma2 : Working with pollen data
 
 Simple example of woking with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
 
 ## Setup
-
 
 
 ::: {.cell}
@@ -30,6 +32,7 @@ library(neotoma2) # # access to the Neotoma database 🌿
 library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
 library(janitor) # string cleaning 🧹
+library(jsonlite) # for reading JSON files 📄
 library(geojsonsf) # geojson spatial data 🌐
 
 # set the working directory
@@ -55,12 +58,10 @@ knitr::opts_chunk$set(
 :::
 
 
-
 ## Sites
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # check the documentation
@@ -69,14 +70,12 @@ knitr::opts_chunk$set(
 :::
 
 
-
 ### Search by IDs
 
 Search for site by a single numeric ID:
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_sites(15799) %>% 
@@ -99,12 +98,10 @@ neotoma2::get_sites(15799) %>%
 :::
 
 
-
 Search for sites with multiple IDs:
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_sites(
@@ -131,17 +128,24 @@ neotoma2::get_sites(
 :::
 
 
-
 Searching for Sites by Name. Notet that `%` is a wildcard character:
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_sites(sitename = "Alex%") %>% 
   plot_table()
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -165,14 +169,12 @@ neotoma2::get_sites(sitename = "Alex%") %>%
 :::
 
 
-
 ### Searching for Sites by Age
 
 Record span at least 8200 years:
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_sites(
@@ -181,6 +183,15 @@ neotoma2::get_sites(
 ) %>% 
  plot_table(head = TRUE)
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -208,12 +219,10 @@ neotoma2::get_sites(
 :::
 
 
-
 Record must PARTLY span the age range
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_sites(
@@ -223,6 +232,15 @@ neotoma2::get_sites(
 ) %>% 
  plot_table(head = TRUE)
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -250,12 +268,10 @@ neotoma2::get_sites(
 :::
 
 
-
 Record must COMPLETELY span the age range
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_sites(
@@ -265,6 +281,15 @@ neotoma2::get_sites(
 ) %>% 
  plot_table(head = TRUE)
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -292,14 +317,12 @@ neotoma2::get_sites(
 :::
 
 
-
 ## Datasets
 
 You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyoung`, `ageold`).
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # check the documentation
@@ -308,12 +331,10 @@ You can search by all the same age properties as for sites (`ageof`, `minage`, `
 :::
 
 
-
 ### Search by IDs
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_datasets(
@@ -329,11 +350,11 @@ neotoma2::get_datasets(
 ---------------------------------------------------------------------
  siteid            sitename             lat      long    area   elev 
 -------- ---------------------------- -------- -------- ------ ------
-   5                 17/2              55.25    -74.93    NA    300  
+   15              Aguilar             -23.83   -65.75    NA    3828 
 
    10     Site 1 (Cohen unpublished)   30.83    -82.33    NA     36  
 
-   15              Aguilar             -23.83   -65.75    NA    3828 
+   5                 17/2              55.25    -74.93    NA    300  
 
    20              Akuvaara            69.12    27.67     NA    159  
 ---------------------------------------------------------------------
@@ -344,12 +365,10 @@ neotoma2::get_datasets(
 :::
 
 
-
 ### Search by type
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_datasets(
@@ -359,31 +378,40 @@ neotoma2::get_datasets(
  plot_table(head = TRUE)
 ```
 
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
 ::: {.cell-output .cell-output-stdout}
 
 ```
 
------------------------------------------------------------------------
- siteid             sitename              lat      long    area   elev 
--------- ------------------------------ -------- -------- ------ ------
-   7            Three Pines Bog            47     -80.12    NA    329  
+------------------------------------------------------------------------
+ siteid             sitename               lat      long    area   elev 
+-------- ------------------------------- -------- -------- ------ ------
+  1712          18 [Moraine Lake]         52.27    -58.05    NA    388  
 
-   8          Abalone Rocks Marsh        33.96     -120     NA     9   
+  1511         Kotyrkol' Peat Bog         52.96    70.38     NA    435  
 
-   9                 Adange              43.31    41.33     NA    2065 
+   15                Aguilar              -23.83   -65.75    NA    3828 
 
-   11     Konus Exposure, Adycha River   67.75    135.6     NA    137  
+   70     Amguema River Valley Exposure    67.3    178.8     NA    552  
+                        3                                               
 
-   12            Ageröds Mosse           55.93    13.43     NA     47  
+  1644         Molotkovskii Kamen         68.33    161.5     NA     6   
 
-   13           Aguas Calientes          -23.08   -67.4     NA    4233 
------------------------------------------------------------------------
+  1121        Ivanovskoye Peat Bog        56.82    38.77     NA    152  
+------------------------------------------------------------------------
 ```
 
 
 :::
 :::
-
 
 
 ### Search by geo location
@@ -393,8 +421,7 @@ Go to [geojson.io](https://geojson.io/) and get the coordinates of a polygon.
 For example:
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 {
@@ -418,12 +445,10 @@ For example:
 :::
 
 
-
 Now, we can use the coordinates to search for datasets:
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 sel_polygon <-
@@ -492,45 +517,77 @@ neotoma2::get_datasets(
  plot_table()
 ```
 
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
 ::: {.cell-output .cell-output-stdout}
 
 ```
 
-----------------------------------------------------------
- siteid       sitename         lat    long    area   elev 
--------- ------------------- ------- ------- ------ ------
-  1399        Kameničky       49.73   15.97    NA    618  
+----------------------------------------------------------------
+ siteid          sitename            lat    long    area   elev 
+-------- ------------------------- ------- ------- ------ ------
+ 31819             Pěkná            48.84   13.94    NA    730  
 
-  3152        Hroznotín       49.76   15.36    NA    503  
+  3377           Řežabinec          49.25   14.09    NA    365  
 
-  3168          Spolí         48.99   14.71    NA    446  
+ 15721      Teplice nad Metují      50.59   16.18    NA    474  
 
-  3169     Velanská cesta     48.77   14.93    NA    494  
+ 14274        Stráženská slať       48.9    13.74    NA    792  
 
-  3172         Branná         48.96   14.8     NA    434  
+  3519        Zbudovská blata       49.07   14.35    NA    379  
 
-  3173         Barbora        48.94   14.81    NA    435  
+  3289      Mokré louky (South)      49     14.78    NA    421  
 
-  3175    Jestřebské blato    50.6    14.61    NA    244  
+  3201       Komořanské jezero      50.54   13.53    NA    172  
 
-  3021          Bláto         49.04   15.19    NA    649  
+ 24031          Kolbermoor          47.86   12.07    NA    460  
 
-  3052        Chraňbož        49.77   15.37    NA    469  
+ 31420            Mondsee           47.82   13.38    NA    481  
 
-  3170      Červené blato     48.86   14.8     NA    475  
+ 14266        Teplické údolí        50.59   16.13    NA    676  
 
-  3171    Borkovická blata    49.23   14.62    NA    415  
+ 31463    Mondsee (lake), Seeache   47.8    13.45    NA    479  
+              (stream) outlet                                   
 
-  3174       Švarcenberk      49.14   14.7     NA    416  
+ 28329           Tüttensee          47.85   12.57    NA    535  
 
-  3201    Komořanské jezero   50.54   13.53    NA    172  
-----------------------------------------------------------
+ 13451            Zahájí            50.38   14.12    NA    215  
+
+ 31477    Mondsee (lake), Bay of    47.81   13.39    NA    479  
+                 Mooswinkl                                      
+
+ 29155     Pod Šindelným vrchem     49.67   15.96    NA    699  
+
+ 29133             Bahna            49.75   15.99    NA    645  
+
+  3171       Borkovická blata       49.23   14.62    NA    415  
+
+ 14272           Malá niva          48.91   13.81    NA    749  
+
+ 29148          Nový Rybník         49.8    15.82    NA    561  
+
+ 15765    Mělnický úval - Přívory   50.3    14.58    NA    171  
+
+ 26991       Prášilské jezero       49.08   13.4     NA    1086 
+
+ 24140            Zeifen            47.93   12.83    NA    426  
+
+ 15778             Kožlí            49.38   14.03    NA    462  
+
+ 15732       Úpské rašeliniště      50.74   15.71    NA    1420 
+----------------------------------------------------------------
 ```
 
 
 :::
 :::
-
 
 
 ### Filter
@@ -538,8 +595,7 @@ neotoma2::get_datasets(
 You can additionally filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # check the documentation
@@ -547,7 +603,9 @@ You can additionally filter the compilation based on `lat`, `long`, `altitude`, 
 ```
 :::
 
-::: {.cell layout-align="center"}
+
+
+::: {.cell}
 
 ```{.r .cell-code}
 neotoma2::get_datasets(
@@ -561,23 +619,41 @@ neotoma2::get_datasets(
  plot_table()
 ```
 
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
 ::: {.cell-output .cell-output-stdout}
 
 ```
 
---------------------------------------------------
- siteid   sitename     lat    long    area   elev 
--------- ----------- ------- ------- ------ ------
-  1399    Kameničky   49.73   15.97    NA    618  
+----------------------------------------------------------
+ siteid       sitename         lat    long    area   elev 
+-------- ------------------- ------- ------- ------ ------
+ 31819          Pěkná         48.84   13.94    NA    730  
 
-  3021      Bláto     49.04   15.19    NA    649  
---------------------------------------------------
+ 14274     Stráženská slať    48.9    13.74    NA    792  
+
+ 14266     Teplické údolí     50.59   16.13    NA    676  
+
+ 28329        Tüttensee       47.85   12.57    NA    535  
+
+ 14272        Malá niva       48.91   13.81    NA    749  
+
+ 26991    Prášilské jezero    49.08   13.4     NA    1086 
+
+ 15732    Úpské rašeliniště   50.74   15.71    NA    1420 
+----------------------------------------------------------
 ```
 
 
 :::
 :::
-
 
 
 ## Downloading data
@@ -587,8 +663,7 @@ neotoma2::get_datasets(
 Let's download a record with `datasetid` 24279
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 dataset_24279 <-
@@ -643,14 +718,12 @@ Table: Table continues below
 :::
 
 
-
 ### Download multiple records
 
 Download all records by sites
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # get sites information
@@ -665,6 +738,15 @@ neotoma2::get_sites(sitename = "Alex%") %>%
 ::: {.cell-output .cell-output-stderr}
 
 ```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
+::: {.cell-output .cell-output-stderr}
+
+```
 Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in the Neotoma DB yet or it has been removed. 
                         It will be removed from your search.
 ```
@@ -675,17 +757,17 @@ Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in
 ::: {.cell-output .cell-output-stdout}
 
 ```
-.......
+.........
 ------------------------------------------------------------
  siteid        sitename         lat     long    area   elev 
 -------- -------------------- ------- -------- ------ ------
    24       Alexander Lake     53.33   -60.58    NA     73  
 
+  4478    Alexander [3CN117]   35.25   -92.62    NA    180  
+
  26226      Alexandra Lake     43.29   -74.17    NA    351  
 
    25        Alexis Lake       52.52   -57.03    NA    193  
-
-  4478    Alexander [3CN117]   35.25   -92.62    NA    180  
 ------------------------------------------------------------
 ```
 
@@ -694,12 +776,10 @@ Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in
 :::
 
 
-
 Download all records by datasets
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # get datasets information
@@ -717,23 +797,41 @@ neotoma2::get_datasets(
   plot_table()
 ```
 
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
 ::: {.cell-output .cell-output-stdout}
 
 ```
-..
---------------------------------------------------
- siteid   sitename     lat    long    area   elev 
--------- ----------- ------- ------- ------ ------
-  3021      Bláto     49.04   15.19    NA    649  
+........
+----------------------------------------------------------
+ siteid       sitename         lat    long    area   elev 
+-------- ------------------- ------- ------- ------ ------
+ 31819          Pěkná         48.84   13.94    NA    730  
 
-  1399    Kameničky   49.73   15.97    NA    618  
---------------------------------------------------
+ 26991    Prášilské jezero    49.08   13.4     NA    1086 
+
+ 15732    Úpské rašeliniště   50.74   15.71    NA    1420 
+
+ 14266     Teplické údolí     50.59   16.13    NA    676  
+
+ 14274     Stráženská slať    48.9    13.74    NA    792  
+
+ 14272        Malá niva       48.91   13.81    NA    749  
+
+ 28329        Tüttensee       47.85   12.57    NA    535  
+----------------------------------------------------------
 ```
 
 
 :::
 :::
-
 
 
 ## Working with pollen counts
@@ -743,8 +841,7 @@ neotoma2::get_datasets(
 download all records by datasets
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 data_selected_downloads <-
@@ -761,17 +858,28 @@ data_selected_downloads <-
   neotoma2::get_downloads()
 ```
 
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
 ::: {.cell-output .cell-output-stdout}
 
 ```
-..
+........
 ```
 
 
 :::
 :::
 
-::: {.cell layout-align="center"}
+
+
+::: {.cell}
 
 ```{.r .cell-code}
 # check the documentation
@@ -780,12 +888,10 @@ data_selected_downloads <-
 :::
 
 
-
 Extract Sample information
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 data_selected_samples <-
@@ -804,19 +910,19 @@ plot_table(
 
 ```
 
---------------------------------
- age     variablename     value 
------ ------------------ -------
- 236   Scrophulariaceae     1   
+-----------------------------------
+ age      variablename       value 
+----- --------------------- -------
+ -68     Sample quantity       1   
 
- 236       Apiaceae         1   
+ -68       Cyperaceae          1   
 
- 236    Ranunculaceae       1   
+ -68   Plantago lanceolata     1   
 
- 236   Carpinus betulus     1   
+ -68       Prunus-type         1   
 
- 236    Barbarea-type       1   
---------------------------------
+ -68        Vaccinium          1   
+-----------------------------------
 ```
 
 
@@ -824,12 +930,10 @@ plot_table(
 :::
 
 
-
 ### Get pollen counts
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 # check the documentation
@@ -838,12 +942,10 @@ plot_table(
 :::
 
 
-
 Get vector of all "pollen" taxa
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 vec_taxa_pollen <-
@@ -858,8 +960,8 @@ head(vec_taxa_pollen)
 ::: {.cell-output .cell-output-stdout}
 
 ```
-[1] "Abies alba"    "Acer"          "Achillea-type" "Alisma"       
-[5] "Alnus"         "Amaranthaceae"
+[1] "Abies"         "Abies alba"    "Acer"          "Achillea-type"
+[5] "Aconitum"      "Aconitum-type"
 ```
 
 
@@ -867,12 +969,10 @@ head(vec_taxa_pollen)
 :::
 
 
-
 Get pollen counts
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 data_sample_pollen_counts <-
@@ -881,6 +981,14 @@ data_sample_pollen_counts <-
   # only include selected taxons
   dplyr::filter(
     variablename %in% vec_taxa_pollen
+  ) %>%
+  # now we need to remove duplicates
+  dplyr::group_by(
+    datasetid_sampleid, variablename
+  ) %>%
+  dplyr::summarise(
+    value = sum(value, na.rm = TRUE),
+    .groups = "drop"
   ) %>%
   dplyr::arrange(variablename) %>%
   # turn into the wider format
@@ -899,19 +1007,19 @@ plot_table(data_sample_pollen_counts[1:5, 1:5])
 
 ```
 
------------------------------------------------------------------
- datasetid_sampleid   abies_alba   acer   achillea_type   alisma 
--------------------- ------------ ------ --------------- --------
-    3935_347661           8         0           0           0    
+----------------------------------------------------------------
+ datasetid_sampleid   abies   abies_alba   acer   achillea_type 
+-------------------- ------- ------------ ------ ---------------
+    22322_216317       24         0         0           0       
 
-    3935_347662           12        1           0           0    
+    22322_216318       122        0         0           0       
 
-    3935_347663           16        1           0           0    
+    22322_216319       154        0         1           0       
 
-    3935_347664           18        0           0           0    
+    22322_216320       170        0         0           0       
 
-    3935_347665           76        1           0           0    
------------------------------------------------------------------
+    22322_216321       232        0         2           0       
+----------------------------------------------------------------
 ```
 
 
@@ -919,12 +1027,10 @@ plot_table(data_sample_pollen_counts[1:5, 1:5])
 :::
 
 
-
 ### Getting the age information
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 data_sample_age <-
@@ -939,21 +1045,21 @@ plot_table(data_sample_age, head = TRUE)
 
 ```
 
------------------------------------
- datasetid_sampleid   depth   age  
--------------------- ------- ------
-    1435_342283         0      48  
+----------------------------------
+ datasetid_sampleid   depth   age 
+-------------------- ------- -----
+    22322_216316        0     -50 
 
-    1435_342284        2.5    274  
+    22322_216317        5     45  
 
-    1435_342285         5     507  
+    22322_216318       10     140 
 
-    1435_342286        10     1010 
+    22322_216319       20     331 
 
-    1435_342287        15     1601 
+    22322_216320       30     521 
 
-    1435_342288        20     2337 
------------------------------------
+    22322_216321       45     807 
+----------------------------------
 ```
 
 
@@ -961,14 +1067,12 @@ plot_table(data_sample_age, head = TRUE)
 :::
 
 
-
 ### Plotting pollen diagram
 
 Data wrangling
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 data_to_plot <-
@@ -1013,21 +1117,21 @@ plot_table(data_to_plot, head = TRUE)
 
 ```
 
------------------------------------------------------
- datasetid   sampleid   age       taxon       count  
------------ ---------- ----- --------------- --------
-   3935       347661    236    abies_alba     3.226  
+----------------------------------------------------
+ datasetid   sampleid   age       taxon       count 
+----------- ---------- ----- --------------- -------
+   22322      216317    45        abies       9.125 
 
-   3935       347661    236       acer          0    
+   22322      216317    45     abies_alba       0   
 
-   3935       347661    236   achillea_type     0    
+   22322      216317    45        acer          0   
 
-   3935       347661    236      alisma         0    
+   22322      216317    45    achillea_type     0   
 
-   3935       347661    236       alnus       5.242  
+   22322      216317    45      aconitum        0   
 
-   3935       347661    236   amaranthaceae   0.8065 
------------------------------------------------------
+   22322      216317    45    aconitum_type     0   
+----------------------------------------------------
 ```
 
 
@@ -1035,12 +1139,10 @@ plot_table(data_to_plot, head = TRUE)
 :::
 
 
-
 Get the most common taxa
 
 
-
-::: {.cell layout-align="center"}
+::: {.cell}
 
 ```{.r .cell-code}
 vec_common_taxa <-
@@ -1061,7 +1163,9 @@ vec_common_taxa <-
 ```
 :::
 
-::: {.cell layout-align="center"}
+
+
+::: {.cell}
 
 ```{.r .cell-code}
 data_to_plot %>%
@@ -1113,6 +1217,7 @@ data_to_plot %>%
 ```
 
 ::: {.cell-output-display}
-![](01_neotoma2_basics_files/figure-html/7.3.-1.png){fig-align='center' width=100%}
+![](01_neotoma2_basics_files/figure-html/7.3.-1.png){width=672}
 :::
 :::
+
