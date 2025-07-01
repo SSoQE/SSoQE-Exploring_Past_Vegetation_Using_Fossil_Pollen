@@ -55,7 +55,6 @@ package_list <-
     "fs",
     "geojsonsf",
     "here",
-    "httpgd",
     "janitor",
     "jsonlite",
     "knitr",
