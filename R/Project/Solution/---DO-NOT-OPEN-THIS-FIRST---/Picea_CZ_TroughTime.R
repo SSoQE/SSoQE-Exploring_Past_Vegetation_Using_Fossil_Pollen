@@ -1,13 +1,13 @@
 #----------------------------------------------------------#
 #
-#
-#        Exploring Past Vegetation Using Fossil Pollen
+#                 PalaeOpen Prague 2025
+#                Neotoma basics workshop
 #
 #              Past Vegetation through time
 #
 #
 #                       O. Mottl
-#                         2024
+#                         2025
 #
 #----------------------------------------------------------#
 

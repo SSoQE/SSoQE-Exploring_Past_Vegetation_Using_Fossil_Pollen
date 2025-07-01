@@ -1,26 +1,26 @@
 #----------------------------------------------------------#
 #
-#
-#        Exploring Past Vegetation Using Fossil Pollen
+#                 PalaeOpen Prague 2025
+#                Neotoma basics workshop
 #
 #                  Render presentation
 #
 #
 #                      O. Mottl
-#                         2024
+#                         2025
 #
 #----------------------------------------------------------#
 
-# The QUARTO is curently unable to render into other directory.
+# The QUARTO is currently unable to render into other directory.
 # GitHub pages require the presentation to be in the `docs` directory.
-# This is a workaround to render the presentation into the `docs`` directory
+# This is a workaround to render the presentation into the `docs` directory
 
 # Setup -----
 
 library(here)
 
 source(
-  here::here("R/00_Confiq_file.R")
+  here::here("R/00_Config_file.R")
 )
 
 # Render -----
