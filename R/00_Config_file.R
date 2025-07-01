@@ -123,11 +123,13 @@ if (
 # 6. Graphical options -----
 #----------------------------------------------------------#
 
-## examples
-# set ggplot output
-ggplot2::theme_set(
-  ggplot2::theme_bw()
-)
+# define common color
+
+# read the colors from the JSON file
+colors <-
+  jsonlite::fromJSON(
+    here::here("Presentation/colors.json")
+  )
 
 # define general
 text_size <- 10
@@ -138,6 +140,18 @@ image_width <- 16
 image_height <- 12
 image_units <- "cm"
 
-# define pallets
-
-# define common color
+# set ggplot output
+ggplot2::theme_set(
+  ggplot2::theme_bw() +
+    ggplot2::theme(
+      text = ggplot2::element_text(size = text_size, color = colors$black),
+      line = ggplot2::element_line(size = line_size, color = colors$black),
+      plot.margin = ggplot2::margin(1, 1, 1, 1, "cm"),
+      title = ggplot2::element_text(
+        size = text_size * 1.2,
+        face = "bold",
+        hjust = 0.5,
+        color = colors$blue
+      ),
+    )
+)
