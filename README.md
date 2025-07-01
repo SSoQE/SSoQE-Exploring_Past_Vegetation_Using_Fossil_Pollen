@@ -1,10 +1,10 @@
-# Lecture "Exploring Past Vegetation Using Fossil Pollen"
+# Workshop "Neotoma - basics"
 
-The presentation and materials for a lecture "Exploring Past Vegetation Using Fossil Pollen" for SSoQE 2024.
+The presentation and materials for a workshop "Neotoma - basics" for PalaeOpen Prague 2025.
 
 ## Presentation
 
-This lecture has a build-in presentation, which is accesible [here](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
+This workshop has a build-in presentation, which is accessible in `Presentation/presentation.html` file. The presentation is built using [Quarto](https://quarto.org/) and can be rendered by running the `Presentation/render.R` script.
 
 ## Structure and content
 
@@ -34,7 +34,7 @@ This lecture has a build-in presentation, which is accesible [here](https://ssoq
 |   └─ settings.json
 ├─ .gitignore
 ├─ .Rprofile
-├─ Exploring_Past_Vegetation_Using_Fossil_Pollen.Rproj
+├─ Workshop-neotoma-basic-20250704.Rproj
 ├─ LICENSE
 ├─ README.md
 └─ renv.lock
@@ -46,8 +46,8 @@ This lecture has a build-in presentation, which is accesible [here](https://ssoq
 
 The project is accessible in two ways:
   
-1. If a user has a [GitHub account](https://github.com/) and can use [git](https://git-scm.com/), the easiest way is to [clone the repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
-2. Use can download the latest [Release](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/releases) of the Workflow as a zip file.
+1. Use can download the latest [Release](https://github.com/PalaeOpen/Workshop-neotoma-basic-20250704/releases) of the Workflow as a zip file.
+2. If a user has a [GitHub account](https://github.com/) and can use [git](https://git-scm.com/), the easiest way is to [clone the repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 ### Set up R project
 
