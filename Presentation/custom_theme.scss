@@ -221,10 +221,14 @@ body {
 }
 
 /* Headings */
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
   font-family: $headingFont;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
@@ -233,44 +237,85 @@ h4, .h4 {
   color: $blue; // Default color for headings
 }
 
-h1, .h1 { font-size: $heading1SizeDocument; }
-h2, .h2 { font-size: $heading2SizeDocument; }
-h3, .h3 { font-size: $heading3SizeDocument; }
-h4, .h4 { font-size: $heading4SizeDocument; }
-
-.reveal {
-  h1, .h1 { font-size: $heading1SizePres; color: $blue; }
-  h2, .h2 { font-size: $heading2SizePres; color: $blue; }
-  h3, .h3 { font-size: $heading3SizePres; color: $blue; }
-  h4, .h4 { font-size: $heading4SizePres; color: $blue; }
+h1,
+.h1 {
+  font-size: $heading1SizeDocument;
 }
 
+h2,
+.h2 {
+  font-size: $heading2SizeDocument;
+}
+
+h3,
+.h3 {
+  font-size: $heading3SizeDocument;
+}
+
+h4,
+.h4 {
+  font-size: $heading4SizeDocument;
+}
+
+.reveal {
+
+  h1,
+  .h1 {
+    font-size: $heading1SizePres;
+    color: $blue;
+  }
+
+  h2,
+  .h2 {
+    font-size: $heading2SizePres;
+    color: $blue;
+  }
+
+  h3,
+  .h3 {
+    font-size: $heading3SizePres;
+    color: $blue;
+  }
+
+  h4,
+  .h4 {
+    font-size: $heading4SizePres;
+    color: $blue;
+  }
+}
 
 /* Code */
+
+/* Code styling (default and reveal) */
+pre,
 .reveal pre,
+code,
 .reveal code {
   background-color: $yellow !important;
   color: $black !important;
-  padding: $smallMargin;
   border-radius: 5px;
 }
 
+pre,
 .reveal pre {
   overflow: auto;
   padding: $smallMargin;
 }
 
+code,
 .reveal code {
-  background-color: $yellow !important;
   padding: 0;
 }
 
+pre code,
 .reveal pre code {
   background-color: transparent !important;
   padding: $smallMargin;
 }
 
+pre a,
 .reveal pre a,
+code a,
 .reveal code a {
   color: $black !important;
   text-decoration: underline !important;
@@ -281,6 +326,7 @@ h4, .h4 { font-size: $heading4SizeDocument; }
   }
 }
 
+a,
 .reveal a,
 .reveal .footer a {
   color: $red;
@@ -290,6 +336,12 @@ h4, .h4 { font-size: $heading4SizeDocument; }
     color: $white !important;
     background-color: $pink !important;
   }
+}
+
+/* Fix for code blocks in HTML output */
+.sourceCode {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 
