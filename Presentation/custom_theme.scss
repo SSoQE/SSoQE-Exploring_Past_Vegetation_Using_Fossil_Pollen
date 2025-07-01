@@ -1,8 +1,6 @@
 /*-- scss:defaults --*/
 
-@import url(./fonts/league-gothic/league-gothic.css);
-@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,700italic);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Tilt+Warp&display=swap');
 
 // Vertical spacing between blocks of text
 $smallMargin: 5px;
@@ -10,48 +8,187 @@ $blockMargin: 10px;
 $largeMargin: 20px;
 
 // Colors
-$black: #000000ff;
-$gray: #808080ff;
-$byzantium: #8f286fff;
-$harvest-gold: #eca400ff;
-$persian-green: #1b998bff;
-$cerulean: #006992ff;
-$white: #ffffffff;
 
-$color-primary: $black !default;
-$color-secondary: $white !default;
+// Colors are now loaded from _colors.scss, which is auto-generated from colors.json.
+// Do not define color variables here. Edit colors.json and regenerate _colors.scss if needed.
+@import "_colors";
 
-$color-high-primary: $byzantium !default;
-$color-high-secondary: $harvest-gold !default;
-$color-high-tertiary: $persian-green !default;
+.text-background-white {
+  background-color: $white;
+  color: $black;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
+ 
+.text-background-black {
+  background-color: $black;
+  color: $white;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
 
-$body-color: $color-primary !default;
-$link-color: $color-high-tertiary !default;
-$selection-bg: $color-high-tertiary !default;
-$code-color: $color-primary !default;
+.text-background-blue {
+  background-color: $blue;
+  color: $white;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
 
-// Background of the presentation
-$backgroundColor: $color-secondary !default;
+.text-background-purple {
+  background-color: $purple;
+  color: $white;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
+
+.text-background-red {
+  background-color: $red;
+  color: $white;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
+
+.text-background-pink {
+  background-color: $pink;
+  color: $white;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
+
+.text-background-brown {
+  background-color: $brown;
+  color: $white;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
+
+.text-background-yellow {
+  background-color: $yellow;
+  color: $black;
+  padding: $smallMargin;
+  border-radius: $smallMargin;
+}
+
+.text-color-white {
+  color: $white;
+}
+
+.text-color-black {
+  color: $black;
+}
+
+.text-color-blue {
+  color: $blue;
+}
+
+.text-color-purple {
+  color: $purple;
+}
+
+.text-color-red {
+  color: $red;
+}
+
+.text-color-pink {
+  color: $pink;
+}
+
+.text-color-brown {
+  color: $brown;
+}
+
+.text-color-yellow {
+  color: $yellow;
+}
+
+$body-color: $black;
+$backgroundColor: $white;
 
 // Typography
-$mainFont: "Lato", sans-serif !default;
+$mainFont: "Inter", sans-serif !default;
 $mainFontSize: 30px;
 $body-line-height: 1.5;
 
 $headingMargin: 0;
-$headingFont: "League Gothic", sans-serif !default;
-$headingColor: $color-high-primary;
+$headingFont: "Tilt Warp", sans-serif !default;
 $headingLineHeight: 1.2;
 $headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
 $headingTextShadow: none;
 $headingFontWeight: normal;
 
 $heading1Size: 3.77em;
-$heading1TextShadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 $heading2Size: 2.11em;
 $heading3Size: 1.55em;
 $heading4Size: 1em;
+
+.bold {
+  font-weight: bold;
+}
+
+.cursive {
+  font-style: italic;
+}
+
+.underscore {
+  text-decoration: underline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.strike{
+  text-decoration: line-through;
+}
+
+
+.text-font-heading {
+  font-family: $headingFont;
+}
+
+.text-font-body {
+  font-family: $mainFont;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-size-heading1 {
+  font-size: $heading1Size;
+}
+
+.text-size-heading2 {
+  font-size: $heading2Size;
+}
+
+.text-size-heading3 {
+  font-size: $heading3Size;
+}
+
+.text-size-heading4 {
+  font-size: $heading4Size;
+}
+
+.text-size-body {
+  font-size: $mainFontSize;
+}
 
 // Layout
 $content-max-width: 900px;
@@ -67,86 +204,106 @@ body {
   background-color: $backgroundColor;
 }
 
-a {
-  color: $link-color;
-  text-decoration: none;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: darken($link-color, 10%);
-    text-decoration: underline;
-  }
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.italic {
-  font-style: italic;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.strike {
-  text-decoration: line-through;
-}
-
-.text-color-primary {
-  color: $color-primary;
-}
-
-.text-color-secondary {
-  color: $color-secondary;
-}
-
-.text-color-highlight-primary {
-  background-color: $color-high-primary;
-  color: $white;
-}
-
-.text-color-highlight-secondary {
-  background-color: $color-high-secondary;
-  color: $white;
-}
-
-.text-color-highlight-tertiary {
-  background-color: $color-high-tertiary;
-  color: $white;
-}
-
-.textcenter {
-  text-align: center;
-}
-
 /* Headings */
 h1,
-.reveal h1 {
+.reveal h1{
   font-family: $headingFont;
   font-size: $heading1Size;
-  color: $headingColor;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
-  text-transform: $headingTextTransform;
-  text-shadow: $heading1TextShadow;
   font-weight: $headingFontWeight;
-  margin: $headingMargin;
+  margin-top: $largeMargin;
+  color: $blue; 
 }
 
 h2,
 .reveal h2 {
   font-family: $headingFont;
   font-size: $heading2Size;
-  color: $headingColor;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
-  text-transform: $headingTextTransform;
   font-weight: $headingFontWeight;
-  margin: $headingMargin;
+  margin-top: $largeMargin;
+  color: $blue;
 }
 
+h3,
+.reveal h3 {
+  font-family: $headingFont;
+  font-size: $heading3Size;
+  line-height: $headingLineHeight;
+  letter-spacing: $headingLetterSpacing;
+  font-weight: $headingFontWeight;
+  margin-top: $largeMargin;
+}
+
+h4,
+.reveal h4 {
+  font-family: $headingFont;
+  font-size: $heading4Size;
+  line-height: $headingLineHeight;
+  letter-spacing: $headingLetterSpacing;
+  font-weight: $headingFontWeight;
+  margin-top: $blockMargin;
+}
+
+/* Code */
+.reveal pre,
+.reveal code {
+  background-color: $yellow !important;
+  color: $black !important;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+
+.reveal pre {
+  overflow: auto;
+  padding: $smallMargin;
+}
+
+.reveal code {
+  background-color: $yellow !important;
+  padding: 0;
+}
+
+.reveal pre code {
+  background-color: transparent !important;
+  padding: $smallMargin;
+}
+
+.reveal pre a,
+.reveal code a {
+  color: $black !important;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: $yellow !important;
+    background-color: $black !important;
+  }
+}
+
+.reveal a,
+.reveal .footer a{
+  color: $red;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: $white !important;
+    background-color: $pink !important;
+  }
+}
+
+
+/* List styling */
+ul {
+  padding-left: $largeMargin;
+  margin-left: $largeMargin;
+}
+
+ul ul {
+  padding-left: $largeMargin;
+  margin-left: $largeMargin;
+}
 
 /* Slide content layout */
 .reveal .slides {
@@ -168,52 +325,72 @@ h2,
   box-sizing: border-box;
 }
 
+.reveal .bg-white{
+  background-color: $black !important;
+  color: $black !important;
+}
+
+.reveal .bg-black{
+  background-color: $black !important;
+  color: $white !important;
+}
+
+.reveal .bg-blue{
+  background-color: $blue;
+  color: $white !important;
+}
+
+.reveal .bg-purple{
+  background-color: $purple !important;
+  color: $black !important;
+}
+
+.reveal .bg-red{
+  background-color: $red !important;
+  color: $white !important;
+}
+
+.reveal .bg-pink{
+  background-color: $pink !important;
+  color: $black !important;
+}
+
+.reveal .bg-brown{
+  background-color: $brown !important;
+  color: $white !important;
+}
+
+.reveal .bg-yellow{
+  background-color: $yellow !important;
+  color: $black !important;
+}
+
+
 /* Specialised sections */
-.reveal .title {
-  background-color: $headingColor;
-  color: $backgroundColor;
-  text-align: center;
-}
-
-.reveal .subtitle {
-  background-color: $color-high-secondary;
-  color: $backgroundColor;
-  text-align: center;
-}
-
-.reveal .inverse {
-  color: $color-secondary;
-  background-color: $color-primary;
-}
-
 .reveal .exercise {
-  background-color: $color-high-tertiary;
-  color: $color-secondary;
+  background-color: $brown;
+  color: $white;
 }
+
+.reveal .exercise a{
+  color: $pink !important;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: $white !important;
+    background-color: $pink !important;
+  }
+}
+
 
 /* Blockquote */
 .reveal .blockquote {
-  font-style: italic;
-  border-left: 6px solid $color-high-primary;
+  border-left: 6px solid $red;
   padding: $smallMargin;
   border-radius: 25px;
-  border-top: 3px solid $gray;
-  border-bottom: 3px solid $gray;
-  border-right: 3px solid $gray;
-  background-color: $color-secondary;
+  border-top: 3px solid $black;
+  border-bottom: 3px solid $black;
+  border-right: 3px solid $black;
+  background-color: $pink;
   transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Code block */
-code {
-  background-color: darken($backgroundColor, 20%);
-  padding: $smallMargin;
-  border-radius: 5px;
-}
-
-/* List styling */
-ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-left: $blockMargin;
 }
