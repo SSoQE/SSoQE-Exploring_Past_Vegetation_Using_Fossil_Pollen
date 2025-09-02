@@ -7,6 +7,7 @@ format:
     preview-links: auto
     output-file: "index"
     output-ext: "html"
+    include-in-header: "fonts-include.html"
 ---
 
 ```{r}
@@ -19,8 +20,6 @@ knitr::opts_chunk$set(
   fig.align = "center",
   out.width = "100%"
 )
-
-if(!require("countdown")) install.packages("countdown")
 
 library(countdown)
 
@@ -66,7 +65,7 @@ include_local_figure("qr_linktree.png")
 :::
 
 ::: {.column width="62%"}
-[Ondřej Mottl]{.bold .r-fit-text .text-color-primary}
+[Ondřej Mottl]{.bold .r-fit-text .text-color-black}
 Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
 <br>
 
@@ -139,11 +138,11 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/neotoma
 ## What does Neotoma store?
 
 ::: {.incremental}
-* **'Raw' Observations** on a variety of different proxies (vertebrates, diatoms, [pollen]{.text-color-highlight-primary}, plant macrofossils, testate amoebae, ostracodes, etc.)
-  * [number of identified specimens]{.text-color-highlight-secondary}, minimum number of individuals, presence/absence
+* **'Raw' Observations** on a variety of different proxies (vertebrates, diatoms, [pollen]{.text-highlight-byzantium}, plant macrofossils, testate amoebae, ostracodes, etc.)
+  * [number of identified specimens]{.text-highlight-harvestGold}, minimum number of individuals, presence/absence
   * information about individual specimens, such as elements, specimen ID, or isotopic values
 * **Taxon names**
-* [**Dates**]{.text-color-highlight-tertiary} (14C, 210Pb, etc.)
+* [**Dates**]{.text-highlight-persianGreen} (14C, 210Pb, etc.)
 * **Age inferences**
 * [Derived Variables (e.g July mean temperature, species richness)]{.strike}
 * [Image files]{.strike}
@@ -244,7 +243,7 @@ GOAL: Download a pollen record from Neotoma Explorer.
 
 ## Neotoma API
 
-Notoma REST [API]{.text-color-highlight-primary} allows to directly send [SQL]{.text-color-highlight-secondary} queries from the Neotoma server.
+Notoma REST [API]{.text-highlight-byzantium} allows to directly send [SQL]{.text-highlight-harvestGold} queries from the Neotoma server.
 
 **SQL** (server) = **S**tructured **Q**uery **L**anguage 
 
@@ -275,7 +274,7 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/neo
 :::: {.columns}
 
 ::: {.column width="25%"}
-Our interest is [Dataset]{.text-color-highlight-primary} and [Samples]{.text-color-highlight-secondary}.
+Our interest is [Dataset]{.text-highlight-byzantium} and [Samples]{.text-highlight-harvestGold}.
 :::
 
 ::: {.column width="45%"}
@@ -343,7 +342,7 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ## Age-depth modeling - Why?
 
-To assign [**age**]{.text-color-highlight-primary} to each [**depth**]{.text-color-highlight-secondary} in a [**core**]{.text-color-highlight-tertiary}.
+To assign [**age**]{.text-highlight-byzantium} to each [**depth**]{.text-highlight-harvestGold} in a [**core**]{.text-highlight-persianGreen}.
 
 ```{r}
 #| label: core-age-depth
