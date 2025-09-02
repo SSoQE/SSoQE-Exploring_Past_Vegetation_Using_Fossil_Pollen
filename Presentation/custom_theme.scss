@@ -1,46 +1,26 @@
 /*-- scss:defaults --*/
 
-@import url(./fonts/league-gothic/league-gothic.css);
-@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,700italic);
-
 // Vertical spacing between blocks of text
 $smallMargin: 5px;
 $blockMargin: 10px;
 $largeMargin: 20px;
 
-// Colors
-$black: #000000ff;
-$gray: #808080ff;
-$byzantium: #8f286fff;
-$harvest-gold: #eca400ff;
-$persian-green: #1b998bff;
-$cerulean: #006992ff;
-$white: #ffffffff;
-
-$color-primary: $black !default;
-$color-secondary: $white !default;
-
-$color-high-primary: $byzantium !default;
-$color-high-secondary: $harvest-gold !default;
-$color-high-tertiary: $persian-green !default;
-
-$body-color: $color-primary !default;
-$link-color: $color-high-tertiary !default;
-$selection-bg: $color-high-tertiary !default;
-$code-color: $color-primary !default;
+// Colors are now loaded from _colors.scss, which is auto-generated from colors.json.
+// Do not define color variables here. Edit colors.json and regenerate _colors.scss if needed.
+@import "_colors";
 
 // Background of the presentation
-$backgroundColor: $color-secondary !default;
+// All color assignments use direct color names from colors.json
 
-// Typography
-$mainFont: "Lato", sans-serif !default;
+// Typography is now loaded from _fonts.scss, which is auto-generated from fonts.json.
+// Do not define font variables here. Edit fonts.json and regenerate _fonts.scss if needed.
+@import "_fonts";
+
 $mainFontSize: 30px;
 $body-line-height: 1.5;
 
 $headingMargin: 0;
-$headingFont: "League Gothic", sans-serif !default;
-$headingColor: $color-high-primary;
+$headingColor: $byzantium;
 $headingLineHeight: 1.2;
 $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
@@ -63,96 +43,318 @@ body {
   font-family: $mainFont;
   font-size: $mainFontSize;
   line-height: $body-line-height;
-  color: $body-color;
-  background-color: $backgroundColor;
+  color: $black;
+  background-color: $white !important;
 }
 
-a {
-  color: $link-color;
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* Code styling (default and reveal) */
+pre,
+.reveal pre,
+code,
+.reveal code {
+  background-color: lighten($white, 20%) !important;
+  color: $black;
+  border-radius: 5px;
+  line-height: 1;
+}
+
+pre,
+.reveal pre {
+  padding: $smallMargin;
+}
+
+code,
+.reveal code {
+  padding: 0;
+}
+
+pre code,
+.reveal pre code {
+  background-color: transparent;
+  padding: $smallMargin;
+  position: relative;
+  /* Ensure line highlighting works */
+  z-index: 0;
+  /* Prevent conflicts with overlays */
+}
+
+/* Hide scrollbars for WebKit browsers */
+pre::-webkit-scrollbar,
+.reveal pre::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbars and ensure proper text wrapping */
+.reveal pre,
+.reveal .slides pre,
+.reveal .slides section pre,
+div.sourceCode,
+div.sourceCode pre,
+.cell-code pre,
+.hljs {
+  overflow: visible !important;
+  max-width: 100% !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
+.reveal pre::-webkit-scrollbar,
+.reveal .slides pre::-webkit-scrollbar,
+.reveal .slides section pre::-webkit-scrollbar,
+div.sourceCode::-webkit-scrollbar,
+div.sourceCode pre::-webkit-scrollbar,
+.cell-code pre::-webkit-scrollbar,
+.hljs::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+pre a,
+.reveal pre a,
+code a,
+.reveal code a {
+  color: $black;
+  text-decoration: underline;
 
   &:hover {
-    color: darken($link-color, 10%);
-    text-decoration: underline;
+    color: $persianGreen;
+    background-color: $black;
   }
 }
 
-.bold {
-  font-weight: bold;
+a,
+.reveal a,
+.reveal .footer a {
+  color: $persianGreen !important;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: $black !important;
+    background-color: $persianGreen !important;
+  }
 }
 
-.italic {
-  font-style: italic;
+/* Specific styling for links in title slides and slides with background colors */
+.reveal .slides section a,
+.reveal .title-slide a,
+.reveal .bg-black a,
+.reveal .slide-background a {
+  color: $persianGreen !important;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: $black !important;
+    background-color: $persianGreen !important;
+  }
 }
 
-.underline {
-  text-decoration: underline;
+/* Force color for all links, overriding any reveal.js defaults */
+.reveal a:link,
+.reveal a:visited,
+.reveal a:active {
+  color: $persianGreen !important;
 }
 
-.strike {
-  text-decoration: line-through;
-}
-
-.text-color-primary {
-  color: $color-primary;
-}
-
-.text-color-secondary {
-  color: $color-secondary;
-}
-
-.text-color-highlight-primary {
-  background-color: $color-high-primary;
-  color: $white;
-}
-
-.text-color-highlight-secondary {
-  background-color: $color-high-secondary;
-  color: $white;
-}
-
-.text-color-highlight-tertiary {
-  background-color: $color-high-tertiary;
-  color: $white;
-}
-
-.textcenter {
-  text-align: center;
+/* Fix for code blocks in HTML output */
+.sourceCode {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Headings */
 h1,
-.reveal h1 {
-  font-family: $headingFont;
-  font-size: $heading1Size;
-  color: $headingColor;
+h2,
+h3,
+h4,
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: $headingFont !important;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
   text-transform: $headingTextTransform;
-  text-shadow: $heading1TextShadow;
   font-weight: $headingFontWeight;
   margin: $headingMargin;
+  color: $headingColor;
+  text-shadow: $heading1TextShadow;
+}
+
+h1,
+.reveal h1 {
+  font-size: $heading1Size !important;
+  margin-top: $blockMargin;
 }
 
 h2,
 .reveal h2 {
-  font-family: $headingFont;
-  font-size: $heading2Size;
-  color: $headingColor;
-  line-height: $headingLineHeight;
-  letter-spacing: $headingLetterSpacing;
-  text-transform: $headingTextTransform;
-  font-weight: $headingFontWeight;
-  margin: $headingMargin;
+  font-size: $heading2Size !important;
+  margin-top: $blockMargin;
 }
 
+h3,
+.reveal h3 {
+  font-size: $heading3Size !important;
+  margin-top: $smallMargin;
+}
+
+h4,
+.reveal h4 {
+  font-size: $heading4Size !important;
+  margin-top: $smallMargin;
+}
+
+/* Additional Reveal.js specific heading font rules */
+.reveal .slides section .fragment h1,
+.reveal .slides section .fragment h2,
+.reveal .slides section .fragment h3,
+.reveal .slides section .fragment h4,
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3,
+.reveal .slides section h4 {
+  font-family: $headingFont !important;
+}
+
+/* Ensure heading classes also use the correct font */
+.text-font-heading,
+.reveal .text-font-heading {
+  font-family: $headingFont !important;
+}
+
+/* List styling */
+ul {
+  padding-left: 0;
+  margin-left: $blockMargin;
+}
+
+ul ul {
+  margin-left: $blockMargin;
+}
+
+/* Utility text classes */
+.text-bold {
+  font-weight: bold;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-strike {
+  text-decoration: line-through;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-normal {
+  text-transform: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-smaller {
+  font-size: $mainFontSize * 0.7 !important;
+}
+
+.text-tiny {
+  font-size: $mainFontSize * 0.3 !important;
+}
+
+.text-larger {
+  font-size: $mainFontSize * 1.3 !important;
+}
+
+.text-size-heading1 {
+  font-size: $heading1Size !important;
+}
+
+.text-size-heading2 {
+  font-size: $heading2Size !important;
+}
+
+.text-size-heading3 {
+  font-size: $heading3Size !important;
+}
+
+.text-size-heading4 {
+  font-size: $heading4Size !important;
+}
+
+.text-size-body {
+  font-size: $mainFontSize !important;
+}
+
+.text-shadow-light {
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+.text-shadow-dark {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+.text-margin-bottom-15 {
+  margin-bottom: 15px !important;
+}
+
+.text-margin-top-15 {
+  margin-top: 15px;
+}
 
 /* Slide content layout */
 .reveal .slides {
   max-width: $content-max-width;
   margin: auto;
   padding: 0 $smallMargin;
+}
+
+.slide-margin-top-15 {
+  margin: 0;
+  position: absolute;
+  top: 15%;
+  -ms-transform: translateY(-15%);
+  transform: translateY(-15%);
+}
+
+.slide-margin-top-25 {
+  margin: 0;
+  position: absolute;
+  top: 25%;
+  -ms-transform: translateY(-25%);
+  transform: translateY(-25%);
+}
+
+.center-vertical {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 /* Constrain figures and other large block elements */
@@ -168,52 +370,45 @@ h2,
   box-sizing: border-box;
 }
 
-/* Specialised sections */
+/* Specialized sections */
 .reveal .title {
-  background-color: $headingColor;
-  color: $backgroundColor;
+  background-color: $byzantium;
+  color: $white;
   text-align: center;
 }
 
 .reveal .subtitle {
-  background-color: $color-high-secondary;
-  color: $backgroundColor;
+  background-color: $harvestGold;
+  color: $white;
   text-align: center;
 }
 
 .reveal .inverse {
-  color: $color-secondary;
-  background-color: $color-primary;
+  color: $white;
+  background-color: $black;
 }
 
 .reveal .exercise {
-  background-color: $color-high-tertiary;
-  color: $color-secondary;
+  background-color: $persianGreen;
+  color: $white;
 }
 
 /* Blockquote */
 .reveal .blockquote {
-  font-style: italic;
-  border-left: 6px solid $color-high-primary;
   padding: $smallMargin;
   border-radius: 25px;
+  background-color: lighten($persianGreen, 40%);
+  border-left: 6px solid $byzantium;
   border-top: 3px solid $gray;
   border-bottom: 3px solid $gray;
   border-right: 3px solid $gray;
-  background-color: $color-secondary;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Code block */
 code {
-  background-color: darken($backgroundColor, 20%);
+  background-color: darken($white, 20%);
   padding: $smallMargin;
   border-radius: 5px;
-}
-
-/* List styling */
-ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-left: $blockMargin;
 }

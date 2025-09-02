@@ -1,0 +1,25 @@
+// This file is auto-generated from fonts.json. Do not edit directly.
+
+$mainFont: "Lato", "Arial", sans-serif !default;
+
+$headingFont: "League Gothic", "Courier New", monospace !default;
+
+
+.text-font-body { font-family: $mainFont; }
+.text-font-heading { font-family: $headingFont; }
+
+/* Debug font loading - this will help us see if the font is loaded */
+@supports (font-family: "League Gothic") {
+  .debug-font-loaded::before {
+    content: "League Gothic font is supported";
+    display: block;
+    font-size: 12px;
+    color: green;
+  }
+}
+
+/* Force font loading for debugging */
+.force-font-heading {
+  font-family: "League Gothic", monospace !important;
+  font-display: swap;
+}

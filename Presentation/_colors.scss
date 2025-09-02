@@ -1,0 +1,129 @@
+// This file is auto-generated from colors.json. Do not edit directly.
+
+// Color: white
+$white: #ffffffff;
+.reveal .bg-white { background-color: #ffffffff; }
+.text-color-white { color: #ffffffff !important; }
+.text-background-white {
+  background-color: #ffffffff;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-white {
+  background-color: #ffffffff;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: black
+$black: #000000ff;
+.reveal .bg-black { background-color: #000000ff; }
+.text-color-black { color: #000000ff !important; }
+.text-background-black {
+  background-color: #000000ff;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-black {
+  background-color: #000000ff;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: gray
+$gray: #808080ff;
+.reveal .bg-gray { background-color: #808080ff; }
+.text-color-gray { color: #808080ff !important; }
+.text-background-gray {
+  background-color: #808080ff;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-gray {
+  background-color: #808080ff;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: byzantium
+$byzantium: #8f286fff;
+.reveal .bg-byzantium { background-color: #8f286fff; }
+.text-color-byzantium { color: #8f286fff !important; }
+.text-background-byzantium {
+  background-color: #8f286fff;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-byzantium {
+  background-color: #8f286fff;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: harvestGold
+$harvestGold: #eca400ff;
+.reveal .bg-harvestGold { background-color: #eca400ff; }
+.text-color-harvestGold { color: #eca400ff !important; }
+.text-background-harvestGold {
+  background-color: #eca400ff;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-harvestGold {
+  background-color: #eca400ff;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: persianGreen
+$persianGreen: #1b998bff;
+.reveal .bg-persianGreen { background-color: #1b998bff; }
+.text-color-persianGreen { color: #1b998bff !important; }
+.text-background-persianGreen {
+  background-color: #1b998bff;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-persianGreen {
+  background-color: #1b998bff;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: cerulean
+$cerulean: #006992ff;
+.reveal .bg-cerulean { background-color: #006992ff; }
+.text-color-cerulean { color: #006992ff !important; }
+.text-background-cerulean {
+  background-color: #006992ff;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-cerulean {
+  background-color: #006992ff;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+
+// Direct color usage - simple and clear naming
+$body-color: $black !default;
+$backgroundColor: $white !default;
+$headingColor: $byzantium !default;
+$link-color: $persianGreen !default;
+$selection-bg: $persianGreen !default;
+$code-color: $black !default;
+
+// Additional direct color utilities
+.text-color-body { color: $body-color !important; }
+.text-color-background { color: $backgroundColor !important; }
+.text-color-heading { color: $headingColor !important; }
+.text-color-link { color: $link-color !important; }
+
