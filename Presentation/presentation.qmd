@@ -378,17 +378,6 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 [Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
 :::
 
-## Age depth model - example
-
-```{r}
-#| label: age-depth-model-example
-knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron_files/figure-html/unnamed-chunk-51-1.png")
-```
-
-::: footer
-[Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
-:::
-
 ## Age-depth modeling - example
 
 ```{r}
@@ -398,6 +387,17 @@ include_local_figure("Bayes.gif")
 
 ::: footer
 [Chrono14](https://14chrono.org/radiocarbon-dating/age-depth-modelling/)
+:::
+
+## Age depth model - example
+
+```{r}
+#| label: age-depth-model-example
+knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron_files/figure-html/unnamed-chunk-51-1.png")
+```
+
+::: footer
+[Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
 :::
 
 ## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
