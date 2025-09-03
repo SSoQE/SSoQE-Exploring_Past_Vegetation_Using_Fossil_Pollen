@@ -7,9 +7,39 @@ $headingFont: "Space Grotesk", "Arial", sans-serif !default;
 $monospaceFont: "JetBrains Mono", "Courier New", monospace !default;
 
 
+// Font sizes from fonts.json
+$mainFontSize: 30px !default;
+$heading1Size: 2.5em !default;
+$heading2Size: 1.9em !default;
+$heading3Size: 1.4em !default;
+$heading4Size: 1em !default;
+$body-line-height: 1.5 !default;
+$headingLineHeight: 1.2 !default;
+
+// Font weights from fonts.json
+$headingFontWeight: 600 !default;
+$bodyFontWeight: 400 !default;
+$boldFontWeight: 700 !default;
+
+// Font spacing from fonts.json
+$headingLetterSpacing: -0.02em !default;
+$bodyLetterSpacing: 0em !default;
+
+// Utility classes for font families
 .text-font-body { font-family: $mainFont; }
 .text-font-heading { font-family: $headingFont; }
 .text-font-monospace { font-family: $monospaceFont; }
+
+// Utility classes for font sizes
+.text-size-main { font-size: $mainFontSize !important; }
+.text-size-heading1 { font-size: $heading1Size !important; }
+.text-size-heading2 { font-size: $heading2Size !important; }
+.text-size-heading3 { font-size: $heading3Size !important; }
+.text-size-heading4 { font-size: $heading4Size !important; }
+.text-size-body { font-size: $mainFontSize !important; }
+.text-smaller { font-size: calc($mainFontSize * 0.7) !important; }
+.text-tiny { font-size: calc($mainFontSize * 0.3) !important; }
+.text-larger { font-size: calc($mainFontSize * 1.3) !important; }
 
 /* Debug font loading - this will help us see if fonts are loaded */
 @supports (font-family: "Space Grotesk") {

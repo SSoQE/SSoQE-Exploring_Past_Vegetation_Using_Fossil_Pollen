@@ -7,6 +7,42 @@
 
 # Load required packages for theme
 if (!require("ggplot2")) stop("ggplot2 package is required")
+if (!require("sysfonts")) stop("sysfonts package is required for custom fonts")
+if (!require("showtext")) stop("showtext package is required for custom fonts")
+
+# Load Google Fonts using sysfonts with error handling
+# Try to load Plus Jakarta Sans (may be named differently in Google Fonts)
+tryCatch({
+  sysfonts::font_add_google("Plus Jakarta Sans", "ssoqe_body")
+}, error = function(e) {
+  # Try alternative names for Plus Jakarta Sans
+  tryCatch({
+    sysfonts::font_add_google("Jakarta Sans", "ssoqe_body")
+  }, error = function(e2) {
+    # Fallback to a similar font
+    message("Plus Jakarta Sans not found, using Inter as fallback")
+    sysfonts::font_add_google("Inter", "ssoqe_body")
+  })
+})
+
+# Load Space Grotesk
+tryCatch({
+  sysfonts::font_add_google("Space Grotesk", "ssoqe_heading")
+}, error = function(e) {
+  message("Space Grotesk not found, using Roboto Condensed as fallback")
+  sysfonts::font_add_google("Roboto Condensed", "ssoqe_heading")
+})
+
+# Load JetBrains Mono
+tryCatch({
+  sysfonts::font_add_google("JetBrains Mono", "ssoqe_mono")
+}, error = function(e) {
+  message("JetBrains Mono not found, using Fira Code as fallback")
+  sysfonts::font_add_google("Fira Code", "ssoqe_mono")
+})
+
+# Enable showtext for rendering custom fonts
+showtext::showtext_auto()
 
 # SSoQE Brand Colors (from brand guidelines)
 ssoqe_cols <- c(
@@ -34,16 +70,20 @@ ssoqe_background_color <- "#F2F4F2"
 ssoqe_accent_color <- "#C2A337"
 
 # Define typography (based on SSoQE brand guidelines)
-ssoqe_base_font <- "Plus Jakarta Sans"
-ssoqe_heading_font <- "Space Grotesk"
-ssoqe_mono_font <- "JetBrains Mono"
+# Using registered font names from sysfonts
+ssoqe_base_font <- "ssoqe_body"
+ssoqe_heading_font <- "ssoqe_heading"
+ssoqe_mono_font <- "ssoqe_mono"
 
-# Define text sizes (following brand hierarchy)
-text_size_small <- 10
-text_size_base <- 12
-text_size_medium <- 14
-text_size_large <- 16
-text_size_xlarge <- 18
+# Define text sizes (following brand hierarchy from fonts.json)
+# Convert px to pt: 1px ≈ 0.75pt (at 96 DPI)
+text_size_main_px <- 30
+text_size_main_pt <- text_size_main_px * 0.75  # Convert px to pt
+text_size_small <- text_size_main_pt * 0.8
+text_size_base <- text_size_main_pt * 0.9
+text_size_medium <- text_size_main_pt * 1.0
+text_size_large <- text_size_main_pt * 1.2
+text_size_xlarge <- text_size_main_pt * 1.4
 
 # Define line sizes
 line_size_thin <- 0.25
