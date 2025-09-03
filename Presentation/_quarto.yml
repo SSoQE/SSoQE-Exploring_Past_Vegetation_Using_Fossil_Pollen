@@ -1,0 +1,3 @@
+project:
+  title: "SSOQE - Exploring Past Vegetation Using Fossil Pollen"
+  pre-render: "../R/00_Config_file.R"

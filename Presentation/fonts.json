@@ -1,0 +1,26 @@
+{
+  "body": "Plus Jakarta Sans",
+  "heading": "Space Grotesk",
+  "monospace": "JetBrains Mono",
+  "sizes": {
+    "mainFontSize": "30px",
+    "heading1Size": "2.5em",
+    "heading2Size": "1.9em", 
+    "heading3Size": "1.4em",
+    "heading4Size": "1em",
+    "textSizeSmall": "0.7",
+    "textSizeTiny": "0.3", 
+    "textSizeLarge": "1.3",
+    "bodyLineHeight": "1.5",
+    "headingLineHeight": "1.2"
+  },
+  "weights": {
+    "headingFontWeight": "600",
+    "bodyFontWeight": "400",
+    "boldFontWeight": "700"
+  },
+  "spacing": {
+    "headingLetterSpacing": "-0.02em",
+    "bodyLetterSpacing": "0em"
+  }
+}

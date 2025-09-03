@@ -1,6 +1,6 @@
 # Lecture "Exploring Past Vegetation Using Fossil Pollen"
 
-The presentation and materials for a lecture "Exploring Past Vegetation Using Fossil Pollen" for SSoQE 2024.
+The presentation and materials for a lecture "Exploring Past Vegetation Using Fossil Pollen" for SSoQE 2025.
 
 ## Presentation
 

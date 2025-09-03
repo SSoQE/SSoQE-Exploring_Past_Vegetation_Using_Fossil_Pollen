@@ -1,0 +1,115 @@
+// This file is auto-generated from colors.json. Do not edit directly.
+
+// Color: white
+$white: #F2F4F2;
+.reveal .bg-white { background-color: #F2F4F2; }
+.text-color-white { color: #F2F4F2 !important; }
+.text-background-white {
+  background-color: #F2F4F2;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-white {
+  background-color: #F2F4F2;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: black
+$black: #1F2937;
+.reveal .bg-black { background-color: #1F2937; }
+.text-color-black { color: #1F2937 !important; }
+.text-background-black {
+  background-color: #1F2937;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-black {
+  background-color: #1F2937;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: midnightGreen
+$midnightGreen: #155560;
+.reveal .bg-midnightGreen { background-color: #155560; }
+.text-color-midnightGreen { color: #155560 !important; }
+.text-background-midnightGreen {
+  background-color: #155560;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-midnightGreen {
+  background-color: #155560;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: persianGreen
+$persianGreen: #509A8E;
+.reveal .bg-persianGreen { background-color: #509A8E; }
+.text-color-persianGreen { color: #509A8E !important; }
+.text-background-persianGreen {
+  background-color: #509A8E;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-persianGreen {
+  background-color: #509A8E;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: cambridgeBlue
+$cambridgeBlue: #A1C3B3;
+.reveal .bg-cambridgeBlue { background-color: #A1C3B3; }
+.text-color-cambridgeBlue { color: #A1C3B3 !important; }
+.text-background-cambridgeBlue {
+  background-color: #A1C3B3;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-cambridgeBlue {
+  background-color: #A1C3B3;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+// Color: satinSheenGold
+$satinSheenGold: #C2A337;
+.reveal .bg-satinSheenGold { background-color: #C2A337; }
+.text-color-satinSheenGold { color: #C2A337 !important; }
+.text-background-satinSheenGold {
+  background-color: #C2A337;
+  padding: $smallMargin;
+  border-radius: 5px;
+}
+.text-highlight-satinSheenGold {
+  background-color: #C2A337;
+  color: $white;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+
+// SSoQE Brand Guidelines - direct color usage
+$body-color: $black !default;
+$backgroundColor: $white !default;
+$headingColor: $midnightGreen !default;
+$link-color: $persianGreen !default;
+$selection-bg: $persianGreen !default;
+$code-color: $black !default;
+$accent-color: $satinSheenGold !default;
+
+// Additional SSoQE brand utilities
+.text-color-body { color: $body-color !important; }
+.text-color-background { color: $backgroundColor !important; }
+.text-color-heading { color: $headingColor !important; }
+.text-color-link { color: $link-color !important; }
+.text-color-accent { color: $accent-color !important; }
+

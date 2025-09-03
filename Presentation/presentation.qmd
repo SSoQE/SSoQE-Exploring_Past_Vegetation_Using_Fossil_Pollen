@@ -7,6 +7,7 @@ format:
     preview-links: auto
     output-file: "index"
     output-ext: "html"
+    include-in-header: "fonts-include.html"
 ---
 
 ```{r}
@@ -20,62 +21,119 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-if(!require("countdown")) install.packages("countdown")
-
 library(countdown)
+
+# Load required packages for QR code generation
+if (!require("qrcode")) install.packages("qrcode")
+library(qrcode)
+
+if (!require("here")) install.packages("here")
+library(here)
+here::i_am("Presentation/presentation.qmd")
 
 include_local_figure <- function(data_source) {
   knitr::include_graphics(
     path = here::here(
-      "docs/Materials",
+      "Presentation/Materials",
       data_source
     ),
     error = TRUE
   )
 }
 
+source(
+  here::here("R/set_r_theme.R")
+)
+
 ```
 
-# [Exploring Past Vegetation]{.bold .r-fit-text} {.title}
-
-[Using Fossil Pollen]{.bold}
+# {.title}
 
 <br>
-
-Ondřej Mottl
-
-[Science School of Quantitative Ecology 2024](bit.ly/SSoQE)
-
-## About me
 
 :::: {.columns}
 
-::: {.column width="25%"}
-```{r}
-#| label: personal sticker
-include_local_figure("Ondrej_Mottl-transparent-shadow.png")
-```
-
-```{r}
-#| label: linktree QR
-include_local_figure("qr_linktree.png")
-```
+::: {.column width="80%"}
 :::
 
-::: {.column width="10%"}
+::: {.column width="20%"}
+
+```{r}
+#| label: ssoqe-logo-title
+include_local_figure("Logos/SSOQE_logo3.png")
+```
+
 :::
 
-::: {.column width="62%"}
-[Ondřej Mottl]{.bold .r-fit-text .text-color-primary}
-Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
-<br>
+::::
 
-* 📧 Ondrej.mottl(at)gmail.com
-* 🐦 [@OndrejMottl](https://twitter.com/OndrejMottl)
-* 🐱 [Github](https://github.com/OndrejMottl)
-* 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
-* 🌐 [Personal webpage](https://ondrejmottl.github.io/)
-* 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
+:::: {.r-hstack}
+::: {data-id="box1" style="background: `r ssoqe_cols['black']`; width: 135px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box2" style="background: `r ssoqe_cols['cambridge_blue']`; width: 405px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box3" style="background: `r ssoqe_cols['persian_green']`; width: 225px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box4" style="background: `r ssoqe_cols['satin_sheen_gold']`; width: 135px; height: 15px; margin: 0px;"}
+:::
+::::
+
+::: {.text-color-white .text-font-heading .text-size-heading2 .text-bold}
+[Exploring Past Vegetation Using Fossil Pollen]{.text-bold}
+
+:::
+
+:::: {.columns}
+
+::: {.column width="20%"}
+
+:::
+
+::: {.column width="80%" .text-right .text-size-body}
+[👤](https://ondrejmottl.github.io/)Ondřej Mottl
+
+[Science School of Quantitative Ecology 2025]{.text-color-black}
+
+[bit.ly/SSoQE](bit.ly/SSoQE){.text-color-black}
+:::
+
+::::
+
+## [This presentation]{.bold .r-fit-text} {.title}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+::: {.r-fit-text}
+[😸 Code on GitHub](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen)
+
+[🖥️ Slides](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
+
+[![](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+:::
+:::
+
+::: {.column width="30%"}
+```{r}
+#| label: qr_slides
+qr_slides <-
+  qrcode::qr_code(
+    "https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_slides,
+  filename = here::here("Presentation/Materials/QR/qr_slides.svg"),
+  foreground = ssoqe_cols['white'],
+  background = ssoqe_cols['midnight_green']
+)
+
+include_local_figure("QR/qr_slides.svg")
+```
 :::
 
 ::::
@@ -97,7 +155,7 @@ knitr::include_graphics("https://scied.ucar.edu/sites/default/files/media/images
 
 ```{r}
 #| label: lake-to-vegetation
-include_local_figure("Lake to vegetation rate.jpg")
+include_local_figure("Illustrations/Lake to vegetation rate.jpg")
 ```
 
 ::: footer
@@ -108,7 +166,7 @@ include_local_figure("Lake to vegetation rate.jpg")
 
 ```{r}
 #| label: coring
-include_local_figure("Coring map.jpg")
+include_local_figure("Photos/Coring map.jpg")
 ```
 
 ::: footer
@@ -139,17 +197,17 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/neotoma
 ## What does Neotoma store?
 
 ::: {.incremental}
-* **'Raw' Observations** on a variety of different proxies (vertebrates, diatoms, [pollen]{.text-color-highlight-primary}, plant macrofossils, testate amoebae, ostracodes, etc.)
-  * [number of identified specimens]{.text-color-highlight-secondary}, minimum number of individuals, presence/absence
+* **'Raw' Observations** on a variety of different proxies (vertebrates, diatoms, [pollen]{.text-highlight-midnightGreen}, plant macrofossils, testate amoebae, ostracodes, etc.)
+  * [number of identified specimens]{.text-highlight-satinSheenGold}, minimum number of individuals, presence/absence
   * information about individual specimens, such as elements, specimen ID, or isotopic values
 * **Taxon names**
-* [**Dates**]{.text-color-highlight-tertiary} (14C, 210Pb, etc.)
+* [**Dates**]{.text-highlight-persianGreen} (14C, 210Pb, etc.)
 * **Age inferences**
 * [Derived Variables (e.g July mean temperature, species richness)]{.strike}
 * [Image files]{.strike}
 :::
 
-## Notoma - spatio-temporal scale
+## Neotoma - spatio-temporal scale
 
 ```{r}
 #| label: neotoma-spatio-temporal
@@ -210,84 +268,33 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_480x32
 [Neotoma Paleoecology Database](https://www.neotomadb.org/)
 :::
 
-## [Neotoma Explorer]{.r-fit-text} {.subtitle .textcenter}
-
-## Neotoma Explorer
-
-GUI for searching and downloading data.
-
-```{r}
-#| label: neotoma-explorer-screen
-include_local_figure("neotoma_viewer.png")
-```
-
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
-
-:::{.r-fit-text}
-GOAL: Download a pollen record from Neotoma Explorer.
-:::
-
-::: {.textcenter}
-[Neotoma explorer](https://apps.neotomadb.org/explorer/)
-:::
-
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
-
-:::{.r-fit-text}
-* Go to [Neotoma explorer](https://apps.neotomadb.org/explorer/)
-* Dowload a pollen record from a site of your choice
-:::
-
-`r countdown(minutes = 3)`
-
-## [Neotoma API]{.r-fit-text} {.subtitle .textcenter}
-
-## Neotoma API
-
-Notoma REST [API]{.text-color-highlight-primary} allows to directly send [SQL]{.text-color-highlight-secondary} queries from the Neotoma server.
-
-**SQL** (server) = **S**tructured **Q**uery **L**anguage 
-
-**API** = **A**pplication **P**rogramming **I**nterface
-
-```{r}
-#| label: neotoma-api-screen
-knitr::include_graphics("https://images.ctfassets.net/vwq10xzbe6iz/5sBH4Agl614xM7exeLsTo7/9e84dce01735f155911e611c42c9793f/rest-api.png")
-```
-
-::: footer
-[REST APIs Explained](https://mannhowie.com/rest-api)
-:::
-
 ## Database structure
 
 ```{r}
 #| label: neotoma-database-structure-1
-knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/neotomaUML_as.svg")
+include_local_figure("Diagrams/neotoma_structure.svg")
 ```
 
 ::: footer
 [The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
 :::
 
+
 ## Database structure
 
 :::: {.columns}
 
-::: {.column width="25%"}
-Our interest is [Dataset]{.text-color-highlight-primary} and [Samples]{.text-color-highlight-secondary}.
+::: {.column width="50%"}
+This is how it looks like in reality.
 :::
 
-::: {.column width="45%"}
+::: {.column width="50%"}
 
 ```{r}
 #| label: neotoma-database-structure-2
-knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/understanding_S4_structure.svg")
+include_local_figure("Diagrams/neotoma_structure_real.svg")
 ```
 
-:::
-
-::: {.column width="29%"}
 :::
 
 ::::
@@ -296,29 +303,29 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/und
 [The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
 :::
 
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
 
-:::{.r-fit-text}
-GOAL: Get information about a pollen record using Neotoma API.
+## Database structure
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Our interest is [Dataset]{.text-highlight-midnightGreen} and [Samples]{.text-highlight-persianGreen}.
 :::
 
-:::{.textcenter}
-[Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+::: {.column width="60%"}
 
-Use `/v2.0/data/datasets/{datasetid}` endpoint.
-:::
-
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
-
-:::{.r-fit-text}
-
-* get a `datasetid` from a pollen record of your choice from Neotoma Explorer
-* Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
-* Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
+```{r}
+#| label: neotoma-database-structure-3
+include_local_figure("Diagrams/neotoma_structure_box.svg")
+```
 
 :::
 
-`r countdown(minutes = 3)`
+::::
+
+::: footer
+[The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
+:::
 
 # [Fossil pollen data in R]{.bold .r-fit-text} {.title}
 
@@ -339,15 +346,15 @@ GOAL: Get familiar with {neotoma2} R package.
 
 :::
 
-## [Age-depth model]{.r-fit-text} {.subtitle .textcenter}
+# [Age-depth model]{.r-fit-text} {.title .textcenter}
 
 ## Age-depth modeling - Why?
 
-To assign [**age**]{.text-color-highlight-primary} to each [**depth**]{.text-color-highlight-secondary} in a [**core**]{.text-color-highlight-tertiary}.
+To assign [**age**]{.text-highlight-midnightGreen} to each [**depth**]{.text-highlight-persianGreen} in a [**core**]{.text-highlight-cambridgeBlue}.
 
 ```{r}
 #| label: core-age-depth
-include_local_figure("yenv_a_1578547_f0004_oc.jpg")
+include_local_figure("Age_depth_models/yenv_a_1578547_f0004_oc.jpg")
 ```
 
 ::: footer
@@ -375,14 +382,14 @@ knitr::include_graphics("https://blogs.egu.eu/network/geojenga/files/2014/12/Rad
 ::::
 
 ::: footer
-Stock.com/Ja’Crispy | Ascough, SUERC
+Stock.com/Ja'Crispy | Ascough, SUERC
 :::
 
 ## Age-depth modeling - How
 
 ```{r}
 #| label: core-age-depth-gif
-knitr::include_graphics("https://14chrono.org/site/wp-content/uploads/2019/11/sequence.gif")
+include_local_figure("Age_depth_models/sequence.gif")
 ```
 
 ::: footer
@@ -400,6 +407,17 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 [Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
 :::
 
+## Age-depth modeling - example
+
+```{r}
+#| label: core-age-depth-gif-2
+include_local_figure("Age_depth_models/Bayes.gif")
+```
+
+::: footer
+[Chrono14](https://14chrono.org/radiocarbon-dating/age-depth-modelling/)
+:::
+
 ## Age depth model - example
 
 ```{r}
@@ -409,17 +427,6 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 
 ::: footer
 [Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
-:::
-
-## Age-depth modeling - example
-
-```{r}
-#| label: core-age-depth-gif-2
-knitr::include_graphics("https://14chrono.org/site/wp-content/uploads/2019/11/Bayes.gif")
-```
-
-::: footer
-[Chrono14](https://14chrono.org/radiocarbon-dating/age-depth-modelling/)
 :::
 
 ## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
@@ -457,7 +464,7 @@ Work in groups and choose a taxon and region of your interest.
 
 ```{r}
 #| label: FOSSILPOL
-include_local_figure("Workflow complete - 600ppi.png")
+include_local_figure("Diagrams/Workflow complete - 600ppi.png")
 ```
 
 ::: footer
@@ -472,7 +479,7 @@ art by [Milan TvM](https://x.com/MilanaTvM)
 
 ```{r}
 #| label: FOSSILPOL-logo
-include_local_figure("Logo FOSSILPOL regular - 600ppi.png")
+include_local_figure("Logos/Logo FOSSILPOL regular - 600ppi.png")
 ```
 :::
 
@@ -480,7 +487,20 @@ include_local_figure("Logo FOSSILPOL regular - 600ppi.png")
 
 ```{r}
 #| label: FOSSILPOL-qr
-include_local_figure("qr-fossilpol.png")
+qr_fossilpol <-
+  qrcode::qr_code(
+    "https://bit.ly/FOSSILPOL",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_fossilpol,
+  filename = here::here("Presentation/Materials/QR/qr_fossilpol.svg"),
+  foreground = ssoqe_cols['black'],
+  background = ssoqe_cols['white']
+)
+
+include_local_figure("QR/qr_fossilpol.svg")
 ```
 :::
 
@@ -490,14 +510,95 @@ include_local_figure("qr-fossilpol.png")
 [FOSSILPOL](bit.ly/FOSSILPOL)
 :::
 
+## [Neotoma API]{.r-fit-text} {.title .textcenter}
+
+## Neotoma API
+
+Notoma REST [API]{.text-highlight-midnightGreen} allows to directly send [SQL]{.text-highlight-satinSheenGold} queries from the Neotoma server.
+
+**SQL** (server) = **S**tructured **Q**uery **L**anguage 
+
+**API** = **A**pplication **P**rogramming **I**nterface
+
+```{r}
+#| label: neotoma-api-screen
+knitr::include_graphics("https://images.ctfassets.net/vwq10xzbe6iz/5sBH4Agl614xM7exeLsTo7/9e84dce01735f155911e611c42c9793f/rest-api.png")
+```
+
+::: footer
+[REST APIs Explained](https://mannhowie.com/rest-api)
+:::
+
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+GOAL: Get information about a pollen record using Neotoma API.
+:::
+
+:::{.textcenter}
+[Neotoma API (swagger interface)](https://api.neotomadb.org/api-Presentation/)
+
+Use `/v2.0/data/datasets/{datasetid}` endpoint.
+:::
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+
+* get a `datasetid` from a pollen record of your choice from Neotoma Explorer
+* Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-Presentation/)
+* Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
+
+:::
+
+`r countdown(minutes = 10)`
+
 # [Outro]{.bold .r-fit-text} {.title}
 
-## [This presentation]{.bold .r-fit-text} {.title}
+## About me
 
-::: {.r-fit-text}
-[😸 Code on GitHub](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen)
+:::: {.columns}
 
-[🖥️ Slides](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
+::: {.column width="25%"}
+```{r}
+#| label: personal sticker
+include_local_figure("Author/Ondrej_Mottl-transparent-shadow.png")
+```
 
-[![](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+```{r}
+#| label: linktree QR
+qr_personal_web <-
+  qrcode::qr_code(
+    "https://bit.ly/ondrej_mottl",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_personal_web,
+  filename = here::here("Presentation/Materials/QR/qr_personal_web.svg"),
+  foreground = ssoqe_cols['black'],
+  background = ssoqe_cols['white']
+)
+
+include_local_figure("QR/qr_personal_web.svg")
+```
 :::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="70%"}
+[Ondřej Mottl]{.bold .r-fit-text .text-color-black}
+Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
+
+Head of the 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
+
+* 📧 Ondrej.mottl(at)gmail.com
+* 🦋 [ondrejmottl.bsky.social](https://bsky.app/profile/ondrejmottl.bsky.social)
+* 🐱 [Github](https://github.com/OndrejMottl)
+* 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
+* 🌐 [Personal webpage](https://ondrejmottl.github.io/)
+:::
+
+::::
