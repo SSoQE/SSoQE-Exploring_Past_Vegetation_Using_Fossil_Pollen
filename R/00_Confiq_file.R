@@ -55,7 +55,6 @@ package_list <-
     "fs",
     "geojsonsf",
     "here",
-    "httpgd",
     "janitor",
     "jsonlite",
     "knitr",
@@ -124,21 +123,6 @@ if (
 # 6. Graphical options -----
 #----------------------------------------------------------#
 
-## examples
-# set ggplot output
-ggplot2::theme_set(
-  ggplot2::theme_bw()
+source(
+  here::here("R/_Set_r_theme.R")
 )
-
-# define general
-text_size <- 10
-line_size <- 0.1
-
-# define output sizes
-image_width <- 16
-image_height <- 12
-image_units <- "cm"
-
-# define pallets
-
-# define common color

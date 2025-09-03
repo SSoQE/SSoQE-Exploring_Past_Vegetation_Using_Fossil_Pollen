@@ -90,7 +90,6 @@ sapply(
     "fs",
     "geojsonsf",
     "here",
-    "httpgd",
     "janitor",
     "jsonlite",
     "knitr",
