@@ -23,6 +23,14 @@ knitr::opts_chunk$set(
 
 library(countdown)
 
+# Load required packages for QR code generation
+if (!require("qrcode")) install.packages("qrcode")
+library(qrcode)
+
+if (!require("here")) install.packages("here")
+library(here)
+here::i_am("Presentation/presentation.qmd")
+
 include_local_figure <- function(data_source) {
   knitr::include_graphics(
     path = here::here(
@@ -450,7 +458,20 @@ include_local_figure("Logo FOSSILPOL regular - 600ppi.png")
 
 ```{r}
 #| label: FOSSILPOL-qr
-include_local_figure("qr-fossilpol.png")
+qr_fossilpol <-
+  qrcode::qr_code(
+    "https://bit.ly/FOSSILPOL",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_fossilpol,
+  filename = here::here("Presentation/Materials/QR/qr_fossilpol.svg"),
+  foreground = colors$black,
+  background = colors$white
+)
+
+include_local_figure("QR/qr_fossilpol.svg")
 ```
 :::
 
@@ -487,7 +508,7 @@ GOAL: Get information about a pollen record using Neotoma API.
 :::
 
 :::{.textcenter}
-[Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+[Neotoma API (swagger interface)](https://api.neotomadb.org/api-Presentation/)
 
 Use `/v2.0/data/datasets/{datasetid}` endpoint.
 :::
@@ -497,7 +518,7 @@ Use `/v2.0/data/datasets/{datasetid}` endpoint.
 :::{.r-fit-text}
 
 * get a `datasetid` from a pollen record of your choice from Neotoma Explorer
-* Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+* Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-Presentation/)
 * Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
 
 :::
@@ -518,7 +539,20 @@ include_local_figure("Ondrej_Mottl-transparent-shadow.png")
 
 ```{r}
 #| label: linktree QR
-include_local_figure("qr_linktree.png")
+qr_personal_web <-
+  qrcode::qr_code(
+    "https://bit.ly/ondrej_mottl",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_personal_web,
+  filename = here::here("Presentation/Materials/QR/qr_personal_web.svg"),
+  foreground = colors$black,
+  background = colors$white
+)
+
+include_local_figure("QR/qr_personal_web.svg")
 ```
 :::
 
@@ -542,6 +576,9 @@ Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
 
 ## [This presentation]{.bold .r-fit-text} {.title}
 
+:::: {.columns}
+
+::: {.column width="70%"}
 ::: {.r-fit-text}
 [😸 Code on GitHub](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen)
 
@@ -549,3 +586,26 @@ Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
 
 [![](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 :::
+:::
+
+::: {.column width="30%"}
+```{r}
+#| label: qr_slides
+qr_slides <-
+  qrcode::qr_code(
+    "https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_slides,
+  filename = here::here("Presentation/Materials/QR/qr_slides.svg"),
+  foreground = colors$white,
+  background = colors$midnightGreen
+)
+
+include_local_figure("QR/qr_slides.svg")
+```
+:::
+
+::::
