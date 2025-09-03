@@ -1,9 +1,8 @@
 {
-  "white": "#ffffffff",
-  "black": "#000000ff",
-  "gray": "#808080ff",
-  "byzantium": "#8f286fff",
-  "harvestGold": "#eca400ff",
-  "persianGreen": "#1b998bff",
-  "cerulean": "#006992ff"
+  "white": "#F2F4F2",
+  "black": "#1F2937",
+  "midnightGreen": "#155560",
+  "persianGreen": "#509A8E",
+  "cambridgeBlue": "#A1C3B3",
+  "satinSheenGold": "#C2A337"
 }

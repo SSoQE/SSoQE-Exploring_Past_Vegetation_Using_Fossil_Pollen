@@ -20,17 +20,16 @@ $mainFontSize: 30px;
 $body-line-height: 1.5;
 
 $headingMargin: 0;
-$headingColor: $byzantium;
 $headingLineHeight: 1.2;
-$headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
+$headingLetterSpacing: -0.02em; /* -2% tracking as per guidelines */
+$headingTextTransform: none; /* SSoQE uses title case, not uppercase */
 $headingTextShadow: none;
-$headingFontWeight: normal;
+$headingFontWeight: 600; /* Semibold as per guidelines */
 
-$heading1Size: 3.77em;
-$heading1TextShadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-$heading2Size: 2.11em;
-$heading3Size: 1.55em;
+$heading1Size: 2.5em; /* 36-44px equivalent */
+$heading1TextShadow: none;
+$heading2Size: 1.9em; /* 28-32px equivalent */
+$heading3Size: 1.4em; /* 22-24px equivalent */
 $heading4Size: 1em;
 
 // Layout
@@ -43,8 +42,8 @@ body {
   font-family: $mainFont;
   font-size: $mainFontSize;
   line-height: $body-line-height;
-  color: $black;
-  background-color: $white !important;
+  color: $body-color;
+  background-color: $backgroundColor !important;
 }
 
 /* Code styling (default and reveal) */
@@ -52,10 +51,12 @@ pre,
 .reveal pre,
 code,
 .reveal code {
-  background-color: lighten($white, 20%) !important;
-  color: $black;
-  border-radius: 5px;
-  line-height: 1;
+  background-color: $backgroundColor !important;
+  color: $body-color;
+  border-radius: 8px; /* More rounded as per brand guidelines */
+  line-height: 1.4;
+  font-family: $monospaceFont;
+  border: 1px solid $cambridgeBlue;
 }
 
 pre,
@@ -114,38 +115,38 @@ pre a,
 .reveal pre a,
 code a,
 .reveal code a {
-  color: $black;
+  color: $body-color;
   text-decoration: underline;
 
   &:hover {
-    color: $persianGreen;
-    background-color: $black;
+    color: $link-color;
+    background-color: $body-color;
   }
 }
 
 a,
 .reveal a,
 .reveal .footer a {
-  color: $persianGreen !important;
+  color: $link-color !important;
   text-decoration: underline !important;
 
   &:hover {
-    color: $black !important;
-    background-color: $persianGreen !important;
+    color: $body-color !important;
+    background-color: $link-color !important;
   }
 }
 
 /* Specific styling for links in title slides and slides with background colors */
 .reveal .slides section a,
 .reveal .title-slide a,
-.reveal .bg-black a,
+.reveal .bg-midnightGreen a,
 .reveal .slide-background a {
-  color: $persianGreen !important;
+  color: $link-color !important;
   text-decoration: underline !important;
 
   &:hover {
-    color: $black !important;
-    background-color: $persianGreen !important;
+    color: $backgroundColor !important;
+    background-color: $link-color !important;
   }
 }
 
@@ -153,7 +154,7 @@ a,
 .reveal a:link,
 .reveal a:visited,
 .reveal a:active {
-  color: $persianGreen !important;
+  color: $link-color !important;
 }
 
 /* Fix for code blocks in HTML output */
@@ -372,43 +373,70 @@ ul ul {
 
 /* Specialized sections */
 .reveal .title {
-  background-color: $byzantium;
-  color: $white;
+  background-color: $headingColor;
+  color: $backgroundColor;
   text-align: center;
 }
 
 .reveal .subtitle {
-  background-color: $harvestGold;
-  color: $white;
+  background-color: $persianGreen;
+  color: $backgroundColor;
   text-align: center;
 }
 
 .reveal .inverse {
-  color: $white;
-  background-color: $black;
+  color: $backgroundColor;
+  background-color: $headingColor;
 }
 
 .reveal .exercise {
-  background-color: $persianGreen;
-  color: $white;
+  background-color: $link-color;
+  color: $backgroundColor;
 }
 
 /* Blockquote */
 .reveal .blockquote {
-  padding: $smallMargin;
-  border-radius: 25px;
-  background-color: lighten($persianGreen, 40%);
-  border-left: 6px solid $byzantium;
-  border-top: 3px solid $gray;
-  border-bottom: 3px solid $gray;
-  border-right: 3px solid $gray;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  padding: 16px 24px; /* Following brand guidelines */
+  border-radius: 16px; /* 2xl rounded corners */
+  background-color: $backgroundColor;
+  border-left: 6px solid $headingColor;
+  border-top: 2px solid $cambridgeBlue;
+  border-bottom: 2px solid $cambridgeBlue;
+  border-right: 2px solid $cambridgeBlue;
+  box-shadow: 0 2px 8px rgba(21, 85, 96, 0.1); /* Soft shadow with Midnight Green */
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Code block */
 code {
-  background-color: darken($white, 20%);
+  background-color: $backgroundColor;
   padding: $smallMargin;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-family: $monospaceFont;
+  border: 1px solid $cambridgeBlue;
+}
+
+/* EXERCISE SECTION LINK OVERRIDES - Must be last to ensure precedence */
+.reveal .exercise a,
+.reveal .exercise * a,
+.reveal .slides .exercise a,
+.reveal .slides .exercise * a,
+.reveal .slides section.exercise a,
+.reveal .slides section.exercise * a {
+  color: $backgroundColor !important; /* Pure white for maximum contrast against Persian Green */
+  text-decoration: underline !important;
+  text-decoration-color: $backgroundColor !important;
+  font-weight: 600 !important;
+  background-color: transparent !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $headingColor !important;
+    background-color: $backgroundColor !important;
+    border-radius: 3px !important;
+    padding: 2px 4px !important;
+    text-decoration: underline !important;
+    text-decoration-color: $headingColor !important;
+  }
 }

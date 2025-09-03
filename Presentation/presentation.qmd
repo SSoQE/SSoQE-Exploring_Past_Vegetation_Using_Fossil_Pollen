@@ -138,8 +138,8 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/neotoma
 ## What does Neotoma store?
 
 ::: {.incremental}
-* **'Raw' Observations** on a variety of different proxies (vertebrates, diatoms, [pollen]{.text-highlight-byzantium}, plant macrofossils, testate amoebae, ostracodes, etc.)
-  * [number of identified specimens]{.text-highlight-harvestGold}, minimum number of individuals, presence/absence
+* **'Raw' Observations** on a variety of different proxies (vertebrates, diatoms, [pollen]{.text-highlight-midnightGreen}, plant macrofossils, testate amoebae, ostracodes, etc.)
+  * [number of identified specimens]{.text-highlight-satinSheenGold}, minimum number of individuals, presence/absence
   * information about individual specimens, such as elements, specimen ID, or isotopic values
 * **Taxon names**
 * [**Dates**]{.text-highlight-persianGreen} (14C, 210Pb, etc.)
@@ -243,7 +243,7 @@ GOAL: Download a pollen record from Neotoma Explorer.
 
 ## Neotoma API
 
-Notoma REST [API]{.text-highlight-byzantium} allows to directly send [SQL]{.text-highlight-harvestGold} queries from the Neotoma server.
+Notoma REST [API]{.text-highlight-midnightGreen} allows to directly send [SQL]{.text-highlight-satinSheenGold} queries from the Neotoma server.
 
 **SQL** (server) = **S**tructured **Q**uery **L**anguage 
 
@@ -274,7 +274,7 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/neo
 :::: {.columns}
 
 ::: {.column width="25%"}
-Our interest is [Dataset]{.text-highlight-byzantium} and [Samples]{.text-highlight-harvestGold}.
+Our interest is [Dataset]{.text-highlight-midnightGreen} and [Samples]{.text-highlight-persianGreen}.
 :::
 
 ::: {.column width="45%"}
@@ -342,7 +342,7 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ## Age-depth modeling - Why?
 
-To assign [**age**]{.text-highlight-byzantium} to each [**depth**]{.text-highlight-harvestGold} in a [**core**]{.text-highlight-persianGreen}.
+To assign [**age**]{.text-highlight-midnightGreen} to each [**depth**]{.text-highlight-persianGreen} in a [**core**]{.text-highlight-cambridgeBlue}.
 
 ```{r}
 #| label: core-age-depth
