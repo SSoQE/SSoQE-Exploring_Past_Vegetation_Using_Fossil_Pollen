@@ -354,7 +354,7 @@ To assign [**age**]{.text-highlight-midnightGreen} to each [**depth**]{.text-hig
 
 ```{r}
 #| label: core-age-depth
-include_local_figure("Photos/yenv_a_1578547_f0004_oc.jpg")
+include_local_figure("Age_depth_models/yenv_a_1578547_f0004_oc.jpg")
 ```
 
 ::: footer
@@ -389,7 +389,7 @@ Stock.com/Ja'Crispy | Ascough, SUERC
 
 ```{r}
 #| label: core-age-depth-gif
-include_local_figure("Animations/sequence.gif")
+include_local_figure("Age_depth_models/sequence.gif")
 ```
 
 ::: footer
@@ -411,7 +411,7 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 
 ```{r}
 #| label: core-age-depth-gif-2
-include_local_figure("Animations/Bayes.gif")
+include_local_figure("Age_depth_models/Bayes.gif")
 ```
 
 ::: footer
@@ -464,7 +464,7 @@ Work in groups and choose a taxon and region of your interest.
 
 ```{r}
 #| label: FOSSILPOL
-include_local_figure("Illustrations/Workflow complete - 600ppi.png")
+include_local_figure("Diagrams/Workflow complete - 600ppi.png")
 ```
 
 ::: footer
@@ -563,7 +563,7 @@ Use `/v2.0/data/datasets/{datasetid}` endpoint.
 ::: {.column width="25%"}
 ```{r}
 #| label: personal sticker
-include_local_figure("About/Ondrej_Mottl-transparent-shadow.png")
+include_local_figure("Author/Ondrej_Mottl-transparent-shadow.png")
 ```
 
 ```{r}
