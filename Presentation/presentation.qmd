@@ -41,17 +41,10 @@ include_local_figure <- function(data_source) {
   )
 }
 
-```
+source(
+  here::here("R/set_r_theme.R")
+)
 
-```{r}
-#| label: colors
-#| include: false
-library(jsonlite)
-
-colors <- 
-  jsonlite::fromJSON(
-    here::here("Presentation/colors.json")
-  )
 ```
 
 # {.title}
@@ -75,16 +68,16 @@ include_local_figure("SSOQE_logo3.png")
 ::::
 
 :::: {.r-hstack}
-::: {data-id="box1" style="background: `r colors$black`; width: 135px; height: 15px; margin: 0px;"}
+::: {data-id="box1" style="background: `r ssoqe_cols['black']`; width: 135px; height: 15px; margin: 0px;"}
 :::
 
-::: {data-id="box2" style="background: `r colors$cambridgeBlue`; width: 405px; height: 15px; margin: 0px;"}
+::: {data-id="box2" style="background: `r ssoqe_cols['cambridge_blue']`; width: 405px; height: 15px; margin: 0px;"}
 :::
 
-::: {data-id="box3" style="background: `r colors$persianGreen`; width: 225px; height: 15px; margin: 0px;"}
+::: {data-id="box3" style="background: `r ssoqe_cols['persian_green']`; width: 225px; height: 15px; margin: 0px;"}
 :::
 
-::: {data-id="box4" style="background: `r colors$satinSheenGold`; width: 135px; height: 15px; margin: 0px;"}
+::: {data-id="box4" style="background: `r ssoqe_cols['satin_sheen_gold']`; width: 135px; height: 15px; margin: 0px;"}
 :::
 ::::
 
@@ -317,7 +310,7 @@ GOAL: Get familiar with {neotoma2} R package.
 
 :::
 
-## [Age-depth model]{.r-fit-text} {.subtitle .textcenter}
+# [Age-depth model]{.r-fit-text} {.title .textcenter}
 
 ## Age-depth modeling - Why?
 
@@ -467,8 +460,8 @@ qr_fossilpol <-
 qrcode::generate_svg(
   qrcode = qr_fossilpol,
   filename = here::here("Presentation/Materials/QR/qr_fossilpol.svg"),
-  foreground = colors$black,
-  background = colors$white
+  foreground = ssoqe_cols['black'],
+  background = ssoqe_cols['white']
 )
 
 include_local_figure("QR/qr_fossilpol.svg")
@@ -481,7 +474,7 @@ include_local_figure("QR/qr_fossilpol.svg")
 [FOSSILPOL](bit.ly/FOSSILPOL)
 :::
 
-## [Neotoma API]{.r-fit-text} {.subtitle .textcenter}
+## [Neotoma API]{.r-fit-text} {.title .textcenter}
 
 ## Neotoma API
 
@@ -548,8 +541,8 @@ qr_personal_web <-
 qrcode::generate_svg(
   qrcode = qr_personal_web,
   filename = here::here("Presentation/Materials/QR/qr_personal_web.svg"),
-  foreground = colors$black,
-  background = colors$white
+  foreground = ssoqe_cols['black'],
+  background = ssoqe_cols['white']
 )
 
 include_local_figure("QR/qr_personal_web.svg")
@@ -600,8 +593,8 @@ qr_slides <-
 qrcode::generate_svg(
   qrcode = qr_slides,
   filename = here::here("Presentation/Materials/QR/qr_slides.svg"),
-  foreground = colors$white,
-  background = colors$midnightGreen
+  foreground = ssoqe_cols['white'],
+  background = ssoqe_cols['midnight_green']
 )
 
 include_local_figure("QR/qr_slides.svg")
