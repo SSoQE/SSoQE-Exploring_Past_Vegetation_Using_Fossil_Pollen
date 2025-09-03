@@ -59,7 +59,7 @@ colors <-
 
 ```{r}
 #| label: ssoqe-logo-title
-include_local_figure("Ondrej_Mottl-transparent-shadow.png")
+include_local_figure("SSOQE_logo3.png")
 ```
 
 :::
@@ -67,16 +67,16 @@ include_local_figure("Ondrej_Mottl-transparent-shadow.png")
 ::::
 
 :::: {.r-hstack}
-::: {data-id="box1" style="background: `r colors$black`; width: 120px; height: 15px; margin: 0px;"}
+::: {data-id="box1" style="background: `r colors$black`; width: 135px; height: 15px; margin: 0px;"}
 :::
 
-::: {data-id="box2" style="background: `r colors$cambridgeBlue`; width: 350px; height: 15px; margin: 0px;"}
+::: {data-id="box2" style="background: `r colors$cambridgeBlue`; width: 405px; height: 15px; margin: 0px;"}
 :::
 
-::: {data-id="box3" style="background: `r colors$persianGreen`; width: 200px; height: 15px; margin: 0px;"}
+::: {data-id="box3" style="background: `r colors$persianGreen`; width: 225px; height: 15px; margin: 0px;"}
 :::
 
-::: {data-id="box4" style="background: `r colors$satinSheenGold`; width: 120px; height: 15px; margin: 0px;"}
+::: {data-id="box4" style="background: `r colors$satinSheenGold`; width: 135px; height: 15px; margin: 0px;"}
 :::
 ::::
 
@@ -97,40 +97,6 @@ include_local_figure("Ondrej_Mottl-transparent-shadow.png")
 [Science School of Quantitative Ecology 2024]{.text-color-black}
 
 [bit.ly/SSoQE](bit.ly/SSoQE){.text-color-black}
-:::
-
-::::
-
-## About me
-
-:::: {.columns}
-
-::: {.column width="25%"}
-```{r}
-#| label: personal sticker
-include_local_figure("Ondrej_Mottl-transparent-shadow.png")
-```
-
-```{r}
-#| label: linktree QR
-include_local_figure("qr_linktree.png")
-```
-:::
-
-::: {.column width="10%"}
-:::
-
-::: {.column width="62%"}
-[Ondřej Mottl]{.bold .r-fit-text .text-color-black}
-Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
-<br>
-
-* 📧 Ondrej.mottl(at)gmail.com
-* 🐦 [@OndrejMottl](https://twitter.com/OndrejMottl)
-* 🐱 [Github](https://github.com/OndrejMottl)
-* 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
-* 🌐 [Personal webpage](https://ondrejmottl.github.io/)
-* 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
 :::
 
 ::::
@@ -539,6 +505,40 @@ Use `/v2.0/data/datasets/{datasetid}` endpoint.
 `r countdown(minutes = 10)`
 
 # [Outro]{.bold .r-fit-text} {.title}
+
+## About me
+
+:::: {.columns}
+
+::: {.column width="25%"}
+```{r}
+#| label: personal sticker
+include_local_figure("Ondrej_Mottl-transparent-shadow.png")
+```
+
+```{r}
+#| label: linktree QR
+include_local_figure("qr_linktree.png")
+```
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="62%"}
+[Ondřej Mottl]{.bold .r-fit-text .text-color-black}
+Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
+<br>
+
+* 📧 Ondrej.mottl(at)gmail.com
+* 🐦 [@OndrejMottl](https://twitter.com/OndrejMottl)
+* 🐱 [Github](https://github.com/OndrejMottl)
+* 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
+* 🌐 [Personal webpage](https://ondrejmottl.github.io/)
+* 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
+:::
+
+::::
 
 ## [This presentation]{.bold .r-fit-text} {.title}
 
