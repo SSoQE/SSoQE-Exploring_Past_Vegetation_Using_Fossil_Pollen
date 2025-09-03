@@ -26,7 +26,7 @@ library(countdown)
 include_local_figure <- function(data_source) {
   knitr::include_graphics(
     path = here::here(
-      "docs/Materials",
+      "Presentation/Materials",
       data_source
     ),
     error = TRUE
@@ -35,15 +35,71 @@ include_local_figure <- function(data_source) {
 
 ```
 
-# [Exploring Past Vegetation]{.bold .r-fit-text} {.title}
+```{r}
+#| label: colors
+#| include: false
+library(jsonlite)
 
-[Using Fossil Pollen]{.bold}
+colors <- 
+  jsonlite::fromJSON(
+    here::here("Presentation/colors.json")
+  )
+```
+
+# {.title}
 
 <br>
 
-Ondřej Mottl
+:::: {.columns}
 
-[Science School of Quantitative Ecology 2024](bit.ly/SSoQE)
+::: {.column width="80%"}
+:::
+
+::: {.column width="20%"}
+
+```{r}
+#| label: ssoqe-logo-title
+include_local_figure("Ondrej_Mottl-transparent-shadow.png")
+```
+
+:::
+
+::::
+
+:::: {.r-hstack}
+::: {data-id="box1" style="background: `r colors$black`; width: 120px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box2" style="background: `r colors$cambridgeBlue`; width: 350px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box3" style="background: `r colors$persianGreen`; width: 200px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box4" style="background: `r colors$satinSheenGold`; width: 120px; height: 15px; margin: 0px;"}
+:::
+::::
+
+::: {.text-color-white .text-font-heading .text-size-heading2 .text-bold}
+[Exploring Past Vegetation Using Fossil Pollen]{.text-bold}
+
+:::
+
+:::: {.columns}
+
+::: {.column width="20%"}
+
+:::
+
+::: {.column width="80%" .text-right .text-size-body}
+[👤](https://ondrejmottl.github.io/)Ondřej Mottl
+
+[Science School of Quantitative Ecology 2024]{.text-color-black}
+
+[bit.ly/SSoQE](bit.ly/SSoQE){.text-color-black}
+:::
+
+::::
 
 ## About me
 
@@ -148,7 +204,7 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/neotoma
 * [Image files]{.strike}
 :::
 
-## Notoma - spatio-temporal scale
+## Neotoma - spatio-temporal scale
 
 ```{r}
 #| label: neotoma-spatio-temporal
@@ -209,84 +265,33 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_480x32
 [Neotoma Paleoecology Database](https://www.neotomadb.org/)
 :::
 
-## [Neotoma Explorer]{.r-fit-text} {.subtitle .textcenter}
-
-## Neotoma Explorer
-
-GUI for searching and downloading data.
-
-```{r}
-#| label: neotoma-explorer-screen
-include_local_figure("neotoma_viewer.png")
-```
-
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
-
-:::{.r-fit-text}
-GOAL: Download a pollen record from Neotoma Explorer.
-:::
-
-::: {.textcenter}
-[Neotoma explorer](https://apps.neotomadb.org/explorer/)
-:::
-
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
-
-:::{.r-fit-text}
-* Go to [Neotoma explorer](https://apps.neotomadb.org/explorer/)
-* Dowload a pollen record from a site of your choice
-:::
-
-`r countdown(minutes = 3)`
-
-## [Neotoma API]{.r-fit-text} {.subtitle .textcenter}
-
-## Neotoma API
-
-Notoma REST [API]{.text-highlight-midnightGreen} allows to directly send [SQL]{.text-highlight-satinSheenGold} queries from the Neotoma server.
-
-**SQL** (server) = **S**tructured **Q**uery **L**anguage 
-
-**API** = **A**pplication **P**rogramming **I**nterface
-
-```{r}
-#| label: neotoma-api-screen
-knitr::include_graphics("https://images.ctfassets.net/vwq10xzbe6iz/5sBH4Agl614xM7exeLsTo7/9e84dce01735f155911e611c42c9793f/rest-api.png")
-```
-
-::: footer
-[REST APIs Explained](https://mannhowie.com/rest-api)
-:::
-
 ## Database structure
 
 ```{r}
 #| label: neotoma-database-structure-1
-knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/neotomaUML_as.svg")
+include_local_figure("neotoma_structure.svg")
 ```
 
 ::: footer
 [The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
 :::
 
+
 ## Database structure
 
 :::: {.columns}
 
-::: {.column width="25%"}
-Our interest is [Dataset]{.text-highlight-midnightGreen} and [Samples]{.text-highlight-persianGreen}.
+::: {.column width="50%"}
+This is how it looks like in reality.
 :::
 
-::: {.column width="45%"}
+::: {.column width="50%"}
 
 ```{r}
 #| label: neotoma-database-structure-2
-knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/understanding_S4_structure.svg")
+include_local_figure("neotoma_structure_real.svg")
 ```
 
-:::
-
-::: {.column width="29%"}
 :::
 
 ::::
@@ -295,29 +300,29 @@ knitr::include_graphics("https://open.neotomadb.org/neotoma2/inst/doc/images/und
 [The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
 :::
 
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
 
-:::{.r-fit-text}
-GOAL: Get information about a pollen record using Neotoma API.
+## Database structure
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Our interest is [Dataset]{.text-highlight-midnightGreen} and [Samples]{.text-highlight-persianGreen}.
 :::
 
-:::{.textcenter}
-[Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+::: {.column width="60%"}
 
-Use `/v2.0/data/datasets/{datasetid}` endpoint.
-:::
-
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
-
-:::{.r-fit-text}
-
-* get a `datasetid` from a pollen record of your choice from Neotoma Explorer
-* Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
-* Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
+```{r}
+#| label: neotoma-database-structure-3
+include_local_figure("neotoma_structure_box.svg")
+```
 
 :::
 
-`r countdown(minutes = 3)`
+::::
+
+::: footer
+[The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
+:::
 
 # [Fossil pollen data in R]{.bold .r-fit-text} {.title}
 
@@ -374,14 +379,14 @@ knitr::include_graphics("https://blogs.egu.eu/network/geojenga/files/2014/12/Rad
 ::::
 
 ::: footer
-Stock.com/Ja’Crispy | Ascough, SUERC
+Stock.com/Ja'Crispy | Ascough, SUERC
 :::
 
 ## Age-depth modeling - How
 
 ```{r}
 #| label: core-age-depth-gif
-knitr::include_graphics("https://14chrono.org/site/wp-content/uploads/2019/11/sequence.gif")
+include_local_figure("sequence.gif")
 ```
 
 ::: footer
@@ -414,7 +419,7 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 
 ```{r}
 #| label: core-age-depth-gif-2
-knitr::include_graphics("https://14chrono.org/site/wp-content/uploads/2019/11/Bayes.gif")
+include_local_figure("Bayes.gif")
 ```
 
 ::: footer
@@ -488,6 +493,50 @@ include_local_figure("qr-fossilpol.png")
 ::: footer
 [FOSSILPOL](bit.ly/FOSSILPOL)
 :::
+
+## [Neotoma API]{.r-fit-text} {.subtitle .textcenter}
+
+## Neotoma API
+
+Notoma REST [API]{.text-highlight-midnightGreen} allows to directly send [SQL]{.text-highlight-satinSheenGold} queries from the Neotoma server.
+
+**SQL** (server) = **S**tructured **Q**uery **L**anguage 
+
+**API** = **A**pplication **P**rogramming **I**nterface
+
+```{r}
+#| label: neotoma-api-screen
+knitr::include_graphics("https://images.ctfassets.net/vwq10xzbe6iz/5sBH4Agl614xM7exeLsTo7/9e84dce01735f155911e611c42c9793f/rest-api.png")
+```
+
+::: footer
+[REST APIs Explained](https://mannhowie.com/rest-api)
+:::
+
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+GOAL: Get information about a pollen record using Neotoma API.
+:::
+
+:::{.textcenter}
+[Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+
+Use `/v2.0/data/datasets/{datasetid}` endpoint.
+:::
+
+## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+
+:::{.r-fit-text}
+
+* get a `datasetid` from a pollen record of your choice from Neotoma Explorer
+* Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-docs/)
+* Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
+
+:::
+
+`r countdown(minutes = 10)`
 
 # [Outro]{.bold .r-fit-text} {.title}
 
