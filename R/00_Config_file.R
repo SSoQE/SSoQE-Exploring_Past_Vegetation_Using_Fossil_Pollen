@@ -76,17 +76,7 @@ sapply(package_list, library, character.only = TRUE)
 
 
 #----------------------------------------------------------#
-# 2. Define space -----
-#----------------------------------------------------------#
-
-current_date <- Sys.Date()
-
-# project directory is set up by 'here' package, Adjust if needed
-current_dir <- here::here()
-
-
-#----------------------------------------------------------#
-# 3. Load functions -----
+# 2. Load functions -----
 #----------------------------------------------------------#
 
 # get vector of general functions
@@ -109,20 +99,13 @@ if (
 
 
 #----------------------------------------------------------#
-# 4. Authorise the user -----
-#----------------------------------------------------------#
-
-# if applicable
-
-#----------------------------------------------------------#
-# 5. Define variables -----
-#----------------------------------------------------------#
-
-
-#----------------------------------------------------------#
-# 6. Graphical options -----
+# 3. Graphical options -----
 #----------------------------------------------------------#
 
 source(
-  here::here("R/_Set_r_theme.R")
+  here::here("R/generate_theme.R")
+)
+
+source(
+  here::here("R/set_r_theme.R")
 )
