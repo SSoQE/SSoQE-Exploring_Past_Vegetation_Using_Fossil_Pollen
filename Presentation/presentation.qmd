@@ -60,7 +60,7 @@ source(
 
 ```{r}
 #| label: ssoqe-logo-title
-include_local_figure("SSOQE_logo3.png")
+include_local_figure("Logos/SSOQE_logo3.png")
 ```
 
 :::
@@ -95,9 +95,45 @@ include_local_figure("SSOQE_logo3.png")
 ::: {.column width="80%" .text-right .text-size-body}
 [👤](https://ondrejmottl.github.io/)Ondřej Mottl
 
-[Science School of Quantitative Ecology 2024]{.text-color-black}
+[Science School of Quantitative Ecology 2025]{.text-color-black}
 
 [bit.ly/SSoQE](bit.ly/SSoQE){.text-color-black}
+:::
+
+::::
+
+## [This presentation]{.bold .r-fit-text} {.title}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+::: {.r-fit-text}
+[😸 Code on GitHub](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen)
+
+[🖥️ Slides](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
+
+[![](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+:::
+:::
+
+::: {.column width="30%"}
+```{r}
+#| label: qr_slides
+qr_slides <-
+  qrcode::qr_code(
+    "https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_slides,
+  filename = here::here("Presentation/Materials/QR/qr_slides.svg"),
+  foreground = ssoqe_cols['white'],
+  background = ssoqe_cols['midnight_green']
+)
+
+include_local_figure("QR/qr_slides.svg")
+```
 :::
 
 ::::
@@ -119,7 +155,7 @@ knitr::include_graphics("https://scied.ucar.edu/sites/default/files/media/images
 
 ```{r}
 #| label: lake-to-vegetation
-include_local_figure("Lake to vegetation rate.jpg")
+include_local_figure("Illustrations/Lake to vegetation rate.jpg")
 ```
 
 ::: footer
@@ -130,7 +166,7 @@ include_local_figure("Lake to vegetation rate.jpg")
 
 ```{r}
 #| label: coring
-include_local_figure("Coring map.jpg")
+include_local_figure("Photos/Coring map.jpg")
 ```
 
 ::: footer
@@ -236,7 +272,7 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/_480x32
 
 ```{r}
 #| label: neotoma-database-structure-1
-include_local_figure("neotoma_structure.svg")
+include_local_figure("Diagrams/neotoma_structure.svg")
 ```
 
 ::: footer
@@ -256,7 +292,7 @@ This is how it looks like in reality.
 
 ```{r}
 #| label: neotoma-database-structure-2
-include_local_figure("neotoma_structure_real.svg")
+include_local_figure("Diagrams/neotoma_structure_real.svg")
 ```
 
 :::
@@ -280,7 +316,7 @@ Our interest is [Dataset]{.text-highlight-midnightGreen} and [Samples]{.text-hig
 
 ```{r}
 #| label: neotoma-database-structure-3
-include_local_figure("neotoma_structure_box.svg")
+include_local_figure("Diagrams/neotoma_structure_box.svg")
 ```
 
 :::
@@ -318,7 +354,7 @@ To assign [**age**]{.text-highlight-midnightGreen} to each [**depth**]{.text-hig
 
 ```{r}
 #| label: core-age-depth
-include_local_figure("yenv_a_1578547_f0004_oc.jpg")
+include_local_figure("Photos/yenv_a_1578547_f0004_oc.jpg")
 ```
 
 ::: footer
@@ -353,7 +389,7 @@ Stock.com/Ja'Crispy | Ascough, SUERC
 
 ```{r}
 #| label: core-age-depth-gif
-include_local_figure("sequence.gif")
+include_local_figure("Animations/sequence.gif")
 ```
 
 ::: footer
@@ -375,7 +411,7 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 
 ```{r}
 #| label: core-age-depth-gif-2
-include_local_figure("Bayes.gif")
+include_local_figure("Animations/Bayes.gif")
 ```
 
 ::: footer
@@ -428,7 +464,7 @@ Work in groups and choose a taxon and region of your interest.
 
 ```{r}
 #| label: FOSSILPOL
-include_local_figure("Workflow complete - 600ppi.png")
+include_local_figure("Illustrations/Workflow complete - 600ppi.png")
 ```
 
 ::: footer
@@ -443,7 +479,7 @@ art by [Milan TvM](https://x.com/MilanaTvM)
 
 ```{r}
 #| label: FOSSILPOL-logo
-include_local_figure("Logo FOSSILPOL regular - 600ppi.png")
+include_local_figure("Logos/Logo FOSSILPOL regular - 600ppi.png")
 ```
 :::
 
@@ -527,7 +563,7 @@ Use `/v2.0/data/datasets/{datasetid}` endpoint.
 ::: {.column width="25%"}
 ```{r}
 #| label: personal sticker
-include_local_figure("Ondrej_Mottl-transparent-shadow.png")
+include_local_figure("About/Ondrej_Mottl-transparent-shadow.png")
 ```
 
 ```{r}
@@ -549,56 +585,20 @@ include_local_figure("QR/qr_personal_web.svg")
 ```
 :::
 
-::: {.column width="10%"}
+::: {.column width="5%"}
 :::
 
-::: {.column width="62%"}
+::: {.column width="70%"}
 [Ondřej Mottl]{.bold .r-fit-text .text-color-black}
 Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
-<br>
+
+Head of the 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
 
 * 📧 Ondrej.mottl(at)gmail.com
-* 🐦 [@OndrejMottl](https://twitter.com/OndrejMottl)
+* 🦋 [ondrejmottl.bsky.social](https://bsky.app/profile/ondrejmottl.bsky.social)
 * 🐱 [Github](https://github.com/OndrejMottl)
 * 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
 * 🌐 [Personal webpage](https://ondrejmottl.github.io/)
-* 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
-:::
-
-::::
-
-## [This presentation]{.bold .r-fit-text} {.title}
-
-:::: {.columns}
-
-::: {.column width="70%"}
-::: {.r-fit-text}
-[😸 Code on GitHub](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen)
-
-[🖥️ Slides](https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/)
-
-[![](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-:::
-:::
-
-::: {.column width="30%"}
-```{r}
-#| label: qr_slides
-qr_slides <-
-  qrcode::qr_code(
-    "https://ssoqe.github.io/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/",
-    ecl = "H"
-  )
-
-qrcode::generate_svg(
-  qrcode = qr_slides,
-  filename = here::here("Presentation/Materials/QR/qr_slides.svg"),
-  foreground = ssoqe_cols['white'],
-  background = ssoqe_cols['midnight_green']
-)
-
-include_local_figure("QR/qr_slides.svg")
-```
 :::
 
 ::::
