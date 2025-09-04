@@ -3,11 +3,12 @@ format:
   html:
     author: "Ondřej Mottl"
     toc: true
+    toc-depth: 5
     keep-md: true
     code-link: true
     embed-resources: true
     code-line-numbers: true
-    theme: [default, custom_theme_exercise.scss]
+    theme: [default, _exercise_theme.scss]
 ---
 
 # Age Depth Modeling in R
@@ -32,7 +33,7 @@ To estimate the age of individual levels based on their depth, a chronology or a
 # load libraries
 library(tidyverse) # general data wrangling and visualisation ✨
 library(neotoma2) # # access to the Neotoma database 🌿
-library(Bchron) # age-depth modelingng 🕰️
+library(Bchron) # age-depth modeling 🕰️
 library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
 
@@ -55,6 +56,12 @@ knitr::opts_chunk$set(
   out.width = "100%",
   echo = TRUE
 )
+
+source(
+  here::here(
+    "R/set_r_theme.R"
+  )
+)
 ```
 
 ## Download a dataset from Neotoma
@@ -71,6 +78,9 @@ sel_dataset_download <-
 data_samples <-
   neotoma2::samples(sel_dataset_download)  %>% 
   dplyr::distinct(sampleid, depth)  %>% 
+  dplyr::mutate(
+    sampleid = as.integer(sampleid)
+  ) %>%
   dplyr::arrange(depth)  %>%
   as.data.frame()  %>% 
   tibble::as_tibble()
@@ -88,14 +98,14 @@ The chronology control table contains all the dates (mostly radiocarbon) to crea
 
 ```{r}
 #| label: get chronology tables
-# First, get the chronologies and check which we want to use used
+# First, get the chronologies and check which we want to use
 sel_chron_control_table_download <-
   neotoma2::chroncontrols(sel_dataset_download)
 
 plot_table(sel_chron_control_table_download, head = TRUE)
 ```
 
-There could be seberal chronologies in the dataset. Here we will select the chronology table with higher values with the assumtion that it is newer.
+There could be several chronologies in the dataset. Here we will select the chronology table with higher values with the assumption that it is newer.
 
 ```{r}
 #| label: get chron control table
@@ -112,7 +122,7 @@ vec_chronologyid <-
 Here we only present a few of the important steps of preparation of the chronology control table. There are many more potential issues, but solving those is not the focus of this workflow.
 
 ```{r}
-#| label: preparechron control table
+#| label: prepare chron control table
 # prepare the table
 data_chron_control_table <-
   sel_chron_control_table_download %>%
@@ -179,13 +189,7 @@ Visually check the age-depth models
 ```{r}
 #| label: plot Bchron
 Bchron:::plot.BchronologyRun(sel_bchron) + # or just simple plot(sel_bchron)
-  ggplot2::theme_bw() +
-  ggplot2::theme(
-    axis.title = ggplot2::element_text(size = 25),
-    axis.text = ggplot2::element_text(size = 15),
-    strip.text = ggplot2::element_text(size = 15),
-    panel.grid = ggplot2::element_blank()
-  ) +
+  theme_ssoqe() +
   ggplot2::labs(
     x = "age (cal yr BP)",
     y = "depth"
@@ -237,6 +241,9 @@ data_age_uncertainties <-
     names_to = "sampleid",
     values_to = "age"
   ) %>%
+  dplyr::mutate(
+    sampleid = as.integer(sampleid)
+  ) %>%
   dplyr::left_join(
     data_samples,
     by = dplyr::join_by(sampleid)
@@ -266,7 +273,7 @@ Each line is a single potential age-depth model iteration (age-sequence). Green 
     ggplot2::geom_hline(
       yintercept = data_samples$depth,
       lty = 2,
-      color = "gray50",
+      color = ssoqe_cols["cambridge_blue"],
       alpha = 0.1,
       linewidth = 0.1
     ) +
@@ -275,12 +282,13 @@ Each line is a single potential age-depth model iteration (age-sequence). Green 
       mapping = ggplot2::aes(
         x = chroncontrolage
       ),
-      color = "green",
+      color = ssoqe_cols["midnight_green"],
       shape = 15,
       size = 3
     ) +
     ggplot2::scale_y_continuous(trans = "reverse") +
     ggplot2::scale_x_continuous(trans = "reverse") +
+    theme_ssoqe() +
     ggplot2::labs(
       x = "age (cal yr BP)"
     )
@@ -302,7 +310,7 @@ data_age_uncertainties %>%
   ggplot2::geom_hline(
     yintercept = data_samples$depth,
     lty = 2,
-    color = "gray50",
+    color = ssoqe_cols["cambridge_blue"],
     alpha = 0.1,
     linewidth = 0.1
   ) +
@@ -333,19 +341,19 @@ data_levels_predicted <-
 plot_table(data_levels_predicted, head = TRUE)
 ```
 
-We can visualize the median age by drawing a red line. This age is the age that is often reported in publications but in essence, it represents multiple age-depth model runs with smaller or larger age uncertainties throughout the record.
+We can visualize the median age by drawing a gold line. This age is the age that is often reported in publications but in essence, it represents multiple age-depth model runs with smaller or larger age uncertainties throughout the record.
 
 ```{r}
 #| label: plot median age
 fig_age_uncertainties +
   ggplot2::geom_point(
     data = data_levels_predicted,
-    color = "red",
+    color = ssoqe_cols["satin_sheen_gold"],
     size = 1
   ) +
   ggplot2::geom_line(
     data = data_levels_predicted,
-    color = "red",
+    color = ssoqe_cols["satin_sheen_gold"],
     linewidth = 0.5
   )
 ```

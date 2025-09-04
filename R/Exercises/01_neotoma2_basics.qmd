@@ -3,16 +3,17 @@ format:
   html:
     author: "Ondřej Mottl"
     toc: true
+    toc-depth: 5
     keep-md: true
     code-link: true
     embed-resources: true
     code-line-numbers: true
-    theme: [default, custom_theme_exercise.scss]
+    theme: [default, _exercise_theme.scss]
 ---
 
 # Basic functions of neotoma2 : Working with pollen data
 
-Simple example of woking with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
+Simple example of working with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
 
 ## Setup
 
@@ -48,6 +49,12 @@ knitr::opts_chunk$set(
   out.width = "100%",
   echo = TRUE
 )
+
+source(
+  here::here(
+    "R/set_r_theme.R"
+  )
+)
 ```
 
 ## Sites
@@ -80,7 +87,7 @@ neotoma2::get_sites(
   plot_table()
 ```
 
-Searching for Sites by Name. Notet that `%` is a wildcard character:
+Searching for Sites by Name. Note that `%` is a wildcard character:
 
 ```{r}
 #| label: 2.1.3
@@ -108,7 +115,7 @@ Record must PARTLY span the age range
 neotoma2::get_sites(
   minage = 5000,
   maxage = 8000,
-  all_data = FALSE # this will only show 
+  all_data = FALSE # this will only show 25 records
 ) %>% 
  plot_table(head = TRUE)
 ```
@@ -532,6 +539,7 @@ data_to_plot %>%
     limits = c(0, 100),
     breaks = scales::pretty_breaks(n = 5)
   ) +
+  theme_ssoqe() +
   ggplot2::theme(
     legend.position = "none",
     axis.text.x = ggplot2::element_blank(),
