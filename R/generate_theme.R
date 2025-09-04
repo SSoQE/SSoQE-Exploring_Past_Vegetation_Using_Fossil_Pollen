@@ -454,6 +454,241 @@ generate_fonts_html <- function(
   message("fonts-include.html generated successfully\n")
 }
 
+# Function to generate exercise SCSS theme for HTML documents
+generate_exercise_scss <- function(
+    colors_file = here::here("Presentation/colors.json"),
+    fonts_file = here::here("Presentation/fonts.json"),
+    output_file = here::here("R/Exercises/_exercise_theme.scss")) {
+  message("Generating _exercise_theme.scss...\n")
+
+  # Check if input files exist
+  if (!file.exists(colors_file)) {
+    stop("colors.json not found. Please create this file first.")
+  }
+  
+  if (!file.exists(fonts_file)) {
+    stop("fonts.json not found. Please create this file first.")
+  }
+
+  # Read colors and fonts from JSON
+  colors <- jsonlite::fromJSON(colors_file)
+  fonts <- jsonlite::fromJSON(fonts_file)
+
+  # Generate exercise-specific SCSS content
+  exercise_scss_content <- c(
+    "// This file is auto-generated from colors.json and fonts.json. Do not edit directly.",
+    "// SSoQE Exercise Theme for HTML Documents",
+    "",
+    "/*-- scss:defaults --*/",
+    "",
+    "// Import Google Fonts",
+    paste0('@import url("https://fonts.googleapis.com/css2?family=', gsub(" ", "+", fonts$body), ':wght@300;400;500;600;700&display=swap");'),
+    paste0('@import url("https://fonts.googleapis.com/css2?family=', gsub(" ", "+", fonts$heading), ':wght@400;500;600;700&display=swap");'),
+    paste0('@import url("https://fonts.googleapis.com/css2?family=', gsub(" ", "+", fonts$monospace), ':wght@400;500;600&display=swap");'),
+    "",
+    "// SSoQE Brand Colors",
+    paste0("$black: ", colors$black, ";"),
+    paste0("$white: ", colors$white, ";"),
+    paste0("$midnightGreen: ", colors$midnightGreen, ";"),
+    paste0("$persianGreen: ", colors$persianGreen, ";"),
+    paste0("$cambridgeBlue: ", colors$cambridgeBlue, ";"),
+    paste0("$satinSheenGold: ", colors$satinSheenGold, ";"),
+    "",
+    "// Semantic color mappings for HTML documents",
+    "$body-color: $black !default;",
+    "$body-bg: $white !default;",
+    "$link-color: $persianGreen !default;",
+    "$link-hover-color: darken($persianGreen, 15%) !default;",
+    "$code-bg: lighten($cambridgeBlue, 35%) !default;",
+    "$code-color: $black !default;",
+    "$border-color: $cambridgeBlue !default;",
+    "$table-border-color: $cambridgeBlue !default;",
+    "$blockquote-border-color: $persianGreen !default;",
+    "",
+    "// Typography settings for HTML documents",
+    paste0('$font-family-sans-serif: "', fonts$body, '", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;'),
+    paste0('$headings-font-family: "', fonts$heading, '", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;'),
+    paste0('$font-family-monospace: "', fonts$monospace, '", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace !default;'),
+    "",
+    "// Font sizes optimized for HTML reading",
+    paste0("$font-size-base: ", fonts$htmlSizes$mainFontSize, " !default;"),
+    paste0("$line-height-base: ", fonts$htmlSizes$bodyLineHeight, " !default;"),
+    paste0("$headings-line-height: ", fonts$htmlSizes$headingLineHeight, " !default;"),
+    "",
+    "// Heading sizes for HTML documents",
+    paste0("$h1-font-size: $font-size-base * ", gsub("em", "", fonts$htmlSizes$heading1Size), " !default;"),
+    paste0("$h2-font-size: $font-size-base * ", gsub("em", "", fonts$htmlSizes$heading2Size), " !default;"),
+    paste0("$h3-font-size: $font-size-base * ", gsub("em", "", fonts$htmlSizes$heading3Size), " !default;"),
+    paste0("$h4-font-size: $font-size-base * ", gsub("em", "", fonts$htmlSizes$heading4Size), " !default;"),
+    paste0("$h5-font-size: $font-size-base * ", gsub("em", "", fonts$htmlSizes$heading5Size), " !default;"),
+    paste0("$h6-font-size: $font-size-base * ", gsub("em", "", fonts$htmlSizes$heading6Size), " !default;"),
+    "",
+    "// Font weights",
+    paste0("$headings-font-weight: ", fonts$weights$headingFontWeight, " !default;"),
+    paste0("$font-weight-normal: ", fonts$weights$bodyFontWeight, " !default;"),
+    paste0("$font-weight-bold: ", fonts$weights$boldFontWeight, " !default;"),
+    "",
+    "// Layout settings",
+    paste0("$content-max-width: ", fonts$htmlSizes$maxWidth, ";"),
+    paste0("$block-margin: ", fonts$htmlSizes$blockMargin, ";"),
+    paste0("$small-margin: ", fonts$htmlSizes$smallMargin, ";"),
+    "",
+    "// Spacing",
+    "$headings-margin-bottom: $block-margin * 0.5 !default;",
+    "$paragraph-margin-bottom: $block-margin !default;",
+    "",
+    "/*-- scss:rules --*/",
+    "",
+    "// Main content styling",
+    "body {",
+    "  font-family: $font-family-sans-serif;",
+    "  font-size: $font-size-base;",
+    "  line-height: $line-height-base;",
+    "  color: $body-color;",
+    "  background-color: $body-bg;",
+    "}",
+    "",
+    "// Content width constraint",
+    ".quarto-container {",
+    "  max-width: $content-max-width;",
+    "}",
+    "",
+    "// Heading styles with SSoQE brand colors",
+    "h1, .h1 {",
+    "  color: $midnightGreen;",
+    "  font-family: $headings-font-family;",
+    "  font-weight: $headings-font-weight;",
+    "  line-height: $headings-line-height;",
+    "  margin-bottom: $headings-margin-bottom;",
+    "}",
+    "",
+    "h2, .h2 {",
+    "  color: $persianGreen;",
+    "  font-family: $headings-font-family;",
+    "  font-weight: $headings-font-weight;",
+    "  line-height: $headings-line-height;",
+    "  margin-bottom: $headings-margin-bottom;",
+    "}",
+    "",
+    "h3, .h3 {",
+    "  color: $midnightGreen;",
+    "  font-family: $headings-font-family;",
+    "  font-weight: $headings-font-weight;",
+    "  line-height: $headings-line-height;",
+    "  margin-bottom: $headings-margin-bottom;",
+    "}",
+    "",
+    "h4, .h4, h5, .h5, h6, .h6 {",
+    "  color: $black;",
+    "  font-family: $headings-font-family;",
+    "  font-weight: $headings-font-weight;",
+    "  line-height: $headings-line-height;",
+    "  margin-bottom: $headings-margin-bottom;",
+    "}",
+    "",
+    "// Link styling",
+    "a {",
+    "  color: $link-color;",
+    "  text-decoration: none;",
+    "  transition: color 0.2s ease;",
+    "",
+    "  &:hover {",
+    "    color: $link-hover-color;",
+    "    text-decoration: underline;",
+    "  }",
+    "}",
+    "",
+    "// Code styling",
+    "code {",
+    "  background-color: $code-bg;",
+    "  color: $code-color;",
+    "  font-family: $font-family-monospace;",
+    "  padding: 0.125rem 0.25rem;",
+    "  border-radius: 0.25rem;",
+    "  font-size: 0.875em;",
+    "}",
+    "",
+    "pre {",
+    "  background-color: $code-bg;",
+    "  border: 1px solid $border-color;",
+    "  border-radius: 0.375rem;",
+    "  padding: 1rem;",
+    "  margin-bottom: $block-margin;",
+    "",
+    "  code {",
+    "    background-color: transparent;",
+    "    border: none;",
+    "    padding: 0;",
+    "    font-size: 0.875rem;",
+    "  }",
+    "}",
+    "",
+    "// Blockquote styling",
+    "blockquote {",
+    "  border-left: 4px solid $blockquote-border-color;",
+    "  padding-left: 1rem;",
+    "  margin-left: 0;",
+    "  margin-bottom: $block-margin;",
+    "  color: lighten($body-color, 20%);",
+    "  font-style: italic;",
+    "}",
+    "",
+    "// Table styling",
+    "table {",
+    "  border-collapse: collapse;",
+    "  margin-bottom: $block-margin;",
+    "  width: 100%;",
+    "",
+    "  th, td {",
+    "    border: 1px solid $table-border-color;",
+    "    padding: 0.5rem;",
+    "    text-align: left;",
+    "  }",
+    "",
+    "  th {",
+    "    background-color: lighten($cambridgeBlue, 30%);",
+    "    color: $midnightGreen;",
+    "    font-weight: $headings-font-weight;",
+    "  }",
+    "",
+    "  tr:nth-child(even) {",
+    "    background-color: lighten($cambridgeBlue, 40%);",
+    "  }",
+    "}",
+    "",
+    "// Utility classes for SSoQE brand colors",
+    ".text-midnight-green { color: $midnightGreen !important; }",
+    ".text-persian-green { color: $persianGreen !important; }",
+    ".text-cambridge-blue { color: $cambridgeBlue !important; }",
+    ".text-satin-sheen-gold { color: $satinSheenGold !important; }",
+    "",
+    ".bg-midnight-green { background-color: $midnightGreen !important; }",
+    ".bg-persian-green { background-color: $persianGreen !important; }",
+    ".bg-cambridge-blue { background-color: $cambridgeBlue !important; }",
+    ".bg-satin-sheen-gold { background-color: $satinSheenGold !important; }",
+    "",
+    "// Responsive adjustments",
+    "@media (max-width: 768px) {",
+    "  .quarto-container {",
+    "    max-width: 100%;",
+    "    padding: 0 1rem;",
+    "  }",
+    "",
+    "  h1, .h1 { font-size: 1.75rem; }",
+    "  h2, .h2 { font-size: 1.5rem; }",
+    "  h3, .h3 { font-size: 1.25rem; }",
+    "}"
+  )
+
+  # Write to _exercise_theme.scss
+  writeLines(
+    text = exercise_scss_content,
+    con = output_file
+  )
+
+  message("_exercise_theme.scss generated successfully\n")
+}
+
 # Main execution
 message("SSOQE Theme Generation\n")
 message("Starting theme generation process...\n\n")
@@ -464,6 +699,7 @@ tryCatch(
     generate_colors_scss()
     generate_fonts_scss()
     generate_fonts_html()
+    generate_exercise_scss()
     generate_r_theme()
 
     message("\nTheme generation completed successfully!\n")
@@ -471,6 +707,7 @@ tryCatch(
     message("  - _colors.scss\n")
     message("  - _fonts.scss\n")
     message("  - fonts-include.html\n")
+    message("  - R/Exercises/_exercise_theme.scss\n")
     message("  - R/set_r_theme.R\n")
   },
   error = function(e) {

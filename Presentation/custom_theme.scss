@@ -51,12 +51,12 @@ pre,
 .reveal pre,
 code,
 .reveal code {
-  background-color: $backgroundColor !important;
+  background-color: #D4E6DE !important; /* Light Cambridge Blue */
   color: $body-color;
   border-radius: 8px; /* More rounded as per brand guidelines */
   line-height: 1.4;
   font-family: $monospaceFont;
-  border: 1px solid $cambridgeBlue;
+  border: none; /* Remove border for cleaner look */
 }
 
 pre,
@@ -66,12 +66,14 @@ pre,
 
 code,
 .reveal code {
-  padding: 0;
+  padding: 0.125rem 0.25rem;
+  color: $satinSheenGold !important; /* Gold color for inline code */
 }
 
 pre code,
 .reveal pre code {
-  background-color: transparent;
+  background-color: transparent !important;
+  color: $body-color !important; /* Black text for code blocks */
   padding: $smallMargin;
   position: relative;
   /* Ensure line highlighting works */
@@ -109,6 +111,12 @@ div.sourceCode pre::-webkit-scrollbar,
   display: none !important;
   width: 0px !important;
   height: 0px !important;
+}
+
+/* Quarto-specific code elements */
+.sourceCode code {
+  background-color: transparent !important;
+  color: inherit !important;
 }
 
 pre a,
@@ -395,16 +403,19 @@ ul ul {
 }
 
 /* Blockquote */
-.reveal .blockquote {
+.reveal .blockquote,
+blockquote {
   padding: 16px 24px; /* Following brand guidelines */
   border-radius: 16px; /* 2xl rounded corners */
-  background-color: $backgroundColor;
-  border-left: 6px solid $headingColor;
+  background-color: rgba($cambridgeBlue, 0.1);
+  border-left: 6px solid $persianGreen;
   border-top: 2px solid $cambridgeBlue;
   border-bottom: 2px solid $cambridgeBlue;
   border-right: 2px solid $cambridgeBlue;
   box-shadow: 0 2px 8px rgba(21, 85, 96, 0.1); /* Soft shadow with Midnight Green */
   transition: background-color 0.2s ease, border-color 0.2s ease;
+  margin: 1rem 0;
+  font-style: italic;
 }
 
 /* Code block */
@@ -414,6 +425,36 @@ code {
   border-radius: 8px;
   font-family: $monospaceFont;
   border: 1px solid $cambridgeBlue;
+}
+
+/* Table styling */
+.reveal table,
+table {
+  border-collapse: collapse;
+  margin-bottom: $blockMargin;
+  width: 100%;
+}
+
+.reveal table th,
+.reveal table td,
+table th,
+table td {
+  border: 1px solid rgba(31, 41, 55, 0.2); /* Black with opacity */
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.reveal table th,
+table th {
+  background-color: $midnightGreen !important;
+  color: $white !important;
+  font-weight: 600;
+  font-family: $headingFont;
+}
+
+.reveal table tr:nth-child(odd),
+table tr:nth-child(odd) {
+  background-color: rgba(161, 195, 179, 0.5) !important; /* Very light Cambridge Blue */
 }
 
 /* EXERCISE SECTION LINK OVERRIDES - Must be last to ensure precedence */

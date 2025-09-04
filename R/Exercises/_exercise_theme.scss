@@ -1,0 +1,202 @@
+// This file is auto-generated from colors.json and fonts.json. Do not edit directly.
+// SSoQE Exercise Theme for HTML Documents
+
+/*-- scss:defaults --*/
+
+// Import Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+// SSoQE Brand Colors
+$black: #1F2937;
+$white: #F2F4F2;
+$midnightGreen: #155560;
+$persianGreen: #509A8E;
+$cambridgeBlue: #A1C3B3;
+$satinSheenGold: #C2A337;
+
+// Semantic color mappings for HTML documents
+$body-color: $black !default;
+$body-bg: $white !default;
+$link-color: $persianGreen !default;
+$link-hover-color: darken($persianGreen, 15%) !default;
+$code-bg: lighten($cambridgeBlue, 35%) !default;
+$code-color: $black !default;
+$border-color: $cambridgeBlue !default;
+$table-border-color: $cambridgeBlue !default;
+$blockquote-border-color: $persianGreen !default;
+
+// Typography settings for HTML documents
+$font-family-sans-serif: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$headings-font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$font-family-monospace: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace !default;
+
+// Font sizes optimized for HTML reading
+$font-size-base: 1rem !default;
+$line-height-base: 1.6 !default;
+$headings-line-height: 1.3 !default;
+
+// Heading sizes for HTML documents
+$h1-font-size: $font-size-base * 2.2 !default;
+$h2-font-size: $font-size-base * 1.8 !default;
+$h3-font-size: $font-size-base * 1.4 !default;
+$h4-font-size: $font-size-base * 1.1 !default;
+$h5-font-size: $font-size-base * 1 !default;
+$h6-font-size: $font-size-base * 0.9 !default;
+
+// Font weights
+$headings-font-weight: 600 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
+
+// Layout settings
+$content-max-width: 900px;
+$block-margin: 1.5rem;
+$small-margin: 0.5rem;
+
+// Spacing
+$headings-margin-bottom: $block-margin * 0.5 !default;
+$paragraph-margin-bottom: $block-margin !default;
+
+/*-- scss:rules --*/
+
+// Main content styling
+body {
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $body-color;
+  background-color: $body-bg;
+}
+
+// Content width constraint
+.quarto-container {
+  max-width: $content-max-width;
+}
+
+// Heading styles with SSoQE brand colors
+h1, .h1 {
+  color: $midnightGreen;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+}
+
+h2, .h2 {
+  color: $persianGreen;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+}
+
+h3, .h3 {
+  color: $midnightGreen;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+}
+
+h4, .h4, h5, .h5, h6, .h6 {
+  color: $black;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+}
+
+// Link styling
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: underline;
+  }
+}
+
+// Code styling
+code {
+  background-color: $code-bg;
+  color: $code-color;
+  font-family: $font-family-monospace;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+pre {
+  background-color: $code-bg;
+  border: 1px solid $border-color;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: $block-margin;
+
+  code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+}
+
+// Blockquote styling
+blockquote {
+  border-left: 4px solid $blockquote-border-color;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-bottom: $block-margin;
+  color: lighten($body-color, 20%);
+  font-style: italic;
+}
+
+// Table styling
+table {
+  border-collapse: collapse;
+  margin-bottom: $block-margin;
+  width: 100%;
+
+  th, td {
+    border: 1px solid $table-border-color;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: lighten($cambridgeBlue, 30%);
+    color: $midnightGreen;
+    font-weight: $headings-font-weight;
+  }
+
+  tr:nth-child(even) {
+    background-color: lighten($cambridgeBlue, 40%);
+  }
+}
+
+// Utility classes for SSoQE brand colors
+.text-midnight-green { color: $midnightGreen !important; }
+.text-persian-green { color: $persianGreen !important; }
+.text-cambridge-blue { color: $cambridgeBlue !important; }
+.text-satin-sheen-gold { color: $satinSheenGold !important; }
+
+.bg-midnight-green { background-color: $midnightGreen !important; }
+.bg-persian-green { background-color: $persianGreen !important; }
+.bg-cambridge-blue { background-color: $cambridgeBlue !important; }
+.bg-satin-sheen-gold { background-color: $satinSheenGold !important; }
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .quarto-container {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  h1, .h1 { font-size: 1.75rem; }
+  h2, .h2 { font-size: 1.5rem; }
+  h3, .h3 { font-size: 1.25rem; }
+}
