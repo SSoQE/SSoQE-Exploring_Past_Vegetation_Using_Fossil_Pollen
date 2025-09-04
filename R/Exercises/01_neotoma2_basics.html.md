@@ -3,22 +3,19 @@ format:
   html:
     author: "Ondřej Mottl"
     toc: true
+    toc-depth: 5
     keep-md: true
     code-link: true
     embed-resources: true
     code-line-numbers: true
-    theme: [default, custom_theme_exercise.scss]
+    theme: [default, _exercise_theme.scss]
 ---
-
-
-
 
 # Basic functions of neotoma2 : Working with pollen data
 
 Simple example of woking with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
 
 ## Setup
-
 
 
 ::: {.cell}
@@ -51,13 +48,17 @@ knitr::opts_chunk$set(
   out.width = "100%",
   echo = TRUE
 )
+
+source(
+  here::here(
+    "R/set_r_theme.R"
+  )
+)
 ```
 :::
 
 
-
 ## Sites
-
 
 
 ::: {.cell layout-align="center"}
@@ -69,11 +70,9 @@ knitr::opts_chunk$set(
 :::
 
 
-
 ### Search by IDs
 
 Search for site by a single numeric ID:
-
 
 
 ::: {.cell layout-align="center"}
@@ -82,6 +81,15 @@ Search for site by a single numeric ID:
 neotoma2::get_sites(15799) %>% 
   plot_table()
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning: package 'magrittr' was built under R version 4.5.1
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -99,9 +107,7 @@ neotoma2::get_sites(15799) %>%
 :::
 
 
-
 Search for sites with multiple IDs:
-
 
 
 ::: {.cell layout-align="center"}
@@ -131,9 +137,7 @@ neotoma2::get_sites(
 :::
 
 
-
 Searching for Sites by Name. Notet that `%` is a wildcard character:
-
 
 
 ::: {.cell layout-align="center"}
@@ -142,6 +146,15 @@ Searching for Sites by Name. Notet that `%` is a wildcard character:
 neotoma2::get_sites(sitename = "Alex%") %>% 
   plot_table()
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -165,11 +178,9 @@ neotoma2::get_sites(sitename = "Alex%") %>%
 :::
 
 
-
 ### Searching for Sites by Age
 
 Record span at least 8200 years:
-
 
 
 ::: {.cell layout-align="center"}
@@ -181,6 +192,15 @@ neotoma2::get_sites(
 ) %>% 
  plot_table(head = TRUE)
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -208,9 +228,7 @@ neotoma2::get_sites(
 :::
 
 
-
 Record must PARTLY span the age range
-
 
 
 ::: {.cell layout-align="center"}
@@ -223,6 +241,27 @@ neotoma2::get_sites(
 ) %>% 
  plot_table(head = TRUE)
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in get_sites.default(minage = 5000, maxage = 8000, all_data = FALSE):
+Some parameters seem invalid. The current accepted parameters are: sitename,
+database, datasettype, altmin, altmax, loc, siteid, datasetid, doidata, gpid,
+keyword, contactid, taxa, ageyoung, ageold, ageof, all_data, limit, offset
+```
+
+
+:::
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -250,9 +289,7 @@ neotoma2::get_sites(
 :::
 
 
-
 Record must COMPLETELY span the age range
-
 
 
 ::: {.cell layout-align="center"}
@@ -265,6 +302,15 @@ neotoma2::get_sites(
 ) %>% 
  plot_table(head = TRUE)
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -292,11 +338,9 @@ neotoma2::get_sites(
 :::
 
 
-
 ## Datasets
 
 You can search by all the same age properties as for sites (`ageof`, `minage`, `maxage`, `ageyoung`, `ageold`).
-
 
 
 ::: {.cell layout-align="center"}
@@ -308,9 +352,7 @@ You can search by all the same age properties as for sites (`ageof`, `minage`, `
 :::
 
 
-
 ### Search by IDs
-
 
 
 ::: {.cell layout-align="center"}
@@ -344,9 +386,7 @@ neotoma2::get_datasets(
 :::
 
 
-
 ### Search by type
-
 
 
 ::: {.cell layout-align="center"}
@@ -358,6 +398,15 @@ neotoma2::get_datasets(
 ) %>% 
  plot_table(head = TRUE)
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -385,13 +434,11 @@ neotoma2::get_datasets(
 :::
 
 
-
 ### Search by geo location
 
 Go to [geojson.io](https://geojson.io/) and get the coordinates of a polygon.
 
 For example:
-
 
 
 ::: {.cell layout-align="center"}
@@ -418,9 +465,7 @@ For example:
 :::
 
 
-
 Now, we can use the coordinates to search for datasets:
-
 
 
 ::: {.cell layout-align="center"}
@@ -492,6 +537,15 @@ neotoma2::get_datasets(
  plot_table()
 ```
 
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
 ::: {.cell-output .cell-output-stdout}
 
 ```
@@ -501,27 +555,27 @@ neotoma2::get_datasets(
 -------- ------------------- ------- ------- ------ ------
   1399        Kameničky       49.73   15.97    NA    618  
 
+  3021          Bláto         49.04   15.19    NA    649  
+
+  3052        Chraňbož        49.77   15.37    NA    469  
+
   3152        Hroznotín       49.76   15.36    NA    503  
 
   3168          Spolí         48.99   14.71    NA    446  
 
   3169     Velanská cesta     48.77   14.93    NA    494  
 
-  3172         Branná         48.96   14.8     NA    434  
-
-  3173         Barbora        48.94   14.81    NA    435  
-
-  3175    Jestřebské blato    50.6    14.61    NA    244  
-
-  3021          Bláto         49.04   15.19    NA    649  
-
-  3052        Chraňbož        49.77   15.37    NA    469  
-
   3170      Červené blato     48.86   14.8     NA    475  
 
   3171    Borkovická blata    49.23   14.62    NA    415  
 
+  3172         Branná         48.96   14.8     NA    434  
+
+  3173         Barbora        48.94   14.81    NA    435  
+
   3174       Švarcenberk      49.14   14.7     NA    416  
+
+  3175    Jestřebské blato    50.6    14.61    NA    244  
 
   3201    Komořanské jezero   50.54   13.53    NA    172  
 ----------------------------------------------------------
@@ -532,11 +586,9 @@ neotoma2::get_datasets(
 :::
 
 
-
 ### Filter
 
 You can additionally filter the compilation based on `lat`, `long`, `altitude`, `age_range_young`, and/or `age_range_old`
-
 
 
 ::: {.cell layout-align="center"}
@@ -546,6 +598,8 @@ You can additionally filter the compilation based on `lat`, `long`, `altitude`, 
 ?neotoma2::filter()
 ```
 :::
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -560,6 +614,15 @@ neotoma2::get_datasets(
   ) %>% 
  plot_table()
 ```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -579,7 +642,6 @@ neotoma2::get_datasets(
 :::
 
 
-
 ## Downloading data
 
 ### Download individual record
@@ -587,24 +649,12 @@ neotoma2::get_datasets(
 Let's download a record with `datasetid` 24279
 
 
-
 ::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 dataset_24279 <-
   neotoma2::get_downloads(24279)
-```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-.
-```
-
-
-:::
-
-```{.r .cell-code}
 plot_table(
   dataset_24279@sites[[1]]@collunits[[1]])
 ```
@@ -616,17 +666,17 @@ plot_table(
 -------------------------------------------------------------------------------
  collectionunitid    handle    colldate   location   waterdepth   collunittype 
 ------------------ ---------- ---------- ---------- ------------ --------------
-      17790         KULZERMO      NA         NA          NA            NA      
+      17790         KULZERMO      NA         NA          NA           Core     
 -------------------------------------------------------------------------------
 
 Table: Table continues below
 
  
----------------------------------------------------------------
-   collectiondevice     defaultchronology   collectionunitname 
----------------------- ------------------- --------------------
- Russian peat sampler         14609                 NA         
----------------------------------------------------------------
+----------------------------------------------------------------
+   collectiondevice     defaultchronology   collectionunitname  
+---------------------- ------------------- ---------------------
+ Russian peat sampler         14609         Kulzer Moos XIV 1-5 
+----------------------------------------------------------------
 
 Table: Table continues below
 
@@ -643,11 +693,9 @@ Table: Table continues below
 :::
 
 
-
 ### Download multiple records
 
 Download all records by sites
-
 
 
 ::: {.cell layout-align="center"}
@@ -665,8 +713,7 @@ neotoma2::get_sites(sitename = "Alex%") %>%
 ::: {.cell-output .cell-output-stderr}
 
 ```
-Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in the Neotoma DB yet or it has been removed. 
-                        It will be removed from your search.
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
 ```
 
 
@@ -675,17 +722,17 @@ Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in
 ::: {.cell-output .cell-output-stdout}
 
 ```
-.......
+
 ------------------------------------------------------------
  siteid        sitename         lat     long    area   elev 
 -------- -------------------- ------- -------- ------ ------
    24       Alexander Lake     53.33   -60.58    NA     73  
 
- 26226      Alexandra Lake     43.29   -74.17    NA    351  
-
    25        Alexis Lake       52.52   -57.03    NA    193  
 
   4478    Alexander [3CN117]   35.25   -92.62    NA    180  
+
+ 26226      Alexandra Lake     43.29   -74.17    NA    351  
 ------------------------------------------------------------
 ```
 
@@ -694,9 +741,7 @@ Warning in get_datasets.sites(.): SiteID 26226 or DatasetID NA does not exist in
 :::
 
 
-
 Download all records by datasets
-
 
 
 ::: {.cell layout-align="center"}
@@ -717,23 +762,31 @@ neotoma2::get_datasets(
   plot_table()
 ```
 
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
+```
+
+
+:::
+
 ::: {.cell-output .cell-output-stdout}
 
 ```
-..
+
 --------------------------------------------------
  siteid   sitename     lat    long    area   elev 
 -------- ----------- ------- ------- ------ ------
-  3021      Bláto     49.04   15.19    NA    649  
-
   1399    Kameničky   49.73   15.97    NA    618  
+
+  3021      Bláto     49.04   15.19    NA    649  
 --------------------------------------------------
 ```
 
 
 :::
 :::
-
 
 
 ## Working with pollen counts
@@ -741,7 +794,6 @@ neotoma2::get_datasets(
 ### Get samples
 
 download all records by datasets
-
 
 
 ::: {.cell layout-align="center"}
@@ -761,15 +813,17 @@ data_selected_downloads <-
   neotoma2::get_downloads()
 ```
 
-::: {.cell-output .cell-output-stdout}
+::: {.cell-output .cell-output-stderr}
 
 ```
-..
+Warning in options(scipen = 9999999): invalid 'scipen' 9999999, used 9999
 ```
 
 
 :::
 :::
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -780,9 +834,7 @@ data_selected_downloads <-
 :::
 
 
-
 Extract Sample information
-
 
 
 ::: {.cell layout-align="center"}
@@ -804,19 +856,19 @@ plot_table(
 
 ```
 
---------------------------------
- age     variablename     value 
------ ------------------ -------
- 236   Scrophulariaceae     1   
+-----------------------------------------
+ age         variablename          value 
+----- --------------------------- -------
+ 48             Populus              1   
 
- 236       Apiaceae         1   
+ 48    Bistorta officinalis-type     1   
 
- 236    Ranunculaceae       1   
+ 48           Lotus-type             1   
 
- 236   Carpinus betulus     1   
+ 48             Echium               1   
 
- 236    Barbarea-type       1   
---------------------------------
+ 48            Equisetum             1   
+-----------------------------------------
 ```
 
 
@@ -824,9 +876,7 @@ plot_table(
 :::
 
 
-
 ### Get pollen counts
-
 
 
 ::: {.cell layout-align="center"}
@@ -838,9 +888,7 @@ plot_table(
 :::
 
 
-
 Get vector of all "pollen" taxa
-
 
 
 ::: {.cell layout-align="center"}
@@ -867,9 +915,7 @@ head(vec_taxa_pollen)
 :::
 
 
-
 Get pollen counts
-
 
 
 ::: {.cell layout-align="center"}
@@ -902,15 +948,15 @@ plot_table(data_sample_pollen_counts[1:5, 1:5])
 -----------------------------------------------------------------
  datasetid_sampleid   abies_alba   acer   achillea_type   alisma 
 -------------------- ------------ ------ --------------- --------
-    3935_347661           8         0           0           0    
+    1435_342283           39        0           2           0    
 
-    3935_347662           12        1           0           0    
+    1435_342284           57        0           2           0    
 
-    3935_347663           16        1           0           0    
+    1435_342285           83        0           2           0    
 
-    3935_347664           18        0           0           0    
+    1435_342286          102        0           2           0    
 
-    3935_347665           76        1           0           0    
+    1435_342287           90        2           1           0    
 -----------------------------------------------------------------
 ```
 
@@ -919,9 +965,7 @@ plot_table(data_sample_pollen_counts[1:5, 1:5])
 :::
 
 
-
 ### Getting the age information
-
 
 
 ::: {.cell layout-align="center"}
@@ -961,11 +1005,9 @@ plot_table(data_sample_age, head = TRUE)
 :::
 
 
-
 ### Plotting pollen diagram
 
 Data wrangling
-
 
 
 ::: {.cell layout-align="center"}
@@ -1016,17 +1058,17 @@ plot_table(data_to_plot, head = TRUE)
 -----------------------------------------------------
  datasetid   sampleid   age       taxon       count  
 ----------- ---------- ----- --------------- --------
-   3935       347661    236    abies_alba     3.226  
+   1435       342283    48     abies_alba     4.785  
 
-   3935       347661    236       acer          0    
+   1435       342283    48        acer          0    
 
-   3935       347661    236   achillea_type     0    
+   1435       342283    48    achillea_type   0.2454 
 
-   3935       347661    236      alisma         0    
+   1435       342283    48       alisma         0    
 
-   3935       347661    236       alnus       5.242  
+   1435       342283    48        alnus        17.3  
 
-   3935       347661    236   amaranthaceae   0.8065 
+   1435       342283    48    amaranthaceae   0.2454 
 -----------------------------------------------------
 ```
 
@@ -1035,9 +1077,7 @@ plot_table(data_to_plot, head = TRUE)
 :::
 
 
-
 Get the most common taxa
-
 
 
 ::: {.cell layout-align="center"}
@@ -1060,6 +1100,8 @@ vec_common_taxa <-
   unique()
 ```
 :::
+
+
 
 ::: {.cell layout-align="center"}
 
@@ -1094,6 +1136,7 @@ data_to_plot %>%
     limits = c(0, 100),
     breaks = scales::pretty_breaks(n = 5)
   ) +
+  theme_ssoqe() +
   ggplot2::theme(
     legend.position = "none",
     axis.text.x = ggplot2::element_blank(),
@@ -1116,3 +1159,4 @@ data_to_plot %>%
 ![](01_neotoma2_basics_files/figure-html/7.3.-1.png){fig-align='center' width=100%}
 :::
 :::
+

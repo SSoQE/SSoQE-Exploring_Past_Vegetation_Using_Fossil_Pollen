@@ -6,7 +6,7 @@
 #                  Render presentation
 #
 #
-#                     
+#
 #                       O. Mottl
 #                         2025
 #
