@@ -1,0 +1,262 @@
+# Working with pollen data
+
+Simple example of working with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
+
+
+## Setup
+
+```{r}
+#| label: load libraries
+#| include: true
+#| output: false
+# load libraries
+library(tidyverse) # general data wrangling and visualisation ✨
+library(neotoma2) # # access to the Neotoma database 🌿
+library(pander) # nice tables 😍
+library(here) # for working directory 🗺️
+library(janitor) # string cleaning 🧹
+library(geojsonsf) # geojson spatial data 🌐
+```
+
+```{r}
+#| label: setup
+#| include: false
+#| output: false
+#| echo: false
+# set the working directory
+here::i_am("R/Exercises/02_working_with_pollen_data-offline.qmd")
+
+# quarto render options
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 7,
+  fig.height = 7,
+  fig.align = "center",
+  out.width = "100%",
+  echo = TRUE
+)
+
+source(
+  here::here(
+    "R/set_r_theme.R"
+  )
+)
+```
+
+```{r}
+#| label: load functions
+#| include: true
+# get the plot_table() function
+source(
+  here::here(
+    "R/Functions/plot_table.R"
+  )
+)
+```
+
+
+## Get data
+
+The are two options to get data from Neotoma database:
+
+1. Online - directly from the Neotoma database (internet connection required)
+
+```{r}
+#| label: 1.0.0
+#| eval: false
+#| echo: true
+data_selected_downloads <-
+  neotoma2::get_datasets(
+    loc = sel_polygon
+  ) %>%
+  # filter datasets
+  neotoma2::filter(
+    datasettype == "pollen" &
+      altitude > 620 &
+      age_range_young <= 1e3
+  ) %>%
+  # get downloads
+  neotoma2::get_downloads()
+```
+
+<br>
+
+2. Load the pre-downloaded record (offline, no internet connection required)
+
+```{r}
+#| label: 5.1.1
+data_selected_downloads <-
+  readr::read_rds(
+    here::here(
+      "Data/Input/neotoma2_offline_data.rds"
+    )
+  )
+```
+
+## Extract Sample information
+
+```{r}
+#| label: 5.1.0
+#| eval: false
+#| echo: true
+# check the documentation
+?neotoma2::samples()
+```
+
+```{r}
+#| label: 5.1.2
+data_selected_samples <-
+  neotoma2::samples(data_selected_downloads) %>%
+  as.data.frame() %>%
+  tibble::as_tibble()
+
+plot_table(
+  data_selected_samples[1:5, c("age", "variablename", "value")]
+)
+```
+
+### Get pollen counts
+
+```{r}
+#| label: 5.2.0
+#| eval: false
+#| echo: true
+# check the documentation
+?neotoma2::taxa()
+```
+
+Get vector of all "pollen" taxa
+
+```{r}
+#| label: 5.2.
+vec_taxa_pollen <-
+  neotoma2::taxa(data_selected_downloads) %>%
+  dplyr::filter(element == "pollen") %>%
+  purrr::pluck("variablename") %>%
+  sort()
+
+head(vec_taxa_pollen)
+```
+
+Get pollen counts in wide format
+
+```{r}
+#| label: 5.3.
+data_pollen_wide <-
+  # tranform to wide format and
+  neotoma2::toWide(
+    x = data_selected_samples,
+    variablenames = vec_taxa_pollen,
+    elementtypes = "pollen",
+    ecologicalgroups = c(
+      "MANG",
+      "PALM",
+      "PLNT",
+      "SUCC",
+      "TRSH",
+      "VASC"
+    ),
+    unit = "NISP"
+  ) %>%
+  # round all numerical values
+  dplyr::mutate(
+    dplyr::across(
+      .cols = -age,
+      .fns = ~ round(.x, 2)
+    )
+  ) %>%
+  janitor::clean_names()
+
+plot_table(data_pollen_wide[1:5, 1:5])
+```
+
+## Plotting pollen diagram
+
+Turn back to long format for easier plotting
+
+```{r}
+data_to_plot <-
+  data_pollen_wide %>%
+  tidyr::pivot_longer(
+    cols = -age,
+    names_to = "taxon",
+    values_to = "percentage"
+  )
+
+plot_table(data_to_plot[1:10, ])
+```
+
+Get the most common taxa
+
+```{r}
+#| label: 7.2.
+n_common_taxa <- 10
+
+vec_common_taxa <-
+  data_to_plot %>%
+  dplyr::group_by(taxon) %>%
+  dplyr::summarise(
+    .groups = "drop",
+    mean_percentage = mean(percentage, na.rm = TRUE)
+  ) %>%
+  dplyr::arrange(
+    dplyr::desc(mean_percentage)
+  ) %>%
+  dplyr::slice(1:n_common_taxa) %>%
+  dplyr::pull(taxon) %>%
+  unique()
+
+data_to_plot_common <-
+  data_to_plot %>%
+  dplyr::filter(
+    taxon %in% vec_common_taxa
+  )
+```
+
+plot pollen diagram
+
+```{r}
+#| label: 7.3.
+data_to_plot_common %>%
+  ggplot2::ggplot(
+    mapping = ggplot2::aes(
+      x = age,
+      y = percentage,
+      fill = taxon,
+      col = taxon
+    )
+  ) +
+  ggplot2::labs(
+    x = "Age (cal yr BP)",
+    y = "Pollen proportion",
+    title = "Pollen diagrams - Proportion of pollen taxa over time",
+    subtitle = "Only 10 most common taxa per record are shown"
+  ) +
+  ggplot2::scale_x_reverse(
+    breaks = scales::pretty_breaks(n = 10)
+  ) +
+  ggplot2::scale_y_continuous(
+    limits = c(0, 1),
+    breaks = scales::pretty_breaks(n = 5)
+  ) +
+  theme_ssoqe() +
+  ggplot2::theme(
+    legend.position = "none",
+    axis.text.x = ggplot2::element_blank(),
+    axis.ticks.x = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank(),
+    strip.text.x = ggplot2::element_text(
+      angle = 90,
+    )
+  ) +
+  ggplot2::facet_grid(~taxon) +
+  ggplot2::coord_flip() +
+  ggplot2::geom_ribbon(
+    mapping = ggplot2::aes(
+      ymin = 0,
+      ymax = percentage
+    ),
+    alpha = 0.5
+  ) +
+  ggplot2::geom_line()
+```

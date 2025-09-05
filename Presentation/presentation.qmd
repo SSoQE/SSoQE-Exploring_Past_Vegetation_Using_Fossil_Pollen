@@ -1,15 +1,3 @@
----
-format: 
-  revealjs:
-    slide-number: true
-    theme: [default, custom_theme.scss]
-    embed-resources: true
-    preview-links: auto
-    output-file: "index"
-    output-ext: "html"
-    include-in-header: "fonts-include.html"
----
-
 ```{r}
 #| label: setup
 #| include: false
@@ -102,7 +90,7 @@ include_local_figure("Logos/SSOQE_logo3.png")
 
 ::::
 
-## [This presentation]{.bold .r-fit-text} {.title}
+## [This presentation]{.text-bold .r-fit-text} {.title}
 
 :::: {.columns}
 
@@ -141,7 +129,7 @@ include_local_figure("QR/qr_slides.svg")
 # Fossil pollen
 
 ```{r}
-#| label: pollen-micor
+#| label: pollen-micro
 knitr::include_graphics("https://scied.ucar.edu/sites/default/files/media/images/pollen-wikipedia.jpg")
 ```
 
@@ -149,7 +137,7 @@ knitr::include_graphics("https://scied.ucar.edu/sites/default/files/media/images
 [Pollen: More Than Just an Allergen](https://scied.ucar.edu/learning-zone/how-climate-works/pollen-more-just-allergen)
 :::
 
-# [Palaeoecology]{.bold .r-fit-text} {.title}
+# [Palaeoecology]{.text-bold .r-fit-text} {.title}
 
 ## A window to the past
 
@@ -173,7 +161,7 @@ include_local_figure("Photos/Coring map.jpg")
 Photos by John W. Williams (a,b,r); Steffen Wolters (c,d,f,g); Thomas Giesecke (e); Henry H. Hooghiemstra (h,l,n,o,q); Geoff Hope (i); Feli Hopf (j); Eric Colhoun (k), Sarah Ivory (m), Luciane Fontana (p).
 :::
 
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+## [Practical Exercise]{.r-fit-text} {.exercise .text-center}
 
 :::{.r-fit-text}
 What is your experience with fossil pollen data?
@@ -181,7 +169,7 @@ What is your experience with fossil pollen data?
 
 `r countdown(minutes = 3)`
 
-# [Neotoma]{.bold .r-fit-text} {.title}
+# [Neotoma]{.text-bold .r-fit-text} {.title}
 
 ## Neotoma Paleoecology Database
 
@@ -327,11 +315,13 @@ include_local_figure("Diagrams/neotoma_structure_box.svg")
 [The neotoma2 R Package](https://open.neotomadb.org/neotoma2/inst/doc/neotoma2-package.html)
 :::
 
-# [Fossil pollen data in R]{.bold .r-fit-text} {.title}
+# [Fossil pollen data in R]{.text-bold .r-fit-text} {.title}
 
-## [Practical Exercise]{.r-fit-text .textcenter} {.exercise}
+## [Practical Exercise]{.r-fit-text .text-center} {.exercise}
 
-:::{.r-fit-text .textcenter}
+Note: This only works if you have an internet connection.
+
+:::{.r-fit-text .text-center}
 GOAL: Get familiar with {neotoma2} R package.
 :::
 
@@ -341,12 +331,29 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_neotoma2_basics.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_neotoma2_basics.html.md)
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_getting_data_with_neotoma2-online.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_getting_data_with_neotoma2-online.html.md)
 
 :::
 
-# [Age-depth model]{.r-fit-text} {.title .textcenter}
+## [Practical Exercise]{.r-fit-text .text-center} {.exercise}
+
+:::{.r-fit-text .text-center}
+GOAL: Plot a pollen diagram.
+:::
+
+<br>
+
+### Materials:
+
+::: {.r-fit-text}
+
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_working_with_pollen_data-offline.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_working_with_pollen_data-offline.html.md)
+
+:::
+
+# [Age-depth model]{.r-fit-text} {.title .text-center}
 
 ## Age-depth modeling - Why?
 
@@ -429,7 +436,7 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 [Bchron](https://andrewcparnell.github.io/Bchron/articles/Bchron.html)
 :::
 
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+## [Practical Exercise]{.r-fit-text} {.exercise .text-center}
 
 :::{.r-fit-text}
 GOAL: Create an age-depth model using {Bchron} package.
@@ -441,21 +448,21 @@ GOAL: Create an age-depth model using {Bchron} package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_age_depth_model.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_age_depth_model.html.md)
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/03_age_depth_model-offline.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/03_age_depth_model-offline.html.md)
 
 :::
 
-# [Past Vegetation through time]{.bold .italic .r-fit-text} {.title}
+# [Past Vegetation through time]{.text-bold .text-italic .r-fit-text} {.title}
 
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+## [Practical Exercise]{.r-fit-text} {.exercise .text-center}
 
 Goal: Look at a temporal change of presence of selected taxon.
 
 Work in groups and choose a taxon and region of your interest.
 
 :::{.r-fit-text}
-[💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Project/PastVegetationTroughTime.R)
+[💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Project/PastVegetationThroughTime.R)
 :::
 
 `r countdown(minutes = 20)`
@@ -510,11 +517,11 @@ include_local_figure("QR/qr_fossilpol.svg")
 [FOSSILPOL](bit.ly/FOSSILPOL)
 :::
 
-## [Neotoma API]{.r-fit-text} {.title .textcenter}
+## [Neotoma API]{.r-fit-text} {.title .text-center}
 
 ## Neotoma API
 
-Notoma REST [API]{.text-highlight-midnightGreen} allows to directly send [SQL]{.text-highlight-satinSheenGold} queries from the Neotoma server.
+Neotoma REST [API]{.text-highlight-midnightGreen} allows to directly send [SQL]{.text-highlight-satinSheenGold} queries from the Neotoma server.
 
 **SQL** (server) = **S**tructured **Q**uery **L**anguage 
 
@@ -530,31 +537,31 @@ knitr::include_graphics("https://images.ctfassets.net/vwq10xzbe6iz/5sBH4Agl614xM
 :::
 
 
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+## [Practical Exercise]{.r-fit-text} {.exercise .text-center}
 
 :::{.r-fit-text}
 GOAL: Get information about a pollen record using Neotoma API.
 :::
 
-:::{.textcenter}
+:::{.text-center}
 [Neotoma API (swagger interface)](https://api.neotomadb.org/api-Presentation/)
 
 Use `/v2.0/data/datasets/{datasetid}` endpoint.
 :::
 
-## [Practical Exercise]{.r-fit-text} {.exercise .textcenter}
+## [Practical Exercise]{.r-fit-text} {.exercise .text-center}
 
 :::{.r-fit-text}
 
 * get a `datasetid` from a pollen record of your choice from Neotoma Explorer
 * Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-Presentation/)
-* Dowload a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
+* Download a JSON pollen record use `/v2.0/data/downloads/{datasetid}` endpoint and selected `datasetid`
 
 :::
 
 `r countdown(minutes = 10)`
 
-# [Outro]{.bold .r-fit-text} {.title}
+# [Outro]{.text-bold .r-fit-text} {.title}
 
 ## About me
 
@@ -589,7 +596,7 @@ include_local_figure("QR/qr_personal_web.svg")
 :::
 
 ::: {.column width="70%"}
-[Ondřej Mottl]{.bold .r-fit-text .text-color-black}
+[Ondřej Mottl]{.text-bold .r-fit-text .text-color-black}
 Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
 
 Head of the 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
