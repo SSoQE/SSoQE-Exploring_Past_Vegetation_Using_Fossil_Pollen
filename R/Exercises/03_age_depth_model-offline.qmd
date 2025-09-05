@@ -17,7 +17,7 @@ To estimate the age of individual levels based on their depth, a chronology or a
 
 ## Key palaeoecological terms
 
--   **Chronology**: a series of estimated ages and associated uncertainty estimates for levels in a stratigraphic record. Such estimates usually derive from an age-depth model and its associated age controls.
+-   **Chronology**: a series of estimated ages and associated uncertainty estimates fory levels in a stratigraphic record. Such estimates usually derive from an age-depth model and its associated age controls.
 -   **Chronology control point(s)**: an estimate of absolute age, often with a specified uncertainty, for a level within a core or stratigraphic profile that is used to constrain an age model for that core or profile. Also called `age control`.
 -   **Chronology control table**: a table that contains all the chronology control points. Includes depth, uncalibrated age of radiocarbon date and age error. Clam and Bacon require additional columns related to the reservoir effect or calibration curve used. See clam and Bacon manuals.
 -   **Calibration curve**: is used to convert uncalibrated radiocarbon years (uncalibrated 14C BP) to calendar years (calibrated years before present, cal yr BP or cal yr B2K (2000 CE)). Depending on the location of the record and if the locality is marine or not, it is important to use the appropriate calibration curve. The radiocarbon calibration curve is empirically derived and is regularly updated as new observations are collected. At this time, IntCal21 is the standard calibration curve, replacing the previous IntCal13.
@@ -38,7 +38,7 @@ library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
 
 # set the working directory
-here::i_am("R/Exercises/02_age_depth_model.qmd")
+here::i_am("R/Exercises/03_age_depth_model-offline.qmd")
 
 # source the plot_table() function
 source(
@@ -56,7 +56,13 @@ knitr::opts_chunk$set(
   out.width = "100%",
   echo = TRUE
 )
+```
 
+```{r}
+#| label: set_theme
+#| include: false
+#| output: false
+#| echo: false
 source(
   here::here(
     "R/set_r_theme.R"
@@ -64,25 +70,49 @@ source(
 )
 ```
 
-## Download a dataset from Neotoma
+## Getting a dataset from Neotoma
 
 Here we have selected the **Chickaree Lake** record (ID = 47613) by Higuera, Philip E. and Dunnette, Paul V.
 
 Reference paper: Dunnette, P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, and M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain subalpine watershed. New Phytologist 203(3):900-912. DOI: 10.1111/nph.12828
 
+There are two options to get data from Neotoma database:
+
+1. Online - directly from the Neotoma database (internet connection required)
+
 ```{r}
 #| label: Download dataset
+#| eval: false
+#| echo: true
 sel_dataset_download <-
   neotoma2::get_downloads(47613)
+```
 
+2. Load the pre-downloaded record (offline, no internet connection required)
+
+```{r}
+# Load the pre-downloaded data
+sel_dataset_download <-
+  readr::read_rds(
+    here::here(
+      "Data/Input/47613_neotoma_download.rds"
+    )
+  )
+```
+
+<br>
+
+Let's extract Samples.
+
+```{r}
 data_samples <-
-  neotoma2::samples(sel_dataset_download)  %>% 
-  dplyr::distinct(sampleid, depth)  %>% 
+  neotoma2::samples(sel_dataset_download) %>%
+  dplyr::distinct(sampleid, depth) %>%
   dplyr::mutate(
     sampleid = as.integer(sampleid)
   ) %>%
-  dplyr::arrange(depth)  %>%
-  as.data.frame()  %>% 
+  dplyr::arrange(depth) %>%
+  as.data.frame() %>%
   tibble::as_tibble()
 
 plot_table(data_samples, head = TRUE)
@@ -96,12 +126,33 @@ We will recalculate the age-depth model 'de novo' using the [{Bchron} package](h
 
 The chronology control table contains all the dates (mostly radiocarbon) to create the age-depth model.
 
+Again, there are two options to get data from Neotoma database:
+
+1. Online - directly from the Neotoma database (internet connection required)
+
 ```{r}
 #| label: get chronology tables
+#| eval: false
+#| echo: true
 # First, get the chronologies and check which we want to use
 sel_chron_control_table_download <-
   neotoma2::chroncontrols(sel_dataset_download)
+```
 
+2. Load the pre-downloaded record (offline, no internet connection required)
+
+```{r}
+# Load the pre-downloaded data
+sel_chron_control_table_download <-
+  readr::read_rds(
+    here::here(
+      "Data/Input/47613_neotoma_chroncontrol.rds"
+    )
+  )
+```
+
+```{r}
+#| label: view chron control table
 plot_table(sel_chron_control_table_download, head = TRUE)
 ```
 
