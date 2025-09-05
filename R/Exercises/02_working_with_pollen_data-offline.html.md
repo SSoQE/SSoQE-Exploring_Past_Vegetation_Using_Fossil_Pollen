@@ -2,6 +2,7 @@
 
 Simple example of working with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
 
+
 ## Setup
 
 
@@ -15,29 +16,24 @@ library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
 library(janitor) # string cleaning 🧹
 library(geojsonsf) # geojson spatial data 🌐
+```
+:::
 
-# set the working directory
-here::i_am("R/Exercises/02_working_with_pollen_data-offline.qmd")
 
-# source the plot_table() function
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+# get the plot_table() function
 source(
   here::here(
     "R/Functions/plot_table.R"
   )
 )
-
-# quarto render options
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(
-  fig.width = 7,
-  fig.height = 7,
-  fig.align = "center",
-  out.width = "100%",
-  echo = TRUE
-)
 ```
 :::
-
 
 
 

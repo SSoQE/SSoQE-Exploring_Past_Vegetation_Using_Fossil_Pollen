@@ -1,16 +1,3 @@
----
-format:
-  html:
-    author: "Ondřej Mottl"
-    toc: true
-    toc-depth: 5
-    keep-md: true
-    code-link: true
-    embed-resources: true
-    code-line-numbers: true
-    theme: [default, _exercise_theme.scss]
----
-
 # Age Depth Modeling in R
 
 To estimate the age of individual levels based on their depth, a chronology or age-depth model needs to be constructed. An age-depth model provides age estimates of each individual level and the full age range of the record. Most datasets in Neotoma have chronologies available and the ages of individual levels are given, but these chronologies often need updating to match current best practices in age-depth modelling . Generally, age-depth models are constructed using `chronology control points` with known depth, estimated age and associated age uncertainties. The chronology control points for each record are saved in the `chronology control table`.
@@ -32,33 +19,28 @@ To estimate the age of individual levels based on their depth, a chronology or a
 # load libraries
 library(tidyverse) # general data wrangling and visualisation ✨
 library(neotoma2) # # access to the Neotoma database 🌿
-library(Bchron) # age-depth modeling 🕰️
 library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
+library(janitor) # string cleaning 🧹
+library(geojsonsf) # geojson spatial data 🌐
+```
+:::
 
-# set the working directory
-here::i_am("R/Exercises/03_age_depth_model-offline.qmd")
 
-# source the plot_table() function
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+# get the plot_table() function
 source(
   here::here(
     "R/Functions/plot_table.R"
   )
 )
-
-# quarto render options
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(
-  fig.width = 7,
-  fig.height = 7,
-  fig.align = "center",
-  out.width = "100%",
-  echo = TRUE
-)
 ```
 :::
-
-
 
 
 ## Getting a dataset from Neotoma
@@ -421,21 +403,21 @@ plot_table(age_uncertainties[1:8, 1:8])
 -----------------------------------------------------------------------
  439811   439812   439813   439814   439815   439816   439817   439818 
 -------- -------- -------- -------- -------- -------- -------- --------
-  -60      -53      -45      -37      -27      -21      -12       1    
+  -59      -53      -45      -39      -32      -18      -11       1    
 
-  -60      -53      -44      -37      -29      -21      -18       0    
+  -59      -53      -44      -37      -28      -20      -12       -6   
 
-  -60      -55      -45      -40      -31      -22      -13       -1   
+  -59      -54      -41      -38      -28      -20      -11       -7   
 
-  -60      -55      -45      -40      -27      -21      -12       -5   
+  -59      -53      -44      -36      -29      -20      -11       -8   
 
-  -60      -55      -44      -38      -27      -21      -13       -9   
+  -59      -53      -44      -36      -27      -19      -11       -5   
 
-  -60      -50      -49      -37      -27      -22      -14       -5   
+  -59      -53      -44      -35      -28      -21      -10       -8   
 
-  -60      -53      -44      -38      -25      -21      -12      -10   
+  -59      -51      -42      -37      -28      -21      -13       0    
 
-  -60      -54      -43      -39      -28      -21      -12       -7   
+  -59      -51      -48      -36      -28      -20      -11       -7   
 -----------------------------------------------------------------------
 ```
 

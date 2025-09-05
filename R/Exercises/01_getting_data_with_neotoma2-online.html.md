@@ -1,16 +1,3 @@
----
-format:
-  html:
-    author: "Ondřej Mottl"
-    toc: true
-    toc-depth: 5
-    keep-md: true
-    code-link: true
-    embed-resources: true
-    code-line-numbers: true
-    theme: [default, _exercise_theme.scss]
----
-
 # Basic functions of getting pollen data with neotoma2
 
 Simple example of working with pollen data using the [{neotoma2} package](https://open.neotomadb.org/neotoma2/).
@@ -28,30 +15,24 @@ library(pander) # nice tables 😍
 library(here) # for working directory 🗺️
 library(janitor) # string cleaning 🧹
 library(geojsonsf) # geojson spatial data 🌐
+```
+:::
 
-# set the working directory
-here::i_am("R/Exercises/01_getting_data_with_neotoma2-online.qmd")
 
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
 # get the plot_table() function
 source(
   here::here(
     "R/Functions/plot_table.R"
   )
 )
-
-# quarto render options
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(
-  fig.width = 7,
-  fig.height = 7,
-  fig.align = "center",
-  out.width = "100%",
-  echo = TRUE
-)
 ```
 :::
-
-
 
 
 Let's practise some of the basic functions of the `{neotoma2}` package.

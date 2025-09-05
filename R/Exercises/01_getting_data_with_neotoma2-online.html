@@ -2242,42 +2242,30 @@ vertical-align: -.125em;
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(pander) <span class="co"># nice tables 😍</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(here) <span class="co"># for working directory 🗺️</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(janitor) <span class="co"># string cleaning 🧹</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(geojsonsf) <span class="co"># geojson spatial data 🌐</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># set the working directory</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">&quot;R/Exercises/01_getting_data_with_neotoma2-online.qmd&quot;</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># get the plot_table() function</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">source</span>(</span>
-<span id="cb1-14"><a href="#cb1-14"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    <span class="st">&quot;R/Functions/plot_table.R&quot;</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  )</span>
-<span id="cb1-17"><a href="#cb1-17"></a>)</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># quarto render options</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">options</span>(<span class="at">htmltools.dir.version =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-21"><a href="#cb1-21"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="at">fig.width =</span> <span class="dv">7</span>,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>  <span class="at">fig.height =</span> <span class="dv">7</span>,</span>
-<span id="cb1-24"><a href="#cb1-24"></a>  <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb1-25"><a href="#cb1-25"></a>  <span class="at">out.width =</span> <span class="st">&quot;100%&quot;</span>,</span>
-<span id="cb1-26"><a href="#cb1-26"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(geojsonsf) <span class="co"># geojson spatial data 🌐</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># get the plot_table() function</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">source</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="st">&quot;R/Functions/plot_table.R&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  )</span>
+<span id="cb2-6"><a href="#cb2-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s practise some of the basic functions of the <code>{neotoma2}</code> package.</p>
 </section>
 <section id="sites" class="level2">
 <h2 class="anchored" data-anchor-id="sites">Sites</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># check the documentation</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>?neotoma2<span class="sc">::</span><span class="fu">get_sites</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># check the documentation</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>?neotoma2<span class="sc">::</span><span class="fu">get_sites</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="search-by-ids" class="level3">
 <h3 class="anchored" data-anchor-id="search-by-ids">Search by IDs</h3>
 <p>Search for site by a single numeric ID:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="dv">15799</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="dv">15799</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package &#39;magrittr&#39; was built under R version 4.5.1</code></pre>
 </div>
@@ -2292,10 +2280,10 @@ vertical-align: -.125em;
 </div>
 <p>Search for sites with multiple IDs:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">c</span>(<span class="dv">15799</span>, <span class="dv">15683</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">c</span>(<span class="dv">15799</span>, <span class="dv">15683</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ----------------------------------------------------
@@ -2309,8 +2297,8 @@ vertical-align: -.125em;
 </div>
 <p>Searching for Sites by Name. Note that <code>%</code> is a wildcard character:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">&quot;Alex%&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">&quot;Alex%&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
@@ -2334,11 +2322,11 @@ vertical-align: -.125em;
 <h3 class="anchored" data-anchor-id="searching-for-sites-by-age">Searching for Sites by Age</h3>
 <p>Record span at least 8200 years:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="at">ageof =</span> <span class="dv">8200</span>,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span> <span class="co"># this will only show 25 records</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-5"><a href="#cb11-5"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="at">ageof =</span> <span class="dv">8200</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span> <span class="co"># this will only show 25 records</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
@@ -2363,12 +2351,12 @@ vertical-align: -.125em;
 </div>
 <p>Record must PARTLY span the age range</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">minage =</span> <span class="dv">5000</span>,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">maxage =</span> <span class="dv">8000</span>,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span> <span class="co"># this will only show 25 records</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-6"><a href="#cb14-6"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="at">minage =</span> <span class="dv">5000</span>,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">maxage =</span> <span class="dv">8000</span>,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span> <span class="co"># this will only show 25 records</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in get_sites.default(minage = 5000, maxage = 8000, all_data = FALSE):
 Some parameters seem invalid. The current accepted parameters are: sitename,
@@ -2399,12 +2387,12 @@ keyword, contactid, taxa, ageyoung, ageold, ageof, all_data, limit, offset</code
 </div>
 <p>Record must COMPLETELY span the age range</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">ageyoung =</span> <span class="dv">5000</span>,</span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">ageold =</span> <span class="dv">8000</span>,</span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span> <span class="co"># this will only show 25 records</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-6"><a href="#cb18-6"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">ageyoung =</span> <span class="dv">5000</span>,</span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">ageold =</span> <span class="dv">8000</span>,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span> <span class="co"># this will only show 25 records</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
@@ -2433,16 +2421,16 @@ keyword, contactid, taxa, ageyoung, ageold, ageof, all_data, limit, offset</code
 <h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
 <p>You can search by all the same age properties as for sites (<code>ageof</code>, <code>minage</code>, <code>maxage</code>, <code>ageyoung</code>, <code>ageold</code>).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># check the documentation</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>?neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># check the documentation</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>?neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="search-by-ids-1" class="level3">
 <h3 class="anchored" data-anchor-id="search-by-ids-1">Search by IDs</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-4"><a href="#cb23-4"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ---------------------------------------------------------------------
@@ -2462,11 +2450,11 @@ keyword, contactid, taxa, ageyoung, ageold, ageof, all_data, limit, offset</code
 <section id="search-by-type" class="level3">
 <h3 class="anchored" data-anchor-id="search-by-type">Search by type</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span>, <span class="co"># running with `all_data = TRUE` is heavy on the server</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="at">datasettype =</span> <span class="st">&quot;pollen&quot;</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-5"><a href="#cb24-5"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="at">all_data =</span> <span class="cn">FALSE</span>, <span class="co"># running with `all_data = TRUE` is heavy on the server</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="at">datasettype =</span> <span class="st">&quot;pollen&quot;</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-5"><a href="#cb25-5"></a> <span class="fu">plot_table</span>(<span class="at">head =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
@@ -2495,90 +2483,90 @@ keyword, contactid, taxa, ageyoung, ageold, ageof, all_data, limit, offset</code
 <p>Go to <a href="https://geojson.io/">geojson.io</a> and get the coordinates of a polygon.</p>
 <p>For example:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>{</span>
-<span id="cb27-2"><a href="#cb27-2"></a>        <span class="st">&quot;type&quot;</span><span class="sc">:</span> <span class="st">&quot;FeatureCollection&quot;</span>,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>        <span class="st">&quot;features&quot;</span><span class="sc">:</span> [</span>
-<span id="cb27-4"><a href="#cb27-4"></a>          {</span>
-<span id="cb27-5"><a href="#cb27-5"></a>            <span class="st">&quot;type&quot;</span><span class="sc">:</span> <span class="st">&quot;Feature&quot;</span>,</span>
-<span id="cb27-6"><a href="#cb27-6"></a>            <span class="st">&quot;properties&quot;</span><span class="sc">:</span> {},</span>
-<span id="cb27-7"><a href="#cb27-7"></a>            <span class="st">&quot;geometry&quot;</span><span class="sc">:</span> {</span>
-<span id="cb27-8"><a href="#cb27-8"></a>              <span class="st">&quot;coordinates&quot;</span><span class="sc">:</span> [</span>
-<span id="cb27-9"><a href="#cb27-9"></a>                [</span>
-<span id="cb27-10"><a href="#cb27-10"></a>                  ...</span>
-<span id="cb27-11"><a href="#cb27-11"></a>                ]</span>
-<span id="cb27-12"><a href="#cb27-12"></a>              ],</span>
-<span id="cb27-13"><a href="#cb27-13"></a>              <span class="st">&quot;type&quot;</span><span class="sc">:</span> <span class="st">&quot;Polygon&quot;</span></span>
-<span id="cb27-14"><a href="#cb27-14"></a>            }</span>
-<span id="cb27-15"><a href="#cb27-15"></a>          }</span>
-<span id="cb27-16"><a href="#cb27-16"></a>        ]</span>
-<span id="cb27-17"><a href="#cb27-17"></a>      }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>{</span>
+<span id="cb28-2"><a href="#cb28-2"></a>        <span class="st">&quot;type&quot;</span><span class="sc">:</span> <span class="st">&quot;FeatureCollection&quot;</span>,</span>
+<span id="cb28-3"><a href="#cb28-3"></a>        <span class="st">&quot;features&quot;</span><span class="sc">:</span> [</span>
+<span id="cb28-4"><a href="#cb28-4"></a>          {</span>
+<span id="cb28-5"><a href="#cb28-5"></a>            <span class="st">&quot;type&quot;</span><span class="sc">:</span> <span class="st">&quot;Feature&quot;</span>,</span>
+<span id="cb28-6"><a href="#cb28-6"></a>            <span class="st">&quot;properties&quot;</span><span class="sc">:</span> {},</span>
+<span id="cb28-7"><a href="#cb28-7"></a>            <span class="st">&quot;geometry&quot;</span><span class="sc">:</span> {</span>
+<span id="cb28-8"><a href="#cb28-8"></a>              <span class="st">&quot;coordinates&quot;</span><span class="sc">:</span> [</span>
+<span id="cb28-9"><a href="#cb28-9"></a>                [</span>
+<span id="cb28-10"><a href="#cb28-10"></a>                  ...</span>
+<span id="cb28-11"><a href="#cb28-11"></a>                ]</span>
+<span id="cb28-12"><a href="#cb28-12"></a>              ],</span>
+<span id="cb28-13"><a href="#cb28-13"></a>              <span class="st">&quot;type&quot;</span><span class="sc">:</span> <span class="st">&quot;Polygon&quot;</span></span>
+<span id="cb28-14"><a href="#cb28-14"></a>            }</span>
+<span id="cb28-15"><a href="#cb28-15"></a>          }</span>
+<span id="cb28-16"><a href="#cb28-16"></a>        ]</span>
+<span id="cb28-17"><a href="#cb28-17"></a>      }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we can use the coordinates to search for datasets:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>sel_polygon <span class="ot">&lt;-</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>  geojsonsf<span class="sc">::</span><span class="fu">geojson_sf</span>(</span>
-<span id="cb28-3"><a href="#cb28-3"></a>    <span class="st">&#39;{</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="st">        &quot;type&quot;: &quot;FeatureCollection&quot;,</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a><span class="st">        &quot;features&quot;: [</span></span>
-<span id="cb28-6"><a href="#cb28-6"></a><span class="st">          {</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a><span class="st">            &quot;type&quot;: &quot;Feature&quot;,</span></span>
-<span id="cb28-8"><a href="#cb28-8"></a><span class="st">            &quot;properties&quot;: {},</span></span>
-<span id="cb28-9"><a href="#cb28-9"></a><span class="st">            &quot;geometry&quot;: {</span></span>
-<span id="cb28-10"><a href="#cb28-10"></a><span class="st">              &quot;coordinates&quot;: [</span></span>
-<span id="cb28-11"><a href="#cb28-11"></a><span class="st">                [</span></span>
-<span id="cb28-12"><a href="#cb28-12"></a><span class="st">                  [</span></span>
-<span id="cb28-13"><a href="#cb28-13"></a><span class="st">                    8.885566596626347,</span></span>
-<span id="cb28-14"><a href="#cb28-14"></a><span class="st">                    49.771446037909755</span></span>
-<span id="cb28-15"><a href="#cb28-15"></a><span class="st">                  ],</span></span>
-<span id="cb28-16"><a href="#cb28-16"></a><span class="st">                  [</span></span>
-<span id="cb28-17"><a href="#cb28-17"></a><span class="st">                    10.222591262669596,</span></span>
-<span id="cb28-18"><a href="#cb28-18"></a><span class="st">                    48.31793402541106</span></span>
-<span id="cb28-19"><a href="#cb28-19"></a><span class="st">                  ],</span></span>
-<span id="cb28-20"><a href="#cb28-20"></a><span class="st">                  [</span></span>
-<span id="cb28-21"><a href="#cb28-21"></a><span class="st">                    12.353498585013057,</span></span>
-<span id="cb28-22"><a href="#cb28-22"></a><span class="st">                    47.56711633708565</span></span>
-<span id="cb28-23"><a href="#cb28-23"></a><span class="st">                  ],</span></span>
-<span id="cb28-24"><a href="#cb28-24"></a><span class="st">                  [</span></span>
-<span id="cb28-25"><a href="#cb28-25"></a><span class="st">                    16.327096438141012,</span></span>
-<span id="cb28-26"><a href="#cb28-26"></a><span class="st">                    48.350003278892444</span></span>
-<span id="cb28-27"><a href="#cb28-27"></a><span class="st">                  ],</span></span>
-<span id="cb28-28"><a href="#cb28-28"></a><span class="st">                  [</span></span>
-<span id="cb28-29"><a href="#cb28-29"></a><span class="st">                    16.435889807717132,</span></span>
-<span id="cb28-30"><a href="#cb28-30"></a><span class="st">                    49.83389459390426</span></span>
-<span id="cb28-31"><a href="#cb28-31"></a><span class="st">                  ],</span></span>
-<span id="cb28-32"><a href="#cb28-32"></a><span class="st">                  [</span></span>
-<span id="cb28-33"><a href="#cb28-33"></a><span class="st">                    16.022485237853516,</span></span>
-<span id="cb28-34"><a href="#cb28-34"></a><span class="st">                    51.17135995959822</span></span>
-<span id="cb28-35"><a href="#cb28-35"></a><span class="st">                  ],</span></span>
-<span id="cb28-36"><a href="#cb28-36"></a><span class="st">                  [</span></span>
-<span id="cb28-37"><a href="#cb28-37"></a><span class="st">                    14.214447964984942,</span></span>
-<span id="cb28-38"><a href="#cb28-38"></a><span class="st">                    51.55099235084026</span></span>
-<span id="cb28-39"><a href="#cb28-39"></a><span class="st">                  ],</span></span>
-<span id="cb28-40"><a href="#cb28-40"></a><span class="st">                  [</span></span>
-<span id="cb28-41"><a href="#cb28-41"></a><span class="st">                    10.091782211463311,</span></span>
-<span id="cb28-42"><a href="#cb28-42"></a><span class="st">                    50.45895941972614</span></span>
-<span id="cb28-43"><a href="#cb28-43"></a><span class="st">                  ],</span></span>
-<span id="cb28-44"><a href="#cb28-44"></a><span class="st">                  [</span></span>
-<span id="cb28-45"><a href="#cb28-45"></a><span class="st">                    9.223835080442456,</span></span>
-<span id="cb28-46"><a href="#cb28-46"></a><span class="st">                    50.26942261795418</span></span>
-<span id="cb28-47"><a href="#cb28-47"></a><span class="st">                  ],</span></span>
-<span id="cb28-48"><a href="#cb28-48"></a><span class="st">                  [</span></span>
-<span id="cb28-49"><a href="#cb28-49"></a><span class="st">                    8.885566596626347,</span></span>
-<span id="cb28-50"><a href="#cb28-50"></a><span class="st">                    49.771446037909755</span></span>
-<span id="cb28-51"><a href="#cb28-51"></a><span class="st">                  ]</span></span>
-<span id="cb28-52"><a href="#cb28-52"></a><span class="st">                ]</span></span>
-<span id="cb28-53"><a href="#cb28-53"></a><span class="st">              ],</span></span>
-<span id="cb28-54"><a href="#cb28-54"></a><span class="st">              &quot;type&quot;: &quot;Polygon&quot;</span></span>
-<span id="cb28-55"><a href="#cb28-55"></a><span class="st">            }</span></span>
-<span id="cb28-56"><a href="#cb28-56"></a><span class="st">          }</span></span>
-<span id="cb28-57"><a href="#cb28-57"></a><span class="st">        ]</span></span>
-<span id="cb28-58"><a href="#cb28-58"></a><span class="st">      }&#39;</span></span>
-<span id="cb28-59"><a href="#cb28-59"></a>  )</span>
-<span id="cb28-60"><a href="#cb28-60"></a></span>
-<span id="cb28-61"><a href="#cb28-61"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
-<span id="cb28-62"><a href="#cb28-62"></a>  <span class="at">loc =</span> sel_polygon</span>
-<span id="cb28-63"><a href="#cb28-63"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-64"><a href="#cb28-64"></a> <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>sel_polygon <span class="ot">&lt;-</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  geojsonsf<span class="sc">::</span><span class="fu">geojson_sf</span>(</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="st">&#39;{</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="st">        &quot;type&quot;: &quot;FeatureCollection&quot;,</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="st">        &quot;features&quot;: [</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="st">          {</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="st">            &quot;type&quot;: &quot;Feature&quot;,</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="st">            &quot;properties&quot;: {},</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="st">            &quot;geometry&quot;: {</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a><span class="st">              &quot;coordinates&quot;: [</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="st">                [</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="st">                  [</span></span>
+<span id="cb29-13"><a href="#cb29-13"></a><span class="st">                    8.885566596626347,</span></span>
+<span id="cb29-14"><a href="#cb29-14"></a><span class="st">                    49.771446037909755</span></span>
+<span id="cb29-15"><a href="#cb29-15"></a><span class="st">                  ],</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="st">                  [</span></span>
+<span id="cb29-17"><a href="#cb29-17"></a><span class="st">                    10.222591262669596,</span></span>
+<span id="cb29-18"><a href="#cb29-18"></a><span class="st">                    48.31793402541106</span></span>
+<span id="cb29-19"><a href="#cb29-19"></a><span class="st">                  ],</span></span>
+<span id="cb29-20"><a href="#cb29-20"></a><span class="st">                  [</span></span>
+<span id="cb29-21"><a href="#cb29-21"></a><span class="st">                    12.353498585013057,</span></span>
+<span id="cb29-22"><a href="#cb29-22"></a><span class="st">                    47.56711633708565</span></span>
+<span id="cb29-23"><a href="#cb29-23"></a><span class="st">                  ],</span></span>
+<span id="cb29-24"><a href="#cb29-24"></a><span class="st">                  [</span></span>
+<span id="cb29-25"><a href="#cb29-25"></a><span class="st">                    16.327096438141012,</span></span>
+<span id="cb29-26"><a href="#cb29-26"></a><span class="st">                    48.350003278892444</span></span>
+<span id="cb29-27"><a href="#cb29-27"></a><span class="st">                  ],</span></span>
+<span id="cb29-28"><a href="#cb29-28"></a><span class="st">                  [</span></span>
+<span id="cb29-29"><a href="#cb29-29"></a><span class="st">                    16.435889807717132,</span></span>
+<span id="cb29-30"><a href="#cb29-30"></a><span class="st">                    49.83389459390426</span></span>
+<span id="cb29-31"><a href="#cb29-31"></a><span class="st">                  ],</span></span>
+<span id="cb29-32"><a href="#cb29-32"></a><span class="st">                  [</span></span>
+<span id="cb29-33"><a href="#cb29-33"></a><span class="st">                    16.022485237853516,</span></span>
+<span id="cb29-34"><a href="#cb29-34"></a><span class="st">                    51.17135995959822</span></span>
+<span id="cb29-35"><a href="#cb29-35"></a><span class="st">                  ],</span></span>
+<span id="cb29-36"><a href="#cb29-36"></a><span class="st">                  [</span></span>
+<span id="cb29-37"><a href="#cb29-37"></a><span class="st">                    14.214447964984942,</span></span>
+<span id="cb29-38"><a href="#cb29-38"></a><span class="st">                    51.55099235084026</span></span>
+<span id="cb29-39"><a href="#cb29-39"></a><span class="st">                  ],</span></span>
+<span id="cb29-40"><a href="#cb29-40"></a><span class="st">                  [</span></span>
+<span id="cb29-41"><a href="#cb29-41"></a><span class="st">                    10.091782211463311,</span></span>
+<span id="cb29-42"><a href="#cb29-42"></a><span class="st">                    50.45895941972614</span></span>
+<span id="cb29-43"><a href="#cb29-43"></a><span class="st">                  ],</span></span>
+<span id="cb29-44"><a href="#cb29-44"></a><span class="st">                  [</span></span>
+<span id="cb29-45"><a href="#cb29-45"></a><span class="st">                    9.223835080442456,</span></span>
+<span id="cb29-46"><a href="#cb29-46"></a><span class="st">                    50.26942261795418</span></span>
+<span id="cb29-47"><a href="#cb29-47"></a><span class="st">                  ],</span></span>
+<span id="cb29-48"><a href="#cb29-48"></a><span class="st">                  [</span></span>
+<span id="cb29-49"><a href="#cb29-49"></a><span class="st">                    8.885566596626347,</span></span>
+<span id="cb29-50"><a href="#cb29-50"></a><span class="st">                    49.771446037909755</span></span>
+<span id="cb29-51"><a href="#cb29-51"></a><span class="st">                  ]</span></span>
+<span id="cb29-52"><a href="#cb29-52"></a><span class="st">                ]</span></span>
+<span id="cb29-53"><a href="#cb29-53"></a><span class="st">              ],</span></span>
+<span id="cb29-54"><a href="#cb29-54"></a><span class="st">              &quot;type&quot;: &quot;Polygon&quot;</span></span>
+<span id="cb29-55"><a href="#cb29-55"></a><span class="st">            }</span></span>
+<span id="cb29-56"><a href="#cb29-56"></a><span class="st">          }</span></span>
+<span id="cb29-57"><a href="#cb29-57"></a><span class="st">        ]</span></span>
+<span id="cb29-58"><a href="#cb29-58"></a><span class="st">      }&#39;</span></span>
+<span id="cb29-59"><a href="#cb29-59"></a>  )</span>
+<span id="cb29-60"><a href="#cb29-60"></a></span>
+<span id="cb29-61"><a href="#cb29-61"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
+<span id="cb29-62"><a href="#cb29-62"></a>  <span class="at">loc =</span> sel_polygon</span>
+<span id="cb29-63"><a href="#cb29-63"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-64"><a href="#cb29-64"></a> <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
@@ -2620,19 +2608,19 @@ keyword, contactid, taxa, ageyoung, ageold, ageof, all_data, limit, offset</code
 <h3 class="anchored" data-anchor-id="filter">Filter</h3>
 <p>You can additionally filter the compilation based on <code>lat</code>, <code>long</code>, <code>altitude</code>, <code>age_range_young</code>, and/or <code>age_range_old</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># check the documentation</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>?neotoma2<span class="sc">::</span><span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># check the documentation</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>?neotoma2<span class="sc">::</span><span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="at">loc =</span> sel_polygon</span>
-<span id="cb32-3"><a href="#cb32-3"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb32-5"><a href="#cb32-5"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb32-6"><a href="#cb32-6"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
-<span id="cb32-7"><a href="#cb32-7"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
-<span id="cb32-8"><a href="#cb32-8"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-9"><a href="#cb32-9"></a> <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="at">loc =</span> sel_polygon</span>
+<span id="cb33-3"><a href="#cb33-3"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
+<span id="cb33-8"><a href="#cb33-8"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-9"><a href="#cb33-9"></a> <span class="fu">plot_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
@@ -2655,11 +2643,11 @@ keyword, contactid, taxa, ageyoung, ageold, ageof, all_data, limit, offset</code
 <h3 class="anchored" data-anchor-id="download-individual-record">Download individual record</h3>
 <p>Let’s download a record with <code>datasetid</code> 24279</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>dataset_24279 <span class="ot">&lt;-</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>(<span class="dv">24279</span>)</span>
-<span id="cb35-3"><a href="#cb35-3"></a></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="fu">plot_table</span>(</span>
-<span id="cb35-5"><a href="#cb35-5"></a>  dataset_24279<span class="sc">@</span>sites[[<span class="dv">1</span>]]<span class="sc">@</span>collunits[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>dataset_24279 <span class="ot">&lt;-</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>(<span class="dv">24279</span>)</span>
+<span id="cb36-3"><a href="#cb36-3"></a></span>
+<span id="cb36-4"><a href="#cb36-4"></a><span class="fu">plot_table</span>(</span>
+<span id="cb36-5"><a href="#cb36-5"></a>  dataset_24279<span class="sc">@</span>sites[[<span class="dv">1</span>]]<span class="sc">@</span>collunits[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 -------------------------------------------------------------------------------
@@ -2692,17 +2680,17 @@ Table: Table continues below
 <h3 class="anchored" data-anchor-id="download-multiple-records">Download multiple records</h3>
 <p>Download all records by sites</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># get sites information</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>data_sites_alex <span class="ot">&lt;-</span></span>
-<span id="cb37-3"><a href="#cb37-3"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">&quot;Alex%&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb37-4"><a href="#cb37-4"></a>  <span class="co"># get datasets information</span></span>
-<span id="cb37-5"><a href="#cb37-5"></a>  neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb37-6"><a href="#cb37-6"></a>  <span class="co"># get downloads</span></span>
-<span id="cb37-7"><a href="#cb37-7"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># get sites information</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>data_sites_alex <span class="ot">&lt;-</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">&quot;Alex%&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a>  <span class="co"># get datasets information</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a>  neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb38-6"><a href="#cb38-6"></a>  <span class="co"># get downloads</span></span>
+<span id="cb38-7"><a href="#cb38-7"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">plot_table</span>(data_sites_alex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">plot_table</span>(data_sites_alex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ------------------------------------------------------------
@@ -2720,23 +2708,23 @@ Table: Table continues below
 </div>
 <p>Download all records by datasets</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># get datasets information</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>data_datasets_polygon <span class="ot">&lt;-</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
-<span id="cb41-4"><a href="#cb41-4"></a>  <span class="at">loc =</span> sel_polygon</span>
-<span id="cb41-5"><a href="#cb41-5"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb41-6"><a href="#cb41-6"></a>  <span class="co"># filter datasets</span></span>
-<span id="cb41-7"><a href="#cb41-7"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb41-8"><a href="#cb41-8"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb41-9"><a href="#cb41-9"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
-<span id="cb41-10"><a href="#cb41-10"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
-<span id="cb41-11"><a href="#cb41-11"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb41-12"><a href="#cb41-12"></a>  <span class="co"># get downloads</span></span>
-<span id="cb41-13"><a href="#cb41-13"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># get datasets information</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>data_datasets_polygon <span class="ot">&lt;-</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a>neotoma2<span class="sc">::</span><span class="fu">get_datasets</span>(</span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="at">loc =</span> sel_polygon</span>
+<span id="cb42-5"><a href="#cb42-5"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-6"><a href="#cb42-6"></a>  <span class="co"># filter datasets</span></span>
+<span id="cb42-7"><a href="#cb42-7"></a>  neotoma2<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb42-8"><a href="#cb42-8"></a>    datasettype <span class="sc">==</span> <span class="st">&quot;pollen&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb42-9"><a href="#cb42-9"></a>      altitude <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span></span>
+<span id="cb42-10"><a href="#cb42-10"></a>      age_range_young <span class="sc">&lt;=</span> <span class="fl">1e3</span></span>
+<span id="cb42-11"><a href="#cb42-11"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb42-12"><a href="#cb42-12"></a>  <span class="co"># get downloads</span></span>
+<span id="cb42-13"><a href="#cb42-13"></a>  neotoma2<span class="sc">::</span><span class="fu">get_downloads</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in options(scipen = 9999999): invalid &#39;scipen&#39; 9999999, used 9999</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">plot_table</span>(data_datasets_polygon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">plot_table</span>(data_datasets_polygon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 --------------------------------------------------
