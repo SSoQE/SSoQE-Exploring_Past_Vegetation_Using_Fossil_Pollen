@@ -319,6 +319,8 @@ include_local_figure("Diagrams/neotoma_structure_box.svg")
 
 ## [Practical Exercise]{.r-fit-text .text-center} {.exercise}
 
+Note: This only works if you have an internet connection.
+
 :::{.r-fit-text .text-center}
 GOAL: Get familiar with {neotoma2} R package.
 :::
@@ -329,8 +331,25 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_neotoma2_basics.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_neotoma2_basics.html.md)
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_getting_data_with_neotoma2-online.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_getting_data_with_neotoma2-online.html.md)
+
+:::
+
+## [Practical Exercise]{.r-fit-text .text-center} {.exercise}
+
+:::{.r-fit-text .text-center}
+GOAL: Plot a pollen diagram.
+:::
+
+<br>
+
+### Materials:
+
+::: {.r-fit-text}
+
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_working_with_pollen_data-offline.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_working_with_pollen_data-offline.html.md)
 
 :::
 
@@ -429,8 +448,8 @@ GOAL: Create an age-depth model using {Bchron} package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_age_depth_model.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_age_depth_model.html.md)
+* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/03_age_depth_model-offline.qmd)
+* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/03_age_depth_model-offline.html.md)
 
 :::
 
