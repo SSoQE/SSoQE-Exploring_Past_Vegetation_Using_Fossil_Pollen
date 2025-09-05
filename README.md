@@ -33,6 +33,14 @@ This lecture has a build-in presentation, which is accesible [here](https://ssoq
 |   ├─ render.R
 |   ├─ set_r_theme.R
 |   ├─ Exercises/
+|   |   ├─ _colors.scss
+|   |   ├─ _fonts.scss
+|   |   ├─ _exercise_theme.scss
+|   |   ├─ _quarto.yml
+|   |   ├─ 01_getting_data_with_neotoma2-online.qmd
+|   |   ├─ 02_working_with_pollen_data-offline.qmd
+|   |   ├─ 03_age_depth_model-offline.qmd
+|   |   └─ render_excercises.R
 |   ├─ Functions/
 |   └─ Project/
 ├─ renv
@@ -66,22 +74,32 @@ Once a user obtains their version of the project, there are several steps to be 
 
 ## Automatic Theme Generation
 
-This project features an automated theme generation system that ensures consistent branding and styling across both presentation slides and R visualizations. The system is based on the SSoQE Brand Guidelines and automatically generates theme files from JSON configurations.
+This project features a comprehensive automated theme generation system that ensures consistent branding and styling across presentation slides, exercise documents, and R visualizations. The system is based on the SSoQE Brand Guidelines and automatically generates theme files from JSON configurations.
 
 ### How it works
 
-The theme generation is automatically triggered before every Quarto render through the `pre-render` hook in `_quarto.yml`, which calls the `00_Config_file.R` script. This script sources `generate_theme.R`, which reads configuration from JSON files and generates all necessary theme files.
+The theme generation is automatically triggered before every Quarto render through the `pre-render` hook in `_quarto.yml`, which calls the `00_Config_file.R` script. This script sources `generate_theme.R`, which reads configuration from JSON files and generates all necessary theme files for both presentations and exercises.
 
 ### Configuration Files
 
-- **`Presentation/colors.json`**: Defines the SSoQE brand color palette
-- **`Presentation/fonts.json`**: Specifies typography settings including fonts, sizes, weights, and spacing
+- **`Presentation/colors.json`**: Defines the SSoQE brand color palette with primary colors and semantic color mappings
+- **`Presentation/fonts.json`**: Specifies typography settings including fonts, sizes, weights, and spacing for both presentations and HTML documents
+- **`Presentation/custom_theme.json`**: Contains presentation-specific styling configurations
 
 ### Generated Files
 
 The system automatically generates the following files (do not edit these directly):
 
+#### Presentation Theme Files
 1. **`Presentation/_colors.scss`**: SCSS variables and utility classes for colors
-2. **`Presentation/_fonts.scss`**: SCSS variables and utility classes for typography  
-3. **`Presentation/fonts-include.html`**: HTML includes for Google Fonts
-4. **`R/set_r_theme.R`**: R theme configuration for ggplot2 with SSoQE branding
+2. **`Presentation/_fonts.scss`**: SCSS variables and utility classes for typography (presentation-optimized)
+3. **`Presentation/custom_theme.scss`**: Complete custom theme for Reveal.js presentations
+4. **`Presentation/fonts-include.html`**: HTML includes for Google Fonts
+
+#### Exercise Theme Files
+5. **`R/Exercises/_colors.scss`**: SCSS color variables and utilities for HTML exercises
+6. **`R/Exercises/_fonts.scss`**: SCSS typography variables for HTML documents (HTML-optimized sizes)
+7. **`R/Exercises/_exercise_theme.scss`**: Complete custom theme for exercise HTML documents
+
+#### R Theme Files
+8. **`R/set_r_theme.R`**: R theme configuration for ggplot2 with SSoQE branding
