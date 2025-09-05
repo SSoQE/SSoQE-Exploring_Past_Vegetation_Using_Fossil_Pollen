@@ -119,18 +119,8 @@ theme_ssoqe <- function(base_size = text_size_base,
     # Background elements
     plot.background = ggplot2::element_rect(fill = "#F2F4F2", colour = NA),
     panel.background = ggplot2::element_rect(fill = "#F2F4F2", colour = NA),
-    legend.background = ggplot2::element_rect(fill = "#F2F4F2", colour = NA),
-    strip.background = ggplot2::element_rect(fill = "#A1C3B3", colour = "#155560"),
-    
-    # Grid and axis lines
-    panel.grid.major = ggplot2::element_line(colour = "#A1C3B3", linewidth = line_size_thin),
-    panel.grid.minor = ggplot2::element_line(colour = "#A1C3B3", linewidth = line_size_thin * 0.5),
-    axis.line = ggplot2::element_line(colour = "#1F2937", linewidth = line_size_base),
-    axis.ticks = ggplot2::element_line(colour = "#1F2937", linewidth = line_size_thin),
-    
-    # Other elements
-    legend.key = ggplot2::element_blank(),
-    plot.margin = ggplot2::margin(t = 10, r = 10, b = 10, l = 10)
+    legend.background = ggplot2::element_blank(),
+    legend.key = ggplot2::element_blank()
   )
 }
 
@@ -142,8 +132,8 @@ ssoqe_discrete_colors <- function(n) {
   if (n <= length(ssoqe_cols)) {
     return(ssoqe_cols[1:n])
   } else {
-    # Extend with interpolated colors if needed
-    return(grDevices::colorRampPalette(ssoqe_cols)(n))
+    # Generate more colors using colorRampPalette if needed
+    return(colorRampPalette(ssoqe_cols)(n))
   }
 }
 

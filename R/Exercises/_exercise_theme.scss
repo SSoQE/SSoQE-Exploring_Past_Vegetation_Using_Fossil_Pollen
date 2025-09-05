@@ -3,61 +3,14 @@
 
 /*-- scss:defaults --*/
 
-// Import Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+// Define spacing variables before imports (needed by color utility classes)
+$smallMargin: 0.5rem !default;
+$blockMargin: 1.5rem !default;
+$largeMargin: 20px !default;
 
-// SSoQE Brand Colors
-$black: #1F2937;
-$white: #F2F4F2;
-$midnightGreen: #155560;
-$persianGreen: #509A8E;
-$cambridgeBlue: #A1C3B3;
-$satinSheenGold: #C2A337;
-
-// Semantic color mappings for HTML documents
-$body-color: $black !default;
-$body-bg: $white !default;
-$link-color: $persianGreen !default;
-$link-hover-color: darken($persianGreen, 15%) !default;
-$code-bg: lighten($cambridgeBlue, 35%) !default;
-$code-color: $black !default;
-$border-color: $cambridgeBlue !default;
-$table-border-color: $cambridgeBlue !default;
-$blockquote-border-color: $persianGreen !default;
-
-// Typography settings for HTML documents
-$font-family-sans-serif: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$headings-font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$font-family-monospace: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace !default;
-
-// Font sizes optimized for HTML reading
-$font-size-base: 1rem !default;
-$line-height-base: 1.6 !default;
-$headings-line-height: 1.3 !default;
-
-// Heading sizes for HTML documents
-$h1-font-size: $font-size-base * 2.2 !default;
-$h2-font-size: $font-size-base * 1.8 !default;
-$h3-font-size: $font-size-base * 1.4 !default;
-$h4-font-size: $font-size-base * 1.1 !default;
-$h5-font-size: $font-size-base * 1 !default;
-$h6-font-size: $font-size-base * 0.9 !default;
-
-// Font weights
-$headings-font-weight: 600 !default;
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
-
-// Layout settings
-$content-max-width: 900px;
-$block-margin: 1.5rem;
-$small-margin: 0.5rem;
-
-// Spacing
-$headings-margin-bottom: $block-margin * 0.5 !default;
-$paragraph-margin-bottom: $block-margin !default;
+// Import local color and font definitions
+@import "_colors";
+@import "_fonts";
 
 /*-- scss:rules --*/
 
@@ -122,8 +75,8 @@ a {
 
 // Code styling
 code {
-  background-color: $code-bg;
-  color: $code-color;
+  background-color: $lightCodeBackground !important;
+  color: $satinSheenGold !important;
   font-family: $font-family-monospace;
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
@@ -131,28 +84,66 @@ code {
 }
 
 pre {
-  background-color: $code-bg;
-  border: 1px solid $border-color;
+  background-color: $lightCodeBackground !important;
   border-radius: 0.375rem;
   padding: 1rem;
   margin-bottom: $block-margin;
+  overflow-x: auto;
 
   code {
-    background-color: transparent;
+    background-color: transparent !important;
+    color: $black !important;
     border: none;
     padding: 0;
     font-size: 0.875rem;
   }
 }
 
+// Fix Quarto code block positioning and container issues
+.cell-code, .sourceCode {
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.cell-code pre, .sourceCode pre {
+  margin: 0 !important;
+  padding: 1rem !important;
+  background-color: $lightCodeBackground !important;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+}
+
+// Hide the cell-code label that's appearing
+.cell-code::before, .sourceCode::before {
+  display: none !important;
+}
+
+// Ensure proper code block styling
+.cell-code code, .sourceCode code {
+  background-color: transparent !important;
+  color: $black !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+// Additional Quarto-specific code element fixes
+.sourceCode code {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
 // Blockquote styling
 blockquote {
-  border-left: 4px solid $blockquote-border-color;
-  padding-left: 1rem;
-  margin-left: 0;
+  border-left: 4px solid $persianGreen;
+  background-color: rgba($cambridgeBlue, 0.1);
+  padding: 1rem;
+  margin: 1rem 0;
   margin-bottom: $block-margin;
-  color: lighten($body-color, 20%);
   font-style: italic;
+  border-radius: 0.375rem;
 }
 
 // Table styling
@@ -162,19 +153,19 @@ table {
   width: 100%;
 
   th, td {
-    border: 1px solid $table-border-color;
-    padding: 0.5rem;
+    border: 1px solid rgba($black, 0.2);
+    padding: 0.75rem;
     text-align: left;
   }
 
   th {
-    background-color: lighten($cambridgeBlue, 30%);
-    color: $midnightGreen;
-    font-weight: $headings-font-weight;
+    background-color: $midnightGreen !important;
+    color: $white !important;
+    font-weight: 600;
   }
 
-  tr:nth-child(even) {
-    background-color: lighten($cambridgeBlue, 40%);
+  tr:nth-child(odd) {
+    background-color: rgba($cambridgeBlue, 0.5) !important; // Very light Cambridge Blue
   }
 }
 

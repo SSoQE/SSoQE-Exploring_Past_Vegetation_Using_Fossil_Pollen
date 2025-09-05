@@ -1,3 +1,6 @@
+// This file is auto-generated from colors.json, fonts.json, and custom_theme.json. Do not edit directly.
+// SSoQE Custom Theme for Reveal.js Presentations
+
 /*-- scss:defaults --*/
 
 // Vertical spacing between blocks of text
@@ -51,7 +54,7 @@ pre,
 .reveal pre,
 code,
 .reveal code {
-  background-color: #D4E6DE !important; /* Light Cambridge Blue */
+  background-color: $cambridgeBlue !important; /* Light Cambridge Blue */
   color: $body-color;
   border-radius: 8px; /* More rounded as per brand guidelines */
   line-height: 1.4;
@@ -119,6 +122,12 @@ div.sourceCode pre::-webkit-scrollbar,
   color: inherit !important;
 }
 
+/* Fix for code blocks in HTML output */
+.sourceCode {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 pre a,
 .reveal pre a,
 code a,
@@ -163,12 +172,6 @@ a,
 .reveal a:visited,
 .reveal a:active {
   color: $link-color !important;
-}
-
-/* Fix for code blocks in HTML output */
-.sourceCode {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
 }
 
 /* Headings */
