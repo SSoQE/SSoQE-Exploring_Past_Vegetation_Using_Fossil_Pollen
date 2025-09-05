@@ -69,14 +69,17 @@ pre,
 
 code,
 .reveal code {
+  background-color: $midnightGreen !important;
+  color: $satinSheenGold !important;
+  font-style: italic;
   padding: 0.125rem 0.25rem;
-  color: $satinSheenGold !important; /* Gold color for inline code */
 }
 
 pre code,
 .reveal pre code {
   background-color: transparent !important;
   color: $body-color !important; /* Black text for code blocks */
+  font-style: normal !important; /* Override italic from inline code */
   padding: $smallMargin;
   position: relative;
   /* Ensure line highlighting works */
