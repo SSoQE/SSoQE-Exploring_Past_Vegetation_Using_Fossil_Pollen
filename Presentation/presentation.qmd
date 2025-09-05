@@ -1,15 +1,3 @@
----
-format: 
-  revealjs:
-    slide-number: true
-    theme: [default, custom_theme.scss]
-    embed-resources: true
-    preview-links: auto
-    output-file: "index"
-    output-ext: "html"
-    include-in-header: "fonts-include.html"
----
-
 ```{r}
 #| label: setup
 #| include: false
