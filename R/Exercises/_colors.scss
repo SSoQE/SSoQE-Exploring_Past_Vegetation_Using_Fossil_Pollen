@@ -10,7 +10,7 @@ $satinSheenGold: #C2A337;
 $lightCodeBackground: #A1C3B3;
 $tableStripeBackground: #A1C3B3;
 $blockquoteBackground: #F2F4F2;
-$codeBlockBackground: #509A8E;
+$codeBlockBackground: #A1C3B3;
 $shadowBackground: #155560;
 
 // Color classes
@@ -150,15 +150,15 @@ $shadowBackground: #155560;
 }
 
 // Color: codeBlockBackground
-.reveal .bg-codeBlockBackground { background-color: #509A8E; }
-.text-color-codeBlockBackground { color: #509A8E !important; }
+.reveal .bg-codeBlockBackground { background-color: #A1C3B3; }
+.text-color-codeBlockBackground { color: #A1C3B3 !important; }
 .text-background-codeBlockBackground {
-  background-color: #509A8E;
+  background-color: #A1C3B3;
   padding: $smallMargin;
   border-radius: 5px;
 }
 .text-highlight-codeBlockBackground {
-  background-color: #509A8E;
+  background-color: #A1C3B3;
   color: $black;
   padding: 2px 4px;
   border-radius: 3px;

@@ -11,3 +11,4 @@ format:
     embed-resources: true
     code-line-numbers: true
     theme: [default, _exercise_theme.scss]
+    highlight-style: github-light

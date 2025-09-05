@@ -84,7 +84,7 @@ code {
 }
 
 pre {
-  background-color: $lightCodeBackground !important;
+  background-color: $cambridgeBlue !important;
   border-radius: 0.375rem;
   padding: 1rem;
   margin-bottom: $block-margin;
@@ -92,7 +92,7 @@ pre {
 
   code {
     background-color: transparent !important;
-    color: $black !important;
+    color: inherit !important; // Let Quarto handle syntax highlighting colors
     border: none;
     padding: 0;
     font-size: 0.875rem;
@@ -111,7 +111,7 @@ pre {
 .cell-code pre, .sourceCode pre {
   margin: 0 !important;
   padding: 1rem !important;
-  background-color: $lightCodeBackground !important;
+  background-color: $cambridgeBlue !important;
   border-radius: 0.375rem;
   overflow-x: auto;
 }
@@ -124,7 +124,7 @@ pre {
 // Ensure proper code block styling
 .cell-code code, .sourceCode code {
   background-color: transparent !important;
-  color: $black !important;
+  color: inherit !important; // Let Quarto handle syntax highlighting colors
   padding: 0 !important;
   border: none !important;
 }
