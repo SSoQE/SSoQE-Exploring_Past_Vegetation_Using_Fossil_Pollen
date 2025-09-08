@@ -346,6 +346,23 @@ include_local_figure("Diagrams/neotoma_structure_box.svg")
 
 ## [Code Exercise]{.text-size-heading2} {.exercise .text-center}
 
+```{r}
+#| label: make excercise paths
+#| include: false
+ex_0_path <- 
+  paste0(github_url, "/blob/main/R/Exercises/")
+
+ex_1_path <- 
+  paste0(ex_0_path, "01_getting_data_with_neotoma2-online")
+
+ex1_path_qmd <-
+  paste0(ex_1_path, ".qmd")
+
+ex1_path_html <-
+  paste0(ex_1_path, ".html.md")
+
+```
+
 Note: This only works if you have an internet connection.
 
 :::{.r-fit-text .text-center}
@@ -358,12 +375,25 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_getting_data_with_neotoma2-online.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/01_getting_data_with_neotoma2-online.html.md)
+* [💽Raw R code](`r ex1_path_qmd`)
+* [🎨rendered R code](`r ex1_path_html`)
 
 :::
 
 ## [Code Exercise]{.text-size-heading2} {.exercise .text-center}
+
+```{r}
+#| label: make excercise paths-2
+#| include: false
+ex_2_path <- 
+  paste0(ex_0_path, "02_working_with_pollen_data-offline")
+
+ex2_path_qmd <-
+  paste0(ex_2_path, ".qmd")
+
+ex2_path_html <-
+  paste0(ex_2_path, ".html.md")
+```
 
 :::{.r-fit-text .text-center}
 GOAL: Plot a pollen diagram.
@@ -375,8 +405,8 @@ GOAL: Plot a pollen diagram.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_working_with_pollen_data-offline.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/02_working_with_pollen_data-offline.html.md)
+* [💽Raw R code](`r ex2_path_qmd`)
+* [🎨rendered R code](`r ex2_path_html`)
 
 :::
 
@@ -465,6 +495,19 @@ knitr::include_graphics("https://andrewcparnell.github.io/Bchron/articles/Bchron
 
 ## [Code Exercise]{.text-size-heading2} {.exercise .text-center}
 
+```{r}
+#| label: make excercise paths-3
+#| include: false
+ex_3_path <- 
+  paste0(ex_0_path, "03_age_depth_model-offline")
+
+ex3_path_qmd <-
+  paste0(ex_3_path, ".qmd")
+
+ex3_path_html <-
+  paste0(ex_3_path, ".html.md")
+```
+
 :::{.r-fit-text}
 GOAL: Create an age-depth model using {Bchron} package.
 :::
@@ -475,12 +518,20 @@ GOAL: Create an age-depth model using {Bchron} package.
 
 ::: {.r-fit-text}
 
-* [💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/03_age_depth_model-offline.qmd)
-* [🎨rendered R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Exercises/03_age_depth_model-offline.html.md)
+* [💽Raw R code](`r ex3_path_qmd`)
+* [🎨rendered R code](`r ex3_path_html`)
 
 :::
 
 # [Past Vegetation through time]{.text-bold .text-italic .r-fit-text} {.title}
+
+```{r}
+#| label: past-vegetation-path
+#| include: false
+
+ex_4_path <- 
+  paste0(github_url, "/blob/main/R/Project/PastVegetationThroughTime.R")
+```
 
 ## [Code Exercise]{.text-size-heading2} {.exercise .text-center}
 
@@ -491,7 +542,7 @@ Goal: Look at a temporal change of presence of selected taxon.
 Work in groups and choose a taxon and region of your interest.
 
 :::{.r-fit-text}
-[💽Raw R code](https://github.com/SSoQE/SSoQE-Exploring_Past_Vegetation_Using_Fossil_Pollen/blob/main/R/Project/PastVegetationThroughTime.R)
+[💽Raw R code](`r ex_4_path`)
 :::
 
 `r countdown(minutes = 20)`
