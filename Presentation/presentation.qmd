@@ -151,6 +151,35 @@ include_local_figure("QR/qr_slides.svg")
 
 ::::
 
+# [Learning Objectives]{.bold .r-fit-text} {.title}
+
+## What we'll cover today
+
+:::: {.columns}
+
+::: {.column width="45%" .incremental}
+
+### 🎯 **Main Topics**
+
+- Neotoma Paleoecology Database
+- Fossil pollen data in R
+- Age-depth modeling
+
+:::
+
+::: {.column width="55%" .incremental}
+
+### ✅ **By the end, you'll be able to:**
+
+- Understand the specifics of fossil pollen data
+- Access fossil pollen data using {neotoma2} R package
+- Plot a pollen diagram using {ggplot2} R package
+- Create an age-depth model using {Bchron} R package
+
+:::
+
+::::
+
 ## Fossil pollen
 
 ```{r}
@@ -190,7 +219,7 @@ Photos by John W. Williams (a,b,r); Steffen Wolters (c,d,f,g); Thomas Giesecke (
 
 <br>
 
-:::{.r-fit-text}
+:::{.blockquote .r-fit-text}
 What is your experience with fossil pollen data?
 :::
 
@@ -218,8 +247,8 @@ knitr::include_graphics("https://www.neotomadb.org/assets/uploads/images/neotoma
 * **Taxon names**
 * [**Dates**]{.text-highlight-persianGreen} (14C, 210Pb, etc.)
 * **Age inferences**
-* [Derived Variables (e.g July mean temperature, species richness)]{.strike}
-* [Image files]{.strike}
+* [Derived Variables (e.g July mean temperature, species richness)]{.text-strike}
+* [Image files]{.text-strike}
 :::
 
 ## Neotoma - spatio-temporal scale
@@ -365,7 +394,7 @@ ex1_path_html <-
 
 Note: This only works if you have an internet connection.
 
-:::{.r-fit-text .text-center}
+:::{.r-fit-text .blockquote}
 GOAL: Get familiar with {neotoma2} R package.
 :::
 
@@ -373,7 +402,7 @@ GOAL: Get familiar with {neotoma2} R package.
 
 ### Materials:
 
-::: {.r-fit-text}
+::: {.blockquote}
 
 * [💽Raw R code](`r ex1_path_qmd`)
 * [🎨rendered R code](`r ex1_path_html`)
@@ -395,7 +424,7 @@ ex2_path_html <-
   paste0(ex_2_path, ".html.md")
 ```
 
-:::{.r-fit-text .text-center}
+:::{.r-fit-text .blockquote}
 GOAL: Plot a pollen diagram.
 :::
 
@@ -403,7 +432,7 @@ GOAL: Plot a pollen diagram.
 
 ### Materials:
 
-::: {.r-fit-text}
+::: {.blockquote}
 
 * [💽Raw R code](`r ex2_path_qmd`)
 * [🎨rendered R code](`r ex2_path_html`)
@@ -508,7 +537,7 @@ ex3_path_html <-
   paste0(ex_3_path, ".html.md")
 ```
 
-:::{.r-fit-text}
+:::{.r-fit-text .blockquote}
 GOAL: Create an age-depth model using {Bchron} package.
 :::
 
@@ -516,7 +545,7 @@ GOAL: Create an age-depth model using {Bchron} package.
 
 ### Materials:
 
-::: {.r-fit-text}
+::: {.blockquote}
 
 * [💽Raw R code](`r ex3_path_qmd`)
 * [🎨rendered R code](`r ex3_path_html`)
@@ -535,14 +564,14 @@ ex_4_path <-
 
 ## [Code Exercise]{.text-size-heading2} {.exercise .text-center}
 
-:::{.r-fit-text}
+:::{.r-fit-text .blockquote}
 Goal: Look at a temporal change of presence of selected taxon.
 :::
 
 Work in groups and choose a taxon and region of your interest.
 
-:::{.r-fit-text}
-[💽Raw R code](`r ex_4_path`)
+:::{.blockquote}
+- [💽Raw R code](`r ex_4_path`)
 :::
 
 `r countdown(minutes = 20)`
@@ -620,7 +649,7 @@ knitr::include_graphics("https://images.ctfassets.net/vwq10xzbe6iz/5sBH4Agl614xM
 
 ```{r}
 #| label: practical-exercise-note
-include_local_figure("Exercise/monkey_see_monkey_do_by_adiasarahma.jpg")
+include_local_figure("Exercise/monkey_see_monkey_do_by_adiasarahma.png")
 ```
 
 ::: footer
@@ -629,7 +658,7 @@ include_local_figure("Exercise/monkey_see_monkey_do_by_adiasarahma.jpg")
 
 ## [Practical Exercise]{.r-fit-text} {.exercise .text-center}
 
-:::{.r-fit-text}
+:::{.r-fit-text .blockquote}
 GOAL: Get information about a pollen record using Neotoma API.
 :::
 
@@ -641,7 +670,7 @@ Use `/v2.0/data/datasets/{datasetid}` endpoint.
 
 ## [Practical Exercise]{.r-fit-text} {.exercise .text-center}
 
-:::{.r-fit-text}
+:::{.r-fit-text .blockquote}
 
 * get a `datasetid` from a pollen record of your choice from Neotoma Explorer
 * Go to [Neotoma API (swagger interface)](https://api.neotomadb.org/api-Presentation/)
